@@ -14,8 +14,7 @@
             <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
             <ul class="navbar-list clearfix">
                 <a id="ad-list" href="javascript:;" class="scm ad-list-btn"></a>
-                <li><a class="on" href="index.html">首页</a></li>
-                <li><a href="../剧院管理/Movie.html" target="_blank">网站首页</a></li>
+                <li>光影人生--影院管理系统</li>
             </ul>
         </div>
         <div class="top-info-wrap">
@@ -37,19 +36,17 @@
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="design.html"><i class="icon-font">&#xe044;</i>影片管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe034;</i>影厅管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe063;</i>座位管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe014;</i>会员管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe065;</i>财务管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe042;</i>票房统计</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe033;</i>广告管理</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe044;</i>售票</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe034;</i>退票</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe063;</i>影片查询</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
                     <ul class="sub-menu">
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>系统设置</a></li>
+                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>更改密码</a></li>
                     </ul>
                 </li>
             </ul>
@@ -59,18 +56,54 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">影厅管理</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">查询</span></div>
         </div>
         <div class="search-wrap">
             <div class="search-content">
                 <form action="#" method="post">
                     <table class="search-tab">
                         <tr>
-                            <th width="120">选择分类:</th>
+                            <th width="120">类型:</th>
                             <td>
                                 <select name="search-sort" >
                                     <option value="">全部</option>
-                                    <option value="19">正在上映</option><option value="20">即将上映</option>
+                                    <option value="19">爱情</option>
+                                    <option value="20">动作</option>
+                                </select>
+                            </td>
+                            <th width="120">语言:</th>
+                            <td>
+                                <select name="search-sort" >
+                                    <option value="">全部</option>
+                                    <option value="19">英语</option>
+                                    <option value="20">国语</option>
+                                </select>
+                            </td>
+                            <th width="120">等级:</th>
+                            <td>
+                                <select name="search-sort" >
+                                    <option value="">全部</option>
+                                    <option value="19">2D</option>
+                                    <option value="20">3D</option>
+                                    <option value="20">IMAX</option>
+                                </select>
+                            </td>
+                            <th width="120">时长:</th>
+                            <td>
+                                <select name="search-sort" >
+                                    <option value="">全部</option>
+                                    <option value="19">90<</option>
+                                    <option value="20">90-120</option>
+                                    <option value="20">>120</option>
+                                </select>
+                            </td>
+                            <th width="120">票价:</th>
+                            <td>
+                                <select name="search-sort" >
+                                    <option value="">全部</option>
+                                    <option value="19">20<</option>
+                                    <option value="20">20-60</option>
+                                    <option value="20">>60</option>
                                 </select>
                             </td>
                             <th width="70">关键字:</th>

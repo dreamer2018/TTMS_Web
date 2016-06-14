@@ -54,7 +54,7 @@ CREATE TABLE employee(
   theater_id        INT           NOT NULL,         #剧院id
   name              VARCHAR(40),                    #售票员姓名
   passwd            VARCHAR(20)   DEFAULT '000000', #售票员密码,初始密码000000
-  tel               INT(11),                        #售票员手机号码
+  tel               BIGINT(11),                        #售票员手机号码
   PRIMARY KEY (id)
 );
 
@@ -64,7 +64,7 @@ CREATE TABLE employee(
 CREATE TABLE customer(
   id                INT           AUTO_INCREMENT,
   name              VARCHAR(40),                    #顾客姓名
-  tel               INT(11)       NOT NULL,         #顾客电话号码
+  tel               BIGINT(11)       NOT NULL,         #顾客电话号码
   PRIMARY KEY (id)
 );
 

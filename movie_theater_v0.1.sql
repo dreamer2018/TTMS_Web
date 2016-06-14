@@ -199,9 +199,11 @@ CREATE TABLE online(
   PRIMARY KEY (id)
 );
 
+
 INSERT into generalmanager VALUES (1,'10000001','Boss','123456');
 
 INSERT into manager VALUES (1,'20000001',1,'Manage','123456');
+
 
 INSERT into employee VALUES (1,'30000001',1,'employ1','123456',12345678901);
 INSERT into employee VALUES (2,'30000002',1,'employ2','123456',12345678902);

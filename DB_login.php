@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: zhoupan
- * Date: 6/14/16
+ * Date: 6/14/16`
  * Time: 9:33 PM
  */
 $DB_USER="root";

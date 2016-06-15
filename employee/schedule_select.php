@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
+    die("<h1>非法访问</h1>");
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,25 +77,68 @@
         </div>
         <div class="search-wrap">
             <div class="search-content">
-                <form action="#" method="post">
+                <form action="schedule_select.php" method="post">
                     <table class="search-tab">
                         <tr>
                             <th width="120">影片名称:</th>
                             <td>
-                                <select name="search-sort" >
-                                    <option value="">全部</option>
-                                    <option value="19">魔兽</option>
-                                    <option value="20">愤怒的小鸟</option>
+                                <select name="movie_name">
+                                    <option value="0">全部</option>
+                                    <?php
+                                    require_once "../conf/DB_login.php";
+                                    /*
+                                     * 连接数据库
+                                     */
+                                    $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                                    /*
+                                     * 如果连接失败，则直接结束
+                                    */
+                                    if (!$connect) {
+                                        die("Connect DataBase Error!<br/>");
+                                    }
+
+                                    /*
+                                     * 选择数据库
+                                     */
+                                    $select = $connect->select_db($DB_NAME);
+                                    $query = "select id,name from play;";
+                                    $result = $connect->query($query);
+                                    while ($row = $result->fetch_array()) {
+                                        echo "<option value=" . $row["id"] . ">" . $row["name"] . "</option>";
+                                    }
+                                    ?>
                                 </select>
                             </td>
                             <th width="120">日期:</th>
                             <td>
-                                <select name="search-sort" >
-                                    <option value="">全部</option>
-                                    <option value="19">2016.6.14</option>
-                                    <option value="20">2016.6.15</option>
+                                <select name="date">
+                                    <option value="-1">全部</option>
+                                    <?php
+                                    require_once "../conf/DB_login.php";
+                                    /*
+                                     * 连接数据库
+                                     */
+                                    $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                                    /*
+                                     * 如果连接失败，则直接结束
+                                    */
+                                    if (!$connect) {
+                                        die("Connect DataBase Error!<br/>");
+                                    }
+
+                                    /*
+                                     * 选择数据库
+                                     */
+                                    $select = $connect->select_db($DB_NAME);
+
+                                    $query = "select distinct time from schedule;";
+
+                                    $result = $connect->query($query);
+                                    while ($row = $result->fetch_array()) {
+                                        echo "<option value=" . $row["time"] . ">" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</option>";
+                                    }
+                                    ?>
                                 </select>
-                           
                             <th width="120"></th>
                             <td>
                                 <input class="btn btn-primary btn2" name="sub" value="查询" type="submit">
@@ -105,35 +154,72 @@
                     <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                         <tr>
                             <th class="tc">ID</th>
-                           
                             <th>演出厅id</th>
                             <th>剧目id</th>
                             <th>放映时间</th>
                             <th>折扣</th>
                             <th>票价</th>
                         </tr>
-                        <tr>
-                            <td title="美国队长3">美国队长3</td>
-                            <td>IMAX</td>
-                            <td>2号厅</td>
-                            <td>正在上映</td>
-                            <td>5.11 21:11:01-5.11 23:11:01</td>
-                            <td>5.11 21:11:01-5.11 23:11:01</td>
-                            
-                        </tr>
+                        <?php
+
+                        if (isset($_POST["movie_name"])) {
+                            $movie_name = $_POST['movie_name'];
+                            $date = $_POST['date'];
+
+                            require_once "../conf/DB_login.php";
+                            /*
+                             * 连接数据库
+                             */
+                            $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                            /*
+                             * 如果连接失败，则直接结束
+                            */
+                            if (!$connect) {
+                                die("Connect DataBase Error!<br/>");
+                            }
+
+                            /*
+                             * 选择数据库
+                             */
+                            $select = $connect->select_db($DB_NAME);
+                            if ($movie_name == 0 && $date == -1) {
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 ;";
+                            } elseif ($movie_name == 0 && $date != -1) {
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and  time=\"" . $date . "\";";
+                            } elseif ($movie_name != 0 && $date == -1) {
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . ";";
+                            } else {
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\";";
+                            }
+                            //echo $query;
+
+                            $result = $connect->query($query);
+                            $count=0;
+                            while ($row = $result->fetch_array()) {
+                                echo "<tr>";
+                                echo "<td>" . $row['id'] . "</td >";
+                                echo "<td>" . $row['studio_id'] . "</td >";
+                                echo "<td>" . $row['play_id'] . "</td >";
+                                echo "<td>" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
+                                echo "<td>" . $row['discount'] . "</td >";
+                                echo "<td>" . $row['price'] . "</td >";
+                                echo "</td>";
+                                $count++;
+                            }
+                        }
+                        ?>
                     </table>
-                    <div class="list-page"> 1 条 1/1 页</div>
+                    <div class="list-page" style="margin-left: 85%">共<?php echo $count ?>条</div>
                 </div>
             </form>
         </div>
     </div>
     <!--/main-->
     <script type="text/javascript">
-        function post()
-            {
-                forPost.action="DestinationPage.aspx";
-                forPost.submit();
-            }
+        function post() {
+            forPost.action = "DestinationPage.aspx";
+            forPost.submit();
+        }
     </script>
 </div>
 </body>

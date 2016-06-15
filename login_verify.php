@@ -60,7 +60,7 @@ if ($identity) {
      */
     if($DB_TABLE_NAME !=""){
 
-        require_once "DB_login.php";
+        require_once "conf/DB_login.php";
         /*
          * 连接数据库
          */
@@ -114,6 +114,10 @@ if ($identity) {
                */
             }
         }
+        /*
+         * 关闭数据库连接
+         */
+        $connect->close();
     }else{
         $message = "用户名或密码错误,请重新登录！";
     }

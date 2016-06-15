@@ -72,62 +72,32 @@
         </div>
        <div class="result-wrap">
             <div class="result-content">
-                <form action="design.html" method="post" id="myform" name="myform" enctype="multipart/form-data" method="get">
+                <form action="php/passwd.php" method="post" id="myform" name="myform" enctype="multipart/form-data">
                     <table class="insert-tab" width="100%" id="fid" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
-                                <th width="120"><i class="require-red">*</i>工号：</th>
+                                <th width="120"><i class="require-red">*</i>原始密码：</th>
                                 <td>
-                                    <!-- <select name="colId" id="catid" class="required">
-                                        <option value="20">2D</option><option value="20">3D</option><option value="19">IMAX</option>
-                                    </select> -->
-                                    <input class="common-text required" id="title" name="title" size="20" value="" type="text">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><i class="require-red">*</i>原始密码：</th>
-                                <td>
-                                    <input class="common-text required" id="title" name="title" size="20" value="" type="text">
+                                    <input class="common-text required" id="old" name="old_passwd" size="20" value="" type="password">
                                 </td>
                             </tr>
                             <tr>
                                 <th><i class="require-red">*</i>新密码：</th>
                                 <td>
-                                   <!--  <select name="colId" id="homeid" class="required">
-                                        <option value="20">1号厅</option><option value="20">2号厅</option><option value="19">3号厅</option>
-                                    </select> -->
-                                    <input class="common-text required" id="title" name="title" size="20" value="" type="text">
+                                    <input class="common-text required" id="new" name="new_passwd" size="20" value="" type="password">
                                 </td>
                             </tr>
                             <tr>
-                                <th><i class="require-red">*</i>确认密码：</th>
+                                <th><i class="require-red">*</i>密码确认：</th>
                                 <td>
-                                   <!--  <select name="colId" id="atid" class="required">
-                                            <option value="20">正在上映</option><option value="20">即将上映</option>
-                                    </select> -->
-                                    <input class="common-text required" id="title" name="title" size="20" value="" type="text">
+                                    <input class="common-text required" id="confirm" name="confirm_passwd" size="20" value="" type="password">
                                 </td>
                             </tr>
-                            <tr>
-                                <!-- <th>时间：</th>
-                                <td>
-                                    <input class="common-text required" id="time" name="title" size="20" value="" type="text">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>价格：</th>
-                                <td>
-                                    <input class="common-text required" id="price" name="title" size="20" value="" type="text">
-                                </td>
-                            </tr> -->
-                            <tr>
-                                <th></th>
-                                <td>
-                                    <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit">
-                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
-                                </td>
-                            </tr>
-                        </tbody></table>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit" style="margin-left: 6%;">
+                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button" style="margin-left: 2%;">
                 </form>
             </div>
         </div>

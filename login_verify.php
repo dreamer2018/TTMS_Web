@@ -9,8 +9,6 @@
  *  通过POST请就接收到前端发来的用户名和密码
  */
 
-
-
 $username = $_POST["username"];
 $password = $_POST["password"];
 
@@ -22,22 +20,28 @@ $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
 //$password = md5($password.'linux');
 
+$message="";  //输出提示信息
+$url="";      //跳转url
+$sign=0;      //用户名密码验证成功标志
+
+
 /*
  * 对数据进行解析，得出身份类型
  */
-
 if ($username[0] == '1') {
     $identity = 1;
+    $url="generalmanager/index.html";
 } elseif ($username[0] == '2') {
     $identity = 2;
+    $url="manager/index.html";
 } elseif ($username[0] == '3') {
     $identity = 3;
+    $url="employee/index.html";
 } else {
     $identity = 0;
 }
-
 /*
- * 连接数据库，进行用户名，密码验证
+ * 身份验证
  */
 if ($identity) {
 
@@ -54,7 +58,6 @@ if ($identity) {
     /*
      * 如果身份表为空则不进行数据库连接
      */
-
     if($DB_TABLE_NAME !=""){
 
         require_once "DB_login.php";
@@ -78,7 +81,6 @@ if ($identity) {
          * 写SQL语句
          */
         $query=" select passwd from ".$DB_TABLE_NAME." where emp_no= \"".$username."\";";
-        echo "<br/>",$query;
         /*
          * 获取查询结果
          */
@@ -94,24 +96,41 @@ if ($identity) {
             while ($row = $result->fetch_array()){
 
                 if($row["passwd"] == $password){
-                    echo "登陆成功";
+                    $message = "登陆成功,正在跳转......";
+                    $sign=1;
                 }else{
-                    echo "用户名或密码不正确";
+                    $message = "用户名或密码不正确";
                 }
                 //校验成功
 
-                $_SESSION['user'] = $username;
-                $_SESSION['identity'] = $identity;
-                echo $row["passwd"],"<br/>";
+                /*
+               $_SESSION['user'] = $username;
+               $_SESSION['identity'] = $identity;
 
-                if(isset($_SESSION['user'])){
-                    echo $_SESSION['user'];
-                }
+
+               if(isset($_SESSION['user'])){
+                   echo $_SESSION['user'];
+               }
+               */
             }
         }
     }else{
-        echo "用户名或密码错误";
+        $message = "用户名或密码错误,请重新登录！";
     }
 }else{
-    echo "用户名或密码错误";
+    $message = "用户名或密码错误,请重新登录！";
 }
+
+if(!$sign){
+    $url="login.html";
+}
+?>
+<html>
+<head>
+<meta http-equiv="refresh" content="1;
+url=<?php echo $url; ?>">
+</head>
+<body>
+<?php echo $message; ?>
+</body>
+</html>

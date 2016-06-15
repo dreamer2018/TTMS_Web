@@ -2,12 +2,12 @@
 <project version="4">
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter home="/usr/bin/php" id="37a23be2-9644-469a-8afa-8c1abb396b4b" name="PHP 5.4" debugger_id="php.debugger.XDebug" />
+      <interpreter home="/usr/bin/php" id="37a23be2-9644-469a-8afa-8c1abb396b4b" name="PHP 5.4 (project level)" debugger_id="php.debugger.XDebug" />
     </interpreters>
   </component>
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
-      <interpreter name="PHP 5.4">
+      <interpreter name="PHP 5.4 (project level)">
         <phpinfo binary_type="PHP" php_cgi="/usr/local/php/bin/php-cgi" php_cli="/usr/local/php/bin/php" path_separator=":" remote_host="127.0.0.1" version="5.4.41">
           <additional_php_ini />
           <configuration_file>/usr/local/php/etc/php.ini</configuration_file>

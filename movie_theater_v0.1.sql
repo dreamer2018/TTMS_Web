@@ -134,10 +134,10 @@ CREATE TABLE bill(
 /*==============================================================*/
 CREATE TABLE play(
   id            INT           AUTO_INCREMENT,
+  name          VARCHAR(40)   NOT NULL ,      #剧名
   type_id       INT           NOT NULL ,      #剧目类型id
   lang_id       INT           NOT NULL ,      #剧目语言id
   level_id      INT           NOT NULL ,      #剧目等级id
-  name          VARCHAR(40)   NOT NULL ,      #剧名
   score         TINYINT       NOT NULL ,      #评分
   Introduction  VARCHAR(1000) NOT NULL ,      #剧目简介
   image_url     VARCHAR(100)  NOT NULL ,      #剧目图片url
@@ -158,6 +158,7 @@ CREATE TABLE schedule(
   time          INT(12)       NOT NULL ,      #放映时间
   discount      NUMERIC(2,1) ,                #折扣
   price         NUMERIC(10,2) NOT NULL ,      #票价
+  status        tinyint       not null ,      #演出计划状态
   PRIMARY KEY (id)
 );
 

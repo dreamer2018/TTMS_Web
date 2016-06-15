@@ -136,6 +136,7 @@ if(!$sign){
 ?>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta http-equiv="refresh" content="2;
 url=<?php echo $url; ?>">
 </head>

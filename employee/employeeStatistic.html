@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,9 @@
 </div>
 <!--头部结束-->
 
+
 <div class="container clearfix">
+
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -56,10 +58,16 @@
         </div>
     </div>
     <!--菜单栏结束-->
+
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">统计</span></div>
+            <div class="crumb-list">
+                <i class="icon-font"></i>
+                <a href="index.html">首页</a>
+                <span class="crumb-step">&gt;</span>
+                <span class="crumb-name">统计</span>
+            </div>
         </div>
         <div class="search-wrap">
             <div class="search-content">
@@ -83,65 +91,37 @@
                                 </select>
                            
                             <th width="120"></th>
-                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                            <td>
+                                <input class="btn btn-primary btn2" name="sub" value="查询" type="submit">
+                            </td>
                         </tr>
                     </table>
                 </form>
             </div>
         </div>
-        
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
                 <div class="result-content" id="fid">
                     <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                         <tr>
-                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
-                            <th>ID</th>
-                            <th>影片名称</th>
-                            <th>影片类型</th>
-                            <th>放映厅</th>
-                            <th>状态</th>
-                            <th>时间</th>
+                            <th class="tc">ID</th>
+                           
+                            <th>演出厅id</th>
+                            <th>剧目id</th>
+                            <th>放映时间</th>
+                            <th>折扣</th>
                             <th>票价</th>
-                            <th>操作</th>
                         </tr>
                         <tr>
-                            <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="59" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>59</td>
                             <td title="美国队长3"><a target="_blank" href="#" title="美国队长3">美国队长3</a> …
                             </td>
                             <td>IMAX</td>
                             <td>2号厅</td>
                             <td>正在上映</td>
                             <td>5.11 21:11:01-5.11 23:11:01</td>
-                            <td></td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#" onclick="deleteRow(this)">删除</a>
-                            </td>
-                        </tr>
-                        <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="59" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>59</td>
-                            <td title="美国队长3"><a target="_blank" href="#" title="美国队长3">美国队长3</a> …
-                            </td>
-                            <td>IMAX</td>
-                            <td>2号厅</td>
-                            <td>正在上映</td>
                             <td>5.11 21:11:01-5.11 23:11:01</td>
-                            <td></td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#" onclick="deleteRow(this)">删除</a>
-                            </td>
+                            
                         </tr>
-                      
                     </table>
                     <div class="list-page"> 1 条 1/1 页</div>
                 </div>

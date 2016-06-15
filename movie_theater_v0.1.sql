@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS schedule;         /*演出计划*/
 DROP TABLE IF EXISTS type;             /*剧目类型*/
 DROP TABLE IF EXISTS lang;             /*剧目语言*/
 DROP TABLE IF EXISTS level;            /*剧目等级*/
-DROP TABLE IF EXISTS online;           /*在线列表*/
+
 
 /*==============================================================*/
 /* Table: generalmanager                                        */
@@ -113,7 +113,7 @@ CREATE TABLE ticket(
   schedule_id  INT           NOT NULL ,               #演出计划id
   price        NUMERIC(10,2) NOT NULL ,               #票价
   status       TINYINT       DEFAULT 0,               #票的状态 0：待售 1：锁定 2：卖出
-  locktime     VARCHAR(14)   DEFAULT '19700101000000',  #锁票时间2016年6月13号18点23分4秒 保存为：20160613182304
+  locktime     CHAR(14)   DEFAULT '19700101000000',  #锁票时间2016年6月13号18点23分4秒 保存为：20160613182304
   PRIMARY KEY (id)
 );
 
@@ -125,7 +125,7 @@ CREATE TABLE bill(
   customer_id INT           NOT NULL ,                #顾客id
   ticket_id   INT           NOT NULL ,                #票id
   emp_id      INT           NOT NULL ,                #售票id
-  sale_time   VARCHAR(14)   DEFAULT '19700101000000',   #售票时间2016年6月13号18点23分4秒 保存为：20160613182304
+  sale_time   CHAR(14)   DEFAULT '19700101000000',   #售票时间2016年6月13号18点23分4秒 保存为：20160613182304
   PRIMARY KEY (id)
 );
 
@@ -155,10 +155,10 @@ CREATE TABLE schedule(
   id            INT           AUTO_INCREMENT,
   studio_id     INT           NOT NULL ,      #演出厅id
   play_id       INT           NOT NULL ,      #剧目id
-  time          INT(12)       NOT NULL ,      #放映时间
+  time          char(12)       NOT NULL ,      #放映时间
   discount      NUMERIC(2,1) ,                #折扣
   price         NUMERIC(10,2) NOT NULL ,      #票价
-  status        tinyint       not null ,      #演出计划状态
+  status        tinyint       not null ,      #演出计划状态,1 未过期 0 过期
   PRIMARY KEY (id)
 );
 
@@ -193,12 +193,7 @@ CREATE TABLE level(
 /*==============================================================*/
 /* Table:  online 在线列表                                        */
 /*==============================================================*/
-CREATE TABLE online(
-  id          INT          AUTO_INCREMENT,
-  emp_no      CHAR(8)      NOT NULL ,
-  login_time  VARCHAR(14)  DEFAULT '19700101000000',
-  PRIMARY KEY (id)
-);
+
 
 
 INSERT into generalmanager VALUES (1,'10000001','Boss','123456');
@@ -235,16 +230,15 @@ INSERT into studio VALUES (9,3,'NO.3Theater.NO.1Studio',30,20);
 
 
 
-INSERT into ticket VALUES (1,1,1,2.5,2);
-INSERT into ticket VALUES (2,2,1,2.5,2);
-INSERT into ticket VALUES (3,3,1,2.5,2);
-INSERT into ticket VALUES (4,1,2,3.5,1);
-INSERT into ticket VALUES (5,2,2,3.5,1);
-INSERT into ticket VALUES (6,3,2,3.5,1);
-INSERT into ticket VALUES (7,1,3,4.5,0);
-INSERT into ticket VALUES (8,2,3,4.5,0);
-INSERT into ticket VALUES (9,3,3,4.5,0);
-
+INSERT into ticket VALUES (1,1,1,2,5,2);
+INSERT into ticket VALUES (2,2,1,2,5,2);
+INSERT into ticket VALUES (3,3,1,2,5,2);
+INSERT into ticket VALUES (4,1,2,3,5,1);
+INSERT into ticket VALUES (5,2,2,3,5,1);
+INSERT into ticket VALUES (6,3,2,3,5,1);
+INSERT into ticket VALUES (7,1,3,4,5,0);
+INSERT into ticket VALUES (8,2,3,4,5,0);
+INSERT into ticket VALUES (9,3,3,4,5,0);
 
 INSERT into bill VALUES (1,1,1,1,'20160614182553');
 
@@ -256,9 +250,9 @@ INSERT into play VALUES (5,3,1,1,'Warcraft: The Beginning',8.0,'***omit:Warcraft
 INSERT into play VALUES (6,2,2,2,'My Wife is a Superstar',4.6,'***omitMy Wife is a Superstar***','C:\Users\Public\Pictures\Sample Pictures\17656011_1358928951505.jpg',95,7.5,0);
 
 
-INSERT into schedule VALUES (1,1,1,201606140900,0.9,2.5);
-INSERT into schedule VALUES (2,2,2,201606140900,0.8,3.5);
-INSERT into schedule VALUES (3,3,3,201606140900,0.7,10.5);
+INSERT into schedule VALUES (1,1,1,'201606140900',0.9,2.5,1);
+INSERT into schedule VALUES (2,2,2,'201606150900',0.8,3.5,1);
+INSERT into schedule VALUES (3,3,3,'201606160900',0.7,10.5,1);
 
 INSERT into type VALUES (1,'恐怖');
 INSERT into type VALUES (2,'动作');

@@ -76,7 +76,7 @@
                         <tr>
                             <th width="120">影片名称:</th>
                             <td>
-                                <select name="search-sort" >
+                                <select name="search-sort">
                                     <option value="">全部</option>
                                     <option value="19">魔兽</option>
                                     <option value="20">愤怒的小鸟</option>
@@ -84,12 +84,12 @@
                             </td>
                             <th width="120">日期:</th>
                             <td>
-                                <select name="search-sort" >
+                                <select name="search-sort">
                                     <option value="">全部</option>
                                     <option value="19">2016.6.14</option>
                                     <option value="20">2016.6.15</option>
                                 </select>
-                           
+
                             <th width="120"></th>
                             <td>
                                 <input class="btn btn-primary btn2" name="sub" value="查询" type="submit">
@@ -100,40 +100,37 @@
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
-                <div class="result-content" id="fid">
-                    <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <th class="tc">ID</th>
-                           
-                            <th>演出厅id</th>
-                            <th>剧目id</th>
-                            <th>放映时间</th>
-                            <th>折扣</th>
-                            <th>票价</th>
-                        </tr>
-                        <tr>
-                            <td title="美国队长3">美国队长3</td>
-                            <td>IMAX</td>
-                            <td>2号厅</td>
-                            <td>正在上映</td>
-                            <td>5.11 21:11:01-5.11 23:11:01</td>
-                            <td>5.11 21:11:01-5.11 23:11:01</td>
-                            
-                        </tr>
-                    </table>
-                    <div class="list-page"> 1 条 1/1 页</div>
-                </div>
-            </form>
+            <div class="result-content" id="fid">
+                <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th class="tc">ID</th>
+
+                        <th>演出厅id</th>
+                        <th>剧目id</th>
+                        <th>放映时间</th>
+                        <th>折扣</th>
+                        <th>票价</th>
+                    </tr>
+                    <tr>
+                        <td title="美国队长3">美国队长3</td>
+                        <td>IMAX</td>
+                        <td>2号厅</td>
+                        <td>正在上映</td>
+                        <td>5.11 21:11:01-5.11 23:11:01</td>
+                        <td>5.11 21:11:01-5.11 23:11:01</td>
+
+                    </tr>
+                </table>
+                <div class="list-page"> 1 条 1/1 页</div>
+            </div>
         </div>
     </div>
     <!--/main-->
     <script type="text/javascript">
-        function post()
-            {
-                forPost.action="DestinationPage.aspx";
-                forPost.submit();
-            }
+        function post() {
+            forPost.action = "DestinationPage.aspx";
+            forPost.submit();
+        }
     </script>
 </div>
 </body>

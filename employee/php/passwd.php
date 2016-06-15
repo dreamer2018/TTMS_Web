@@ -10,9 +10,9 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 <head>
     <meta charset="UTF-8">
     <title>光影人生-影院票务管理系统</title>
-    <link rel="stylesheet" type="text/css" href="css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <script type="text/javascript" src="js/houtai.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <script type="text/javascript" src="../js/houtai.js"></script>
 </head>
 <body>
 
@@ -49,17 +49,17 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="booking.html"><i class="icon-font">&#xe044;</i>售票</a></li>
-                        <li><a href="return.html"><i class="icon-font">&#xe034;</i>退票</a></li>
-                        <li><a href="select.html"><i class="icon-font">&#xe063;</i>影片查询</a></li>
-                        <li><a href="schedule_select.html"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
-                        <li><a href="employeeStatistic.html"><i class="icon-font">&#xe065;</i>统计</a></li>
+                        <li><a href="../booking.html"><i class="icon-font">&#xe044;</i>售票</a></li>
+                        <li><a href="../return.html"><i class="icon-font">&#xe034;</i>退票</a></li>
+                        <li><a href="../select.html"><i class="icon-font">&#xe063;</i>影片查询</a></li>
+                        <li><a href="../schedule_select.html"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
+                        <li><a href="../employeeStatistic.html"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
                     <ul class="sub-menu">
-                        <li><a href="change_passwd.html"><i class="icon-font">&#xe017;</i>更改密码</a></li>
+                        <li><a href="../change_passwd.html"><i class="icon-font">&#xe017;</i>更改密码</a></li>
                     </ul>
                 </li>
             </ul>
@@ -72,7 +72,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         <div class="crumb-wrap">
             <div class="crumb-list">
                 <i class="icon-font"></i>
-                <a href="/jscss/admin/design/">首页</a>
+                <a href="../index.html">首页</a>
                 <span class="crumb-step">&gt;</span>
                 <span>更改密码</span>
             </div>
@@ -156,7 +156,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                      */
                     if ($DB_TABLE_NAME != "") {
 
-                        require_once "../conf/DB_login.php";
+                        require_once "../../conf/DB_login.php";
                         /*
                          * 连接数据库
                          */

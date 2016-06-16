@@ -124,7 +124,7 @@ CREATE TABLE bill(
   id          INT           AUTO_INCREMENT,
   customer_id INT           NOT NULL ,                #顾客id
   ticket_id   INT           NOT NULL ,                #票id
-  emp_id      INT           NOT NULL ,                #售票id
+  emp_id      INT           NOT NULL ,                #售票员id
   sale_time   CHAR(14)   DEFAULT '19700101000000',   #售票时间2016年6月13号18点23分4秒 保存为：20160613182304
   PRIMARY KEY (id)
 );

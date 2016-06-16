@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS type;             /*剧目类型*/
 DROP TABLE IF EXISTS lang;             /*剧目语言*/
 DROP TABLE IF EXISTS level;            /*剧目等级*/
 
-
+/*********************************************************************************************************/
 /*==============================================================*/
 /* Table: generalmanager                                        */
 /*==============================================================*/
@@ -33,6 +33,9 @@ CREATE TABLE generalmanager(
   PRIMARY KEY (id)
 );
 
+INSERT into generalmanager VALUES (1,'10000001','Boss','123456');
+
+/*********************************************************************************************************/
 /*==============================================================*/
 /* Table: manager     剧院经理                                   */
 /*==============================================================*/
@@ -44,6 +47,11 @@ CREATE TABLE manager(
   passwd            VARCHAR(20)    DEFAULT '000000',    #经理密码
   PRIMARY KEY (id)
 );
+
+INSERT into manager VALUES (1,'20000001',1,'Box','123456');
+INSERT into manager VALUES (2,'20000002',1,'Girl','123456');
+
+/*********************************************************************************************************/
 
 /*==============================================================*/
 /* Table: employee     售票员                                   */
@@ -58,6 +66,13 @@ CREATE TABLE employee(
   PRIMARY KEY (id)
 );
 
+INSERT into employee VALUES (1,'30000001',1,'employ1','123456',12345678901);
+
+INSERT into employee VALUES (2,'30000002',2,'employ2','123456',12345678902);
+
+/*********************************************************************************************************/
+
+
 /*==============================================================*/
 /* Table: customer  顾客                                        */
 /*==============================================================*/
@@ -68,6 +83,9 @@ CREATE TABLE customer(
   PRIMARY KEY (id)
 );
 
+INSERT INTO customer VALUES (1,"Customer1",12345678903);
+INSERT INTO customer VALUES (2,"Customer2",12345678904);
+/*********************************************************************************************************/
 /*==============================================================*/
 /* Table: theater   剧院                                         */
 /*==============================================================*/
@@ -79,6 +97,10 @@ CREATE TABLE theater(
   PRIMARY KEY (id)
 );
 
+INSERT into theater VALUES (1,'NO.1Theater',2,'Street1');
+INSERT into theater VALUES (2,'NO.2Theater',2,'Street2');
+
+/*********************************************************************************************************/
 /*==============================================================*/
 /* Table: studio  演出厅                                         */
 /*==============================================================*/
@@ -90,6 +112,15 @@ CREATE TABLE studio(
   col             SMALLINT     NOT NULL ,         #演出厅行数
   PRIMARY KEY (id)
 );
+
+INSERT INTO  studio VALUES (1,1,"NO.1Theater.NO.1Studio",2,2);
+INSERT INTO  studio VALUES (2,1,"NO.1Theater.NO.2Studio",3,2);
+INSERT INTO  studio VALUES (3,2,"NO.2Theater.NO.1Studio",3,2);
+INSERT INTO  studio VALUES (4,2,"NO.2Theater.NO.2Studio",2,2);
+
+
+/*********************************************************************************************************/
+
 
 /*==============================================================*/
 /* Table:  seat 座位                                            */
@@ -103,67 +134,33 @@ CREATE TABLE seat(
   PRIMARY KEY (id)
 );
 
-/*==============================================================*/
-/* Table:  ticket 票                                            */
-/*==============================================================*/
+INSERT INTO seat VALUES (1,1,1,1,1);
+INSERT INTO seat VALUES (2,1,1,2,1);
+INSERT INTO seat VALUES (3,1,2,1,1);
+INSERT INTO seat VALUES (4,1,2,2,1);
 
-CREATE TABLE ticket(
-  id           INT           AUTO_INCREMENT,
-  seat_id      INT           NOT NULL ,               #座位id
-  schedule_id  INT           NOT NULL ,               #演出计划id
-  play_id      INT           NOT NULL ,               #剧目类型id
-  price        NUMERIC(10,2) NOT NULL ,               #票价
-  status       TINYINT       DEFAULT 0,               #票的状态 0：待售 1：锁定 2：卖出
-  locktime     CHAR(14)   DEFAULT '19700101000000',  #锁票时间2016年6月13号18点23分4秒 保存为：20160613182304
-  PRIMARY KEY (id)
-);
+INSERT INTO seat VALUES (5,2,1,1,1);
+INSERT INTO seat VALUES (6,2,1,2,1);
+INSERT INTO seat VALUES (7,2,2,1,1);
+INSERT INTO seat VALUES (8,2,2,2,1);
+INSERT INTO seat VALUES (9,2,3,1,1);
+INSERT INTO seat VALUES (10,2,3,2,1);
 
-/*==============================================================*/
-/* Table:  bill 账单                                            */
-/*==============================================================*/
-CREATE TABLE bill(
-  id          INT           AUTO_INCREMENT,
-  customer_id INT           NOT NULL ,                #顾客id
-  ticket_id   INT           NOT NULL ,                #票id
-  emp_id      INT           NOT NULL ,                #售票员id
-  play_id      INT           NOT NULL ,               #剧目类型id
-  price        NUMERIC(10,2) NOT NULL ,               #票价
-  sale_time   CHAR(14)   DEFAULT '19700101000000',   #售票时间2016年6月13号18点23分4秒 保存为：20160613182304
-  PRIMARY KEY (id)
-);
 
-/*==============================================================*/
-/* Table:  play 剧目                                            */
-/*==============================================================*/
-CREATE TABLE play(
-  id            INT           AUTO_INCREMENT,
-  name          VARCHAR(40)   NOT NULL ,      #剧名
-  type_id       INT           NOT NULL ,      #剧目类型id
-  lang_id       INT           NOT NULL ,      #剧目语言id
-  level_id      INT           NOT NULL ,      #剧目等级id
-  score         TINYINT       NOT NULL ,      #评分
-  Introduction  VARCHAR(1000) NOT NULL ,      #剧目简介
-  image_url     VARCHAR(100)  NOT NULL ,      #剧目图片url
-  length        SMALLINT      NOT NULL ,      #剧目长度
-  price         NUMERIC(10,2) NOT NULL ,      #票价
-  status        TINYINT       DEFAULT 0,      #状态 0:待安排 1：已安排 -1：下线
-  PRIMARY KEY (id)
- );
+INSERT INTO seat VALUES (11,3,1,1,1);
+INSERT INTO seat VALUES (12,3,1,2,1);
+INSERT INTO seat VALUES (13,3,2,1,1);
+INSERT INTO seat VALUES (14,3,2,2,1);
+INSERT INTO seat VALUES (15,3,3,1,1);
+INSERT INTO seat VALUES (16,3,3,2,1);
 
-/*==============================================================*/
-/* Table:  schedule 演出计划                                     */
-/*==============================================================*/
+INSERT INTO seat VALUES (17,4,1,1,1);
+INSERT INTO seat VALUES (18,4,1,2,1);
+INSERT INTO seat VALUES (19,4,2,1,1);
+INSERT INTO seat VALUES (20,4,2,2,1);
 
-CREATE TABLE schedule(
-  id            INT           AUTO_INCREMENT,
-  studio_id     INT           NOT NULL ,      #演出厅id
-  play_id       INT           NOT NULL ,      #剧目id
-  time          char(12)       NOT NULL ,      #放映时间
-  discount      NUMERIC(2,1) ,                #折扣
-  price         NUMERIC(10,2) NOT NULL ,      #票价
-  status        tinyint       not null ,      #演出计划状态,1 未过期 0 过期
-  PRIMARY KEY (id)
-);
+
+/*********************************************************************************************************/
 
 /*==============================================================*/
 /* Table:  type 剧目类型                                         */
@@ -173,6 +170,11 @@ CREATE TABLE type(
   type         VARCHAR(20)   NOT NULL ,         # 爱情，动作，剧情等
   PRIMARY KEY (id)
 );
+
+INSERT INTO type VALUES (1,"爱情");
+INSERT INTO type VALUES (2,"动作");
+
+/*********************************************************************************************************/
 
 
 /*==============================================================*/
@@ -184,6 +186,12 @@ CREATE TABLE lang(
   PRIMARY KEY (id)
 );
 
+INSERT INTO lang VALUES (1,"英语");
+INSERT INTO lang VALUES (2,"汉语");
+
+/*********************************************************************************************************/
+
+
 /*==============================================================*/
 /* Table:  level 剧目等级                                        */
 /*==============================================================*/
@@ -193,79 +201,118 @@ CREATE TABLE level(
   PRIMARY KEY (id)
 );
 
+INSERT INTO level VALUES (1,"2D");
+INSERT INTO level VALUES (2,"3D");
+
+
+/*********************************************************************************************************/
+
 /*==============================================================*/
-/* Table:  online 在线列表                                        */
+/* Table:  play 剧目                                            */
+/*==============================================================*/
+CREATE TABLE play(
+  id            INT           AUTO_INCREMENT,
+  name          VARCHAR(40)   NOT NULL ,      #剧名
+  type_id       INT           NOT NULL ,      #剧目类型id
+  lang_id       INT           NOT NULL ,      #剧目语言id
+  level_id      INT           NOT NULL ,      #剧目等级id
+  score         FLOAT       NOT NULL ,      #评分
+  Introduction  VARCHAR(1000) NOT NULL ,      #剧目简介
+  image_url     VARCHAR(100)  NOT NULL ,      #剧目图片url
+  length        SMALLINT      NOT NULL ,      #剧目长度
+  price         NUMERIC(10,2) NOT NULL ,      #票价
+  status        TINYINT       DEFAULT 0,      #状态 0:待安排 1：已安排 -1：下线
+  PRIMARY KEY (id)
+ );
+
+INSERT INTO play VALUES (1,"天空之间",1,1,1,8.0,"英国情报追捕一名女性","/home/",100,10,1);
+INSERT INTO play VALUES (2,"午夜逃亡",1,1,2,6.0,"余真因怀孕和前男友反目而出走来到此地","/home/",30,30,1);
+INSERT INTO play VALUES (3,"梦想合伙人",1,2,1,3.0,"无依无靠之时遂心生妙计","/home/",50,50,1);
+INSERT INTO play VALUES (4,"劫机惊破",1,2,2,9.0,"邀查理和阿炳来到家中共度晚餐","/home/",70,70,1);
+INSERT INTO play VALUES (5,"Good Tack",2,1,1,4.0,"人误以为与她促成好事导致怀孕","/home/",90,90,1);
+INSERT INTO play VALUES (6,"伦敦沦陷",2,1,2,6.0,"难辨谁为亲生父亲，于是共同照顾余真","/home/",120,110,1);
+INSERT INTO play VALUES (7,"犯罪家族",2,2,1,3.0,"事成后，二人偶然得知余真前男友想拿孩子做实验","/home/",140,130,1);
+INSERT INTO play VALUES (8,"老炮儿",2,2,2,1.0,"于是查理和阿炳两人念及旧情","/home/",160,150,1);
+
+
+/*********************************************************************************************************/
+
+/*==============================================================*/
+/* Table:  schedule 演出计划                                     */
 /*==============================================================*/
 
+CREATE TABLE schedule(
+  id            INT           AUTO_INCREMENT,
+  studio_id     INT           NOT NULL ,      #演出厅id
+  play_id       INT           NOT NULL ,      #剧目id
+  time          CHAR(14)      NOT NULL ,      #放映时间
+  discount      NUMERIC(2,1) ,                #折扣
+  price         NUMERIC(10,2) NOT NULL ,      #票价
+  status        tinyint       not null ,      #演出计划状态,1 未过期 0 过期
+  PRIMARY KEY (id)
+);
+
+INSERT INTO schedule VALUES (1,1,1,'20160616090000',0.8,8,1);
+
+INSERT INTO schedule VALUES (2,4,2,'20160616180000',0.7,21,1);
+
+/*********************************************************************************************************/
+
+/*
+INSERT INTO schedule VALUES (3,1,3,'20160617090000',0.6,30,1);
+INSERT INTO schedule VALUES (4,2,4,'20160617180000',0.5,35,1);
+INSERT INTO schedule VALUES (5,2,5,'20160618090000',0.4,36,1);
+INSERT INTO schedule VALUES (6,2,6,'20160618180000',0.4,44,1);
+INSERT INTO schedule VALUES (7,3,7,'20160619090000',0.5,65,1);
+INSERT INTO schedule VALUES (8,3,8,'20160619180000',0.6,80,1);
+INSERT INTO schedule VALUES (9,3,1,'20160620090000',0.7,7,1);
+INSERT INTO schedule VALUES (10,4,2,'20160620180000',0.8,24,1);
+INSERT INTO schedule VALUES (11,4,3,'20160621090000',0.9,45,1);
+INSERT INTO schedule VALUES (12,4,4,'20160621180000',1.0,70,1);
+*/
+/*==============================================================*/
+/* Table:  ticket 票                                            */
+/*==============================================================*/
+
+CREATE TABLE ticket(
+  id           INT           AUTO_INCREMENT,
+  seat_id      INT           NOT NULL ,               #座位id
+  schedule_id  INT           NOT NULL ,               #演出计划id
+  play_id      INT           NOT NULL ,               #剧目类型id
+  price        NUMERIC(10,2) NOT NULL ,               #票价
+  status       TINYINT       DEFAULT 0,               #票的状态 0：待售 1：锁定 2：卖出
+  locktime     CHAR(14)      ,  #锁票时间2016年6月13号18点23分4秒 保存为：20160613182304
+  PRIMARY KEY (id)
+);
+
+INSERT INTO ticket VALUES (1,1,1,1,8,0,NULL );
+INSERT INTO ticket VALUES (2,2,1,1,8,2,NULL );
+INSERT INTO ticket VALUES (3,3,1,1,8,0,NULL );
+INSERT INTO ticket VALUES (4,4,1,1,8,0,NULL );
+
+INSERT INTO ticket VALUES (5,1,2,4,21,0,NULL );
+INSERT INTO ticket VALUES (6,2,2,4,21,0,NULL );
+INSERT INTO ticket VALUES (7,3,2,4,21,2,NULL );
+INSERT INTO ticket VALUES (8,4,2,4,21,0,NULL );
+
+/*********************************************************************************************************/
 
 
-INSERT into generalmanager VALUES (1,'10000001','Boss','123456');
+/*==============================================================*/
+/* Table:  bill 账单                                            */
+/*==============================================================*/
 
-INSERT into manager VALUES (1,'20000001',1,'Manage','123456');
+CREATE TABLE bill(
+  id          INT           AUTO_INCREMENT,
+  customer_id INT           NOT NULL ,                #顾客id
+  ticket_id   INT           NOT NULL ,                #票id
+  emp_id      INT           NOT NULL ,                #售票员id
+  play_id      INT           NOT NULL ,               #剧目类型id
+  price        NUMERIC(10,2) NOT NULL ,               #票价
+  sale_time   CHAR(14)       NULL ,   #售票时间2016年6月13号18点23分4秒 保存为：20160613182304
+  PRIMARY KEY (id)
+);
+INSERT INTO bill VALUES (1,1,2,1,1,8,"20160615090000");
+INSERT INTO bill VALUES (2,2,7,2,4,21,"20160612090000");
 
-
-INSERT into employee VALUES (1,'30000001',1,'employ1','123456',12345678901);
-INSERT into employee VALUES (2,'30000002',1,'employ2','123456',12345678902);
-INSERT into employee VALUES (3,'30000003',1,'employ3','123456',12345678903);
-INSERT into employee VALUES (4,'30000004',1,'employ4','123456',12345678904);
-INSERT into employee VALUES (5,'30000005',1,'employ5','123456',12345678905);
-
-INSERT into customer VALUES (1,'Cust1',13912345678);
-INSERT into customer VALUES (2,'Cust2',13913912345);
-INSERT into customer VALUES (3,'Cust3',13913913912);
-INSERT into customer VALUES (4,'Cust4',13913913913);
-INSERT into customer VALUES (5,'Cust5',12345678912);
-
-INSERT into theater VALUES (1,'NO.1Theater',3,'Street1');
-INSERT into theater VALUES (2,'NO.2Theater',4,'Street2');
-INSERT into theater VALUES (3,'NO.3Theater',5,'Street3');
-
-INSERT into studio VALUES (1,1,'NO.1Theater.NO.1Studio',10,10);
-INSERT into studio VALUES (2,1,'NO.1Theater.NO.2Studio',15,10);
-INSERT into studio VALUES (3,1,'NO.1Theater.NO.3Studio',10,15);
-INSERT into studio VALUES (4,2,'NO.2Theater.NO.1Studio',20,10);
-INSERT into studio VALUES (5,2,'NO.2Theater.NO.2Studio',10,20);
-INSERT into studio VALUES (6,2,'NO.2Theater.NO.3Studio',30,10);
-INSERT into studio VALUES (7,3,'NO.3Theater.NO.1Studio',10,30);
-INSERT into studio VALUES (8,3,'NO.3Theater.NO.1Studio',20,30);
-INSERT into studio VALUES (9,3,'NO.3Theater.NO.1Studio',30,20);
-
-
-
-
-INSERT into ticket VALUES (1,1,1,2,5,2);
-INSERT into ticket VALUES (2,2,1,2,5,2);
-INSERT into ticket VALUES (3,3,1,2,5,2);
-INSERT into ticket VALUES (4,1,2,3,5,1);
-INSERT into ticket VALUES (5,2,2,3,5,1);
-INSERT into ticket VALUES (6,3,2,3,5,1);
-INSERT into ticket VALUES (7,1,3,4,5,0);
-INSERT into ticket VALUES (8,2,3,4,5,0);
-INSERT into ticket VALUES (9,3,3,4,5,0);
-
-INSERT into bill VALUES (1,1,1,1,'20160614182553');
-
-INSERT into play VALUES (1,3,1,1,'X-man',7.3,'***omit:X-man***','C:\Users\Public\Pictures\Sample Pictures\17656011_1358928951505.jpg',90,2.5,-1);
-INSERT into play VALUES (2,3,1,2,'Super-man',8.3,'***omit:Super-man***','C:\Users\Public\Pictures\Sample Pictures\17656011_1358928951505.jpg',90,3.5,0);
-INSERT into play VALUES (3,3,1,2,'Bat-man',9.3,'***omit:Bat-man***','C:\Users\Public\Pictures\Sample Pictures\17656011_1358928951505.jpg',90,4.5,1);
-INSERT into play VALUES (4,1,1,2,'The Conjuring 2',9.0,'***omit:The Conjuring 2***','C:\Users\Public\Pictures\Sample Pictures\17656011_1358928951505.jpg',120,5.5,0);
-INSERT into play VALUES (5,3,1,1,'Warcraft: The Beginning',8.0,'***omit:Warcraft: The Beginning***','C:\Users\Public\Pictures\Sample Pictures\17656011_1358928951505.jpg',80,6.5,1);
-INSERT into play VALUES (6,2,2,2,'My Wife is a Superstar',4.6,'***omitMy Wife is a Superstar***','C:\Users\Public\Pictures\Sample Pictures\17656011_1358928951505.jpg',95,7.5,0);
-
-
-INSERT into schedule VALUES (1,1,1,'201606140900',0.9,2.5,1);
-INSERT into schedule VALUES (2,2,2,'201606150900',0.8,3.5,1);
-INSERT into schedule VALUES (3,3,3,'201606160900',0.7,10.5,1);
-
-INSERT into type VALUES (1,'恐怖');
-INSERT into type VALUES (2,'动作');
-INSERT into type VALUES (3,'科幻');
-
-INSERT into lang VALUES (1,'英语');
-INSERT into lang VALUES (2,'汉语');
-
-INSERT into level VALUES (1,'3D');
-INSERT into level VALUES (2,'2D');
-
-INSERT into online VALUES (1,'1','20160614182553');
-
+/*********************************************************************************************************/

@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-        die("<h1>非法访问</h1>");
-    }
+session_start();
+if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
+    die("<h1>非法访问</h1>");
+}
 ?>
 <!doctype html>
 <html>
@@ -64,106 +64,109 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="design.html">影片管理</a><span class="crumb-step">&gt;</span><span>添加影片</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span
+                    class="crumb-step">&gt;</span><a class="crumb-name" href="design.html">影片管理</a><span
+                    class="crumb-step">&gt;</span><span>添加演出计划</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="design.html" method="post" id="myform" name="myform" enctype="multipart/form-data" method="get">
+                <form action="php/schedule_insert_srv.php" method="post" id="myform" name="myform" enctype="multipart/form-data"
+                      method="get">
                     <table class="insert-tab" width="100%" id="fid" cellpadding="0" cellspacing="0">
                         <tbody>
-                            <tr>
-                                <th width="120"><i class="require-red">*</i>演厅id：</th>
-                                <td>
-                                    <select name="studio_id" id="studio_id" class="required">
-                                        <?php
-                                            require_once "../../conf/DB_login.php";
-                                            /*
-                                             * 连接数据库
-                                             */
-                                            $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
-                                            /*
-                                             * 如果连接失败，则直接结束
-                                            */
-                                            if (!$connect) {
-                                                die("Connect DataBase Error!<br/>");
-                                            }
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>演厅：</th>
+                            <td>
+                                <select name="studio_id" id="studio_id" class="required">
+                                    <?php
+                                    require_once "../conf/DB_login.php";
+                                    /*
+                                     * 连接数据库
+                                     */
+                                    $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                                    /*
+                                     * 如果连接失败，则直接结束
+                                    */
+                                    if (!$connect) {
+                                        die("Connect DataBase Error!<br/>");
+                                    }
+                                    echo "test";
+                                    /*
+                                     * 选择数据库
+                                     */
 
-                                            /*
-                                             * 选择数据库
-                                             */
-                                            $select = $connect->select_db($DB_NAME);
+                                    $select = $connect->select_db($DB_NAME);
 
-                                            $emp_no=$_SESSION["username"];
-                                            $query="select theater_id from manager where emp_no = \"".$emp_no."\";"
-                                            $result = $connect ->query($query);
-                                            while ($row = $result->fetch_array()) {
-                                                $theater_id=$row["theater_id"];
-                                            }
-                                            $query="select (id,name) from studio where theater_id =".$theater_id.";";
-                                            $result = $connect ->query($query);
-                                            while ($row = $result->fetch_array()) {
-                                                echo "<option value=".$row["id"].">".$row["name"]."</option>"
-                                            }
-                                        ?>
-                                    </select>
-                                </td>
-                            </tr>  
-                            <tr>
-                                <th width="120"><i class="require-red">*</i>剧目id：</th>
-                                <td>
-                                    <select name="play_id" id="play_id" class="required">
-                                        <option value="20">1</option>
-                                        <option value="19">2</option>
-                                        <option value="18">3</option>
-                                         <?php
-                                            require_once "../../conf/DB_login.php";
-                                            /*
-                                             * 连接数据库
-                                             */
-                                            $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
-                                            /*
-                                             * 如果连接失败，则直接结束
-                                            */
-                                            if (!$connect) {
-                                                die("Connect DataBase Error!<br/>");
-                                            }
+                                    $emp_no = $_SESSION["username"];
 
-                                            /*
-                                             * 选择数据库
-                                             */
-                                            $select = $connect->select_db($DB_NAME);
-                                            $query="select (id,name) from studio ;";
-                                            $result = $connect ->query($query);
-                                            while ($row = $result->fetch_array()) {
-                                                echo "<option value=".$row["id"].">".$row["id"]."(".$row["name"].")</option>"
-                                            }
-                                        ?>
+                                    $query = "select theater_id from manager where emp_no = \"" . $emp_no . "\";";
+                                    echo $query;
+                                    $result = $connect->query($query);
 
+                                    $row = $result->fetch_array();
+                                    $theater_id = $row[0]['theater_id'];
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><i class="require-red">*</i>放映时间：</th>
-                                <td>
-                                    <input class="common-text required-red" id="time" name="title" size="20" value="" type="text">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>折扣：</th>
-                                <td>
-                                    <input class="common-text required-red" id="price" name="title" size="20" value="" type="text">
-                                </td>
-                            </tr>
-                            <tr>
-                                 
-                                <th><i class="require-red">*</i>价格：</th>
-                                <td>
-                                    <input class="common-text required" id="price" name="title" size="20" value="" type="text">
-                                </td>
-                        </tbody></table><br/>
-                        <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit" style="margin-left:4%;">
-                        <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button" style="margin-left:2%;">         
+                                    $query = "select id,name from studio  where theater_id =" . $theater_id . ";";
+                                    $result = $connect->query($query);
+                                    while ($row = $result->fetch_array()) {
+                                        echo "<option value=" . $row["id"] . ">" . $row["name"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>剧目：</th>
+                            <td>
+                                <select name="play_id" id="play_id" class="required">
+                                    <?php
+                                    require_once "../DB_login.php";
+                                    /*
+                                     * 连接数据库
+                                     */
+                                    $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                                    /*
+                                     * 如果连接失败，则直接结束
+                                    */
+                                    if (!$connect) {
+                                        die("Connect DataBase Error!<br/>");
+                                    }
+
+                                    /*
+                                     * 选择数据库
+                                     */
+                                    $select = $connect->select_db($DB_NAME);
+                                    $query = "select id,name from play ;";
+                                    $result = $connect->query($query);
+                                    while ($row = $result->fetch_array()) {
+                                        echo "<option value=" . $row["id"] . ">" . $row["name"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>放映时间：</th>
+                            <td>
+                                <input class="common-text required-red" name="time" size="20" value="" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>折扣：</th>
+                            <td>
+                                <input class="common-text required-red" name="discount" size="20" value="" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>价格：</th>
+                            <td>
+                                <input class="common-text required"  name="price" size="20" value="" type="text">
+                            </td>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit" style="margin-left:4%;">
+                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button" style="margin-left:2%;">
                 </form>
             </div>
         </div>

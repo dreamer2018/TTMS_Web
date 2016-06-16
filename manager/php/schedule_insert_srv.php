@@ -120,9 +120,14 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     $select = $connect->select_db($DB_NAME);
                     $query = "insert into schedule ( studio_id,play_id,time,discount,price ) values(".$studio_id.",".$play_id.",".$time.",".$discount.",".$price.") ;";
                     $result = $connect->query($query);
+		    		if($result){
+                        echo "Success";
+                    }else{
+                        echo "failure";
+                    }
+                }else{
+                    echo "Information Error!";
                 }
-
-
                 ?>
             </div>
         </div>

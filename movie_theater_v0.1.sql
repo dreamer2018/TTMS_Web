@@ -111,6 +111,7 @@ CREATE TABLE ticket(
   id           INT           AUTO_INCREMENT,
   seat_id      INT           NOT NULL ,               #座位id
   schedule_id  INT           NOT NULL ,               #演出计划id
+  play_id      INT           NOT NULL ,               #剧目类型id
   price        NUMERIC(10,2) NOT NULL ,               #票价
   status       TINYINT       DEFAULT 0,               #票的状态 0：待售 1：锁定 2：卖出
   locktime     CHAR(14)   DEFAULT '19700101000000',  #锁票时间2016年6月13号18点23分4秒 保存为：20160613182304
@@ -125,6 +126,8 @@ CREATE TABLE bill(
   customer_id INT           NOT NULL ,                #顾客id
   ticket_id   INT           NOT NULL ,                #票id
   emp_id      INT           NOT NULL ,                #售票员id
+  play_id      INT           NOT NULL ,               #剧目类型id
+  price        NUMERIC(10,2) NOT NULL ,               #票价
   sale_time   CHAR(14)   DEFAULT '19700101000000',   #售票时间2016年6月13号18点23分4秒 保存为：20160613182304
   PRIMARY KEY (id)
 );

@@ -1,8 +1,5 @@
 ﻿<?php
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -277,11 +274,11 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 $result = $connect->query($query);
                                 $row2 = $result2->fetch_array();                                
                                 $play_name = $row2['name'];
-                                echo "<td>".$row['id']."</td>"
-                                echo "<td>".$row['ticket_id']."</td>"
-                                echo "<td>".$play_name."</td>"
-                                echo "<td>".$row['sale_time']."</td>"
-                                echo "<td>".$row['price']."</td>"
+                                echo "<td>".$row['id']."</td>";
+                                echo "<td>".$row['ticket_id']."</td>";
+                                echo "<td>".$play_name."</td>";
+                                echo "<td>".$row['sale_time']."</td>";
+                                echo "<td>".$row['price']."</td>";
                         }
                     }
                     ?>

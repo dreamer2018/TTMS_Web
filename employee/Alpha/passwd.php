@@ -1,9 +1,5 @@
 <?php
-session_start();
-
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -156,8 +152,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                      * 如果身份表为空则不进行数据库连接
                      */
                     if ($DB_TABLE_NAME != "") {
-
-                        require_once "../conf/DB_login.php";
+                        
                         /*
                          * 连接数据库
                          */

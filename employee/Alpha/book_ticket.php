@@ -1,8 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,7 +85,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="movie_name">
                                     <option value="0">全部</option>
                                     <?php
-                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -117,7 +113,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="date">
                                     <option value="-1">全部</option>
                                     <?php
-                                    require_once "../conf/DB_login.php";
+
                                     /*
                                      * 连接数据库
                                      */
@@ -169,7 +165,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             $movie_name = $_POST['movie_name'];
                             $date = $_POST['date'];
 
-                            require_once "../conf/DB_login.php";
+
                             /*
                              * 连接数据库
                              */
@@ -236,7 +232,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             <td>
                                 <select name="schedule_id">
                                     <?php
-                                    require_once "../conf/DB_login.php";
+
                                     /*
                                      * 连接数据库
                                      */
@@ -297,7 +293,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     if (strlen($seat_col) && strlen($seat_row)) {
 
 
-                        require_once "../conf/DB_login.php";
+
                         /*
                          * 连接数据库
                          */

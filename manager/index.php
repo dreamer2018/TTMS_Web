@@ -46,7 +46,7 @@
                         <li><a href="theater_manager.html"><i class="icon-font">&#xe044;</i>影厅管理</a></li>
                         <li><a href="movie_insert.php"><i class="icon-font">&#xe034;</i>影片管理</a></li>
                         <li><a href="seat_manager.php"><i class="icon-font">&#xe063;</i>座位管理</a></li>
-                        <li><a href="schedule_insert.html"><i class="icon-font">&#xe014;</i>演出计划管理</a></li>
+                        <li><a href="schedule_insert.php"><i class="icon-font">&#xe014;</i>演出计划管理</a></li>
                         <li><a href="managerStatistic.php"><i class="icon-font">&#xe065;</i>财务管理</a></li>
                         <li><a href="managerStatistic.php"><i class="icon-font">&#xe042;</i>票房统计</a></li>
                         <li><a href="select.html"><i class="icon-font">&#xe033;</i>查询</a></li>

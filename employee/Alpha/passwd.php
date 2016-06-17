@@ -157,7 +157,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                      */
                     if ($DB_TABLE_NAME != "") {
 
-                        require_once "../../conf/DB_login.php";
+                        require_once "../conf/DB_login.php";
                         /*
                          * 连接数据库
                          */

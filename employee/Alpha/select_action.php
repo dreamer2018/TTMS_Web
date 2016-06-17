@@ -89,7 +89,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="type">
                                     <option value="%">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -119,7 +119,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                     <option value="%">全部</option>
                                     <?php
                                     $DB_TABLE_NAME = "lang";
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -149,7 +149,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="level">
                                     <option value="%">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -231,7 +231,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 echo $price;
                                 echo $keywords;
                             */
-                            require_once "../../conf/DB_login.php";
+                            require_once "../conf/DB_login.php";
                             /*
                              * 连接数据库
                              */

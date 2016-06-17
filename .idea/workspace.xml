@@ -2,22 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49a7c092-a8cb-4594-9f41-964e8460d47a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/book_ticket.php" afterPath="$PROJECT_DIR$/employee/book_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/booking.html" afterPath="$PROJECT_DIR$/employee/booking.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/design.html" afterPath="$PROJECT_DIR$/employee/design.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/employeeStatistic.html" afterPath="$PROJECT_DIR$/employee/employeeStatistic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/employeeStatistic.php" afterPath="$PROJECT_DIR$/employee/employeeStatistic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/index.html" afterPath="$PROJECT_DIR$/employee/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/insert.html" afterPath="$PROJECT_DIR$/employee/insert.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/passwd.php" afterPath="$PROJECT_DIR$/employee/passwd.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/return.html" afterPath="$PROJECT_DIR$/employee/return.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/return_ticket.php" afterPath="$PROJECT_DIR$/employee/return_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/sale_tickets.html" afterPath="$PROJECT_DIR$/employee/sale_tickets.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/schedule_select.html" afterPath="$PROJECT_DIR$/employee/schedule_select.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/schedule_select.php" afterPath="$PROJECT_DIR$/employee/schedule_select.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/select.html" afterPath="$PROJECT_DIR$/employee/select.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/select_action.php" afterPath="$PROJECT_DIR$/employee/select_action.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/system.html" afterPath="$PROJECT_DIR$/employee/system.html" />
     </list>
     <ignored path="TTMS_Web.iws" />
@@ -96,8 +80,8 @@
       <file leaf-file-name="system.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/employee/system.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+            <state relative-caret-position="378">
+              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -485,12 +469,12 @@
       <workItem from="1466034081341" duration="20000" />
       <workItem from="1466034201635" duration="1034000" />
       <workItem from="1466036438592" duration="23962000" />
-      <workItem from="1466117847971" duration="23320000" />
+      <workItem from="1466117847971" duration="23399000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89495000" />
+    <option name="totallyTimeSpent" value="89574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1922" height="1019" extended-state="6" />
@@ -1163,8 +1147,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/employee/system.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+        <state relative-caret-position="378">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
           <folding />
         </state>
       </provider>

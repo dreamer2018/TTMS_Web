@@ -8,4 +8,6 @@
 /*
  * 对文档内容进行部分配置
  */
+require_once "../conf/session.php";
+require_once "../conf/DB_login.php";
 

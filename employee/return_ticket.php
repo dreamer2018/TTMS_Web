@@ -37,6 +37,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 
 <div class="container clearfix">
 
+    
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -48,8 +49,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
                         <li><a href="book_ticket.php"><i class="icon-font">&#xe044;</i>售票</a></li>
-                        <li><a href="return.html"><i class="icon-font">&#xe034;</i>退票</a></li>
-                        <li><a href="php/select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
+                        <li><a href="return_ticket.php"><i class="icon-font">&#xe034;</i>退票</a></li>
+                        <li><a href="select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
                         <li><a href="schedule_select.php"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
                         <li><a href="employeeStatistic.php"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
@@ -74,7 +75,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         </div>
         <div class="search-wrap">
             <div class="search-content">
-                <form action="#" method="post">
+                <form action="return_ticket.php" method="post">
                     <table class="search-tab">
                         <tr>
                             <th width="120">账单ID:</th>
@@ -124,7 +125,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
+            <form name="myform" action="return_ticket.php" id="myform" method="post">
                 <div class="result-content" id="fid">
                     <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                         <tr>
@@ -135,18 +136,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             <th>价格</th>
                             <th>售票时间</th>
                             <th>操作</th>
-                        </tr>
-                        <tr>
-                            <td>59</td>
-                            <td title="美国队长3"><a target="_blank" href="#" title="美国队长3">美国队长3</a> …
-                            </td>
-                            <td>IMAX</td>
-                            <td>2号厅</td>
-                            <td>正在上映</td>
-                            <td>5.11 21:11:01-5.11 23:11:01</td>
-                            <td>
-                                <input type="submit" class="btn btn-primary btn2" value="退票">
-                            </td>
                         </tr>
                         <?php
                         if (isset($_POST['bill_id'])) {
@@ -173,23 +162,14 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                  * 选择数据库
                                  */
 
-                                /*
-                                    <th>ID</th>
-                                    <th>账单ID</th>
-                                    <th>顾客手机号</th>
-                                    <th>影片</th>
-                                    <th>价格</th>
-                                    <th>售票时间</th>
-                                    <th>操作</th>
-                                */
                                 $sign = 0; //验证手机号码
                                 $count = 0;
 
                                 $select = $connect->select_db($DB_NAME);
                                 if ($bill_id == 0) {
-                                    $query = "select id,customer_id,ticket_id,play_id,price sale_time from bill";
+                                    $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill";
                                 } else {
-                                    $query = "select id,customer_id,ticket_id,play_id,price sale_time from bill where id = " . $bill_id . ";";
+                                    $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where id = " . $bill_id . ";";
                                 }
                                 $result = $connect->query($query);
                                 while ($row = $result->fetch_array()) {
@@ -197,7 +177,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                     $query = "select tel from customer where id = " . $row['customer_id'] . ";";
                                     $result2 = $connect->query($query);
                                     $row2 = $result2->fetch_array();
-                                    echo $row2['tel'] . "<br/>";
+                                
                                     if ($row2['tel'] == $tel) {
                                         $sign = 1;
                                         $count++;
@@ -211,7 +191,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                         echo "<td>".$row3['name']."</td>";
                                         echo "<td>".$row['price']."</td>";
                                         echo "<td>".$row['sale_time']."</td>";
-                                        echo "";
+                                        echo "<input type=\"hidden\" name = \"re_bill_id\" value=".$row['id'].">";
                                         echo "<td>";
                                         echo "<input type=\"submit\" class=\"btn btn-primary btn2\" value=\"退票\">";
                                         echo "</td>";
@@ -222,9 +202,32 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                         }
                         ?>
                     </table>
-                    <div class="list-page"> 1 条 1/1 页</div>
+                    <div class="list-page" style="margin-left:85%;">共<?php echo $count ?>条
+                    </div>
                 </div>
             </form>
+        </div>
+
+        <div class="result-wrap">
+            <?php
+            if(isset($_POST['re_bill_id'])){
+                $re_bill_id = $_POST['re_bill_id'];
+                require_once "../conf/DB_login.php";
+                $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                if (!$connect) {
+                    die("Connect DataBase Error!<br/>");
+                }
+                $select = $connect->select_db($DB_NAME);
+                $query="select ticket_id from bill where id = ".$re_bill_id.";";
+                $result = $connect->query($query);
+                $row = $result->fetch_array();
+                $query ="update ticket set status = 0 where id =".$row['ticket_id'].";";
+                $connect->query($query);
+                $query = "delete from bill where id =".$re_bill_id.";";
+                $connect->query($query);
+                echo "<h3>退票成功</h3>";
+            }
+            ?>        
         </div>
     </div>
     <!--/main-->

@@ -35,6 +35,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 <!--头部结束-->
 
 
+
+
 <div class="container clearfix">
 
     <!--网页菜单栏-->
@@ -48,8 +50,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
                         <li><a href="book_ticket.php"><i class="icon-font">&#xe044;</i>售票</a></li>
-                        <li><a href="return.html"><i class="icon-font">&#xe034;</i>退票</a></li>
-                        <li><a href="php/select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
+                        <li><a href="return_ticket.php"><i class="icon-font">&#xe034;</i>退票</a></li>
+                        <li><a href="select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
                         <li><a href="schedule_select.php"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
                         <li><a href="employeeStatistic.php"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
@@ -64,6 +66,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         </div>
     </div>
     <!--菜单栏结束-->
+
 
     <div class="main-wrap">
 
@@ -227,7 +230,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 
                         $play_id = $_POST['play_id'];
                         $sale_time = $_POST['sale_time'];
-                        echo $play_id;
 
                         require_once "../conf/DB_login.php";
 

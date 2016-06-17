@@ -9,9 +9,9 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 <head>
     <meta charset="UTF-8">
     <title>光影人生-影院票务管理系统</title>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-    <script type="text/javascript" src="../js/houtai.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="js/houtai.js"></script>
 </head>
 <body>
 
@@ -50,7 +50,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     <ul class="sub-menu">
                         <li><a href="book_ticket.php"><i class="icon-font">&#xe044;</i>售票</a></li>
                         <li><a href="return_ticket.php"><i class="icon-font">&#xe034;</i>退票</a></li>
-                        <li><a href="php/select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
+                        <li><a href="select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
                         <li><a href="schedule_select.php"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
                         <li><a href="employeeStatistic.php"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
@@ -65,7 +65,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         </div>
     </div>
     <!--菜单栏结束-->
-
 
     
     <div class="main-wrap">
@@ -88,7 +87,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="type">
                                     <option value="%">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -118,7 +117,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                     <option value="%">全部</option>
                                     <?php
                                     $DB_TABLE_NAME = "lang";
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -148,7 +147,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="level">
                                     <option value="%">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -230,7 +229,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 echo $price;
                                 echo $keywords;
                             */
-                            require_once "../../conf/DB_login.php";
+                            require_once "../conf/DB_login.php";
                             /*
                              * 连接数据库
                              */

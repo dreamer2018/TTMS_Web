@@ -37,6 +37,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 
 <div class="container clearfix">
 
+    
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -47,9 +48,9 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="#"><i class="icon-font">&#xe044;</i>售票</a></li>
-                        <li><a href="return.html"><i class="icon-font">&#xe034;</i>退票</a></li>
-                        <li><a href="php/select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
+                        <li><a href="book_ticket.php"><i class="icon-font">&#xe044;</i>售票</a></li>
+                        <li><a href="return_ticket.php"><i class="icon-font">&#xe034;</i>退票</a></li>
+                        <li><a href="select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
                         <li><a href="schedule_select.php"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
                         <li><a href="employeeStatistic.php"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
@@ -72,7 +73,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                 <i class="icon-font"></i>
                 <a href="index.html">首页</a>
                 <span class="crumb-step">&gt;</span>
-                <span class="crumb-name">订票</span>
+                <span class="crumb-name">售票</span>
             </div>
         </div>
         <div class="search-wrap">

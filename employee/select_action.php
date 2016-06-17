@@ -38,7 +38,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 <div class="container clearfix">
 
 
-
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -68,7 +67,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
     <!--菜单栏结束-->
 
 
-
     <div class="main-wrap">
 
         <div class="crumb-wrap">
@@ -89,7 +87,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="type">
                                     <option value="%">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -119,7 +117,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                     <option value="%">全部</option>
                                     <?php
                                     $DB_TABLE_NAME = "lang";
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -149,7 +147,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="level">
                                     <option value="%">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */

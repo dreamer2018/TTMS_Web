@@ -87,7 +87,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="movie_name">
                                     <option value="0">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -116,7 +116,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="date">
                                     <option value="-1">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */

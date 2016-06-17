@@ -38,7 +38,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 <div class="container clearfix">
 
 
-
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -88,7 +87,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="movie_name">
                                     <option value="0">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -117,7 +116,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="date">
                                     <option value="-1">全部</option>
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -169,7 +168,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             $movie_name = $_POST['movie_name'];
                             $date = $_POST['date'];
 
-                            require_once "../../conf/DB_login.php";
+                            require_once "../conf/DB_login.php";
                             /*
                              * 连接数据库
                              */
@@ -236,7 +235,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             <td>
                                 <select name="schedule_id">
                                     <?php
-                                    require_once "../../conf/DB_login.php";
+                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -297,7 +296,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     if (strlen($seat_col) && strlen($seat_row)) {
 
 
-                        require_once "../../conf/DB_login.php";
+                        require_once "../conf/DB_login.php";
                         /*
                          * 连接数据库
                          */

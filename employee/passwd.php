@@ -10,9 +10,9 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 <head>
     <meta charset="UTF-8">
     <title>光影人生-影院票务管理系统</title>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-    <script type="text/javascript" src="../js/houtai.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="js/houtai.js"></script>
 </head>
 <body>
 
@@ -37,7 +37,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 
 
 <div class="container clearfix">
-
 
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
@@ -73,7 +72,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         <div class="crumb-wrap">
             <div class="crumb-list">
                 <i class="icon-font"></i>
-                <a href="../index.html">首页</a>
+                <a href="index.html">首页</a>
                 <span class="crumb-step">&gt;</span>
                 <span>更改密码</span>
             </div>
@@ -157,7 +156,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                      */
                     if ($DB_TABLE_NAME != "") {
 
-                        require_once "../../conf/DB_login.php";
+                        require_once "../conf/DB_login.php";
                         /*
                          * 连接数据库
                          */

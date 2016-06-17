@@ -1,8 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,6 +34,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 
 <div class="container clearfix">
 
+
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -65,6 +63,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
     </div>
     <!--菜单栏结束-->
 
+
     <div class="main-wrap">
 
         <div class="crumb-wrap">
@@ -81,7 +80,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="bill_id">
                                     <option value="0">全部</option>
                                     <?php
-                                    require_once "../conf/DB_login.php";
+
                                     /*
                                      * 连接数据库
                                      */
@@ -145,7 +144,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             echo "<th > 售票时间</th >";
                             echo "<th > 操作</th >";
                             echo "</tr >";
-                            require_once "../../conf/DB_login.php";
+
 
                             /*
                              * 连接数据库
@@ -213,7 +212,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
             <?php
             if (isset($_POST['re_bill_id'])) {
                 $re_bill_id = $_POST['re_bill_id'];
-                require_once "../conf/DB_login.php";
+                
+              
                 $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
                 if (!$connect) {
                     die("Connect DataBase Error!<br/>");

@@ -1,8 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,6 +35,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 <div class="container clearfix">
 
 
+
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -65,6 +63,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         </div>
     </div>
     <!--菜单栏结束-->
+
 
 
     <div class="main-wrap">
@@ -229,7 +228,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 echo $price;
                                 echo $keywords;
                             */
-                            require_once "../../conf/DB_login.php";
+                            require_once "../conf/DB_login.php";
                             /*
                              * 连接数据库
                              */

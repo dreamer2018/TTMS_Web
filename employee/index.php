@@ -1,11 +1,5 @@
 <?php
-/*
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-
-}
-*/
+    require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>

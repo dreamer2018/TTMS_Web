@@ -1,8 +1,5 @@
 ﻿<?php
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,7 +88,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     </tr>
 
                     <?php
-                    require_once "../conf/DB_login.php";
+                   
                     /*
                     * 连接数据库
                     */
@@ -151,7 +148,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                         <select name="play_id">
                                             <option value="0">全部</option>
                                             <?php
-                                            require_once "../conf/DB_login.php";
+                                            
                                             /*
                                             * 连接数据库
                                             */
@@ -181,7 +178,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                         <select name="sale_time">
                                             <option value="0">全部</option>
                                             <?php
-                                            require_once "../conf/DB_login.php";
+                                          
                                             /*
                                             * 连接数据库
                                             */
@@ -230,7 +227,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                         $play_id = $_POST['play_id'];
                         $sale_time = $_POST['sale_time'];
 
-                        require_once "../conf/DB_login.php";
+                      
 
                         /*
                         * 连接数据库

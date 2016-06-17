@@ -49,11 +49,11 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="../booking.html"><i class="icon-font">&#xe044;</i>售票</a></li>
+                        <li><a href="../book_ticket.php"><i class="icon-font">&#xe044;</i>售票</a></li>
                         <li><a href="../return.html"><i class="icon-font">&#xe034;</i>退票</a></li>
                         <li><a href="select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
                         <li><a href="../schedule_select.html"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
-                        <li><a href="../employeeStatistic.html"><i class="icon-font">&#xe065;</i>统计</a></li>
+                        <li><a href="../employeeStatistic.php"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
                 </li>
                 <li>

@@ -47,11 +47,11 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="booking.html"><i class="icon-font">&#xe044;</i>售票</a></li>
+                        <li><a href="#"><i class="icon-font">&#xe044;</i>售票</a></li>
                         <li><a href="return.html"><i class="icon-font">&#xe034;</i>退票</a></li>
                         <li><a href="php/select_action.php"><i class="icon-font">&#xe063;</i>影片查询</a></li>
                         <li><a href="schedule_select.php"><i class="icon-font">&#xe014;</i>演出计划查询</a></li>
-                        <li><a href="employeeStatistic.html"><i class="icon-font">&#xe065;</i>统计</a></li>
+                        <li><a href="employeeStatistic.php"><i class="icon-font">&#xe065;</i>统计</a></li>
                     </ul>
                 </li>
                 <li>
@@ -189,7 +189,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             } elseif ($movie_name != 0 && $date == -1) {
                                 $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . ";";
                             } else {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\";";
+                                $query = "select id,studio_id,play_id,sale_time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\";";
                             }
                             //echo $query;
 
@@ -265,6 +265,10 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             <td>
                                 <input type="text" name="col">
                             </td>
+                            <th width="120">手机号:</th>
+                            <td>
+                                <input type="text" name="tel">
+                            </td>
                             <th width="120"></th>
                             <td>
                                 <input class="btn btn-primary btn2" name="sub" value="订购" type="submit">
@@ -285,18 +289,11 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     $schedule_id = $_POST['schedule_id'];
                     $seat_row = $_POST['row'];
                     $seat_col = $_POST['col'];
+                    $tel = $_POST['tel'];
+
                     if (strlen($seat_col) && strlen($seat_row)) {
 
-                        echo "<div class=\"result-content\" id=\"fid\">";
-                        echo "<table class= \"result-tab \"width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
-                        echo "<tr>";
-                        echo "<th class=\"tc\">演出计划ID</th>";
-                        echo "<th>演出厅ID</th>";
-                        echo "<th>剧目</th>";
-                        echo "<th>放映时间</th>";
-                        echo "<th>折扣</th>";
-                        echo "<th>票价</th>";
-                        echo "</tr>";
+
                         require_once "../conf/DB_login.php";
                         /*
                          * 连接数据库
@@ -317,10 +314,20 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
 
                         $select = $connect->select_db($DB_NAME);
 
+                        $query = "select discount,price from schedule where id = " . $schedule_id . ";";
+                        $result3 = $connect->query($query);
+                        $dicount = 0;
+                        $price = 0;
+                        while ($row3 = $result3->fetch_array()) {
+                            $dicount = $row3['discount'];
+                            $price = $row3['price'];
+                        }
+                        $final_price = $dicount * $price;
                         /*
                          * 先通过schedule_id获取到一系列seat_id
                          */
-                        $query = "select id,seat_id,play_id from ticket where schedule_id =" . $schedule_id . ";";
+                        $sign = 1; //座位存在标志
+                        $query = "select id,seat_id,play_id,status from ticket where schedule_id =" . $schedule_id . ";";
 
                         $result = $connect->query($query);
 
@@ -329,46 +336,67 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             $seat_id = $row['seat_id'];
                             $ticket_id = $row['ticket_id'];
 
-                            $query = "select id,row,col,status from seat where id = " . $seat_id . ";";
+                            $query = "select id,row,col,status,studio_id from seat where id = " . $seat_id . ";";
 
                             $result2 = $connect->query($query);
-
                             while ($row2 = $result2->fetch_array()) {
 
                                 $seat_status = $row2['status'];
-                                if ($row2['status'] == 1 && $row2['row'] == $seat_row && $row2['col'] == $seat_col) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td >";
-                                    echo "<td>" . $row['studio_id'] . "</td >";
-                                    echo "<td>" . $row['play_id'] . "</td >";
-                                    echo "<td>" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
-                                    echo "<td>" . $row['discount'] . "</td >";
-                                    echo "<td>" . $row['price'] . "</td >";
-                                    echo "</tr>";
+                                if ($row2['row'] == $seat_row && $row2['col'] == $seat_col) {
+                                    $sign=0;
+                                    if ($row2['status'] == 1) {
+                                        if ($row['status']) {
+                                            echo "此座位已被订购！";
+                                        } else {
+
+                                            $query = "insert into customer(tel)  VALUES (".$tel.");";
+                                            $connect->query($query);
+                                            $query = "select id from customer where tel =".$tel.";";
+                                            $result4 = $connect->query($query);
+                                            $customer_id=0;
+                                            while ($row4 = $result4->fetch_array()) {
+                                                $customer_id = $row4['id'];
+                                            }
+                                            $time = date("YmdHis");
+                                            $query = "insert into bill(customer_id,ticket_id,emp_id,play_id,price,sale_time) VALUE (".$customer_id.",".$row['id'].",".$_SESSION['username'].",".$row['play_id'].",".$final_price.",\"".$time."\");";
+                                            $connect->query($query);
+                                            $query="update ticket set status = 2 where id = ".$row['id'].";";
+                                            $connect->query($query);
+
+
+                                            echo "<div class=\"result-content\" id=\"fid\">";
+                                            echo "<table class= \"result-tab \"width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
+                                            echo "<tr>";
+                                            echo "<th class=\"tc\">票ID</th>";
+                                            echo "<th>影厅ID</th>";
+                                            echo "<th>剧目ID</th>";
+                                            echo "<th>票价</th>";
+                                            echo "<th>折扣</th>";
+                                            echo "<th>折后价<br />";
+                                            echo "<th>时间</th>";
+                                            echo "</tr>";
+                                            echo "<tr>";
+                                            echo "<td>" . $row['id'] . "</td >";
+                                            echo "<td>" . $row2['studio_id'] . "</td >";
+                                            echo "<td>" . $row['play_id'] . "</td >";
+                                            echo "<td>" . $price . "</td >";
+                                            echo "<td>" . $dicount . "</td >";
+                                            echo "<td>" . $final_price . "</td >";
+                                            echo "<td>" . substr($time, 0, 4) . "." . substr($time, 4, 2) . "." . substr($time, 6, 2) . "&nbsp;" . substr($time, 8, 2) . ":" . substr($time, 10, 2) . ":" . substr($time, 12, 2) . "</td >";
+                                            echo "</tr>";
+                                            echo "</table>";
+                                            break;
+                                        }
+                                    } else {
+                                        echo "此座位不可用！";
+                                    }
                                 }
                             }
 
-                            /*
-                            $count = 0;
-                            while ($row = $result->fetch_array()) {
-
-                                $query = "select name from play where id = " . $row['id'] . ";";
-                                $result2 = $connect->query($query);
-                                $row2 = $result2->fetch_array();
-                                $movie_name = $row2['name'];
-                                echo "<tr>";
-                                echo "<td>" . $row['id'] . "</td >";
-                                echo "<td>" . $row['studio_id'] . "</td >";
-                                echo "<td>" . $movie_name . "</td >";
-                                echo "<td>" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
-                                echo "<td>" . $row['discount'] . "</td >";
-                                echo "<td>" . $row['price'] . "</td >";
-                                echo "</tr>";
-                                $count++;
-                            }*/
                         }
-                        echo "</table>";
-                        echo " <div class=\"list-page\" style=\"margin-left: 85%\">共" . $count . "条</div>";
+                        if ($sign) {
+                            echo "座位不存在";
+                        }
                     } else {
                         echo "<p>位置不能为空</p>";
                     }

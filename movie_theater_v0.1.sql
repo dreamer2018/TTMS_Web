@@ -76,10 +76,11 @@ INSERT into employee VALUES (2,'30000002',2,'employ2','123456',12345678902);
 /*==============================================================*/
 /* Table: customer  顾客                                        */
 /*==============================================================*/
+
 CREATE TABLE customer(
   id                INT           AUTO_INCREMENT,
-  name              VARCHAR(40),                    #顾客姓名
-  tel               BIGINT(11)       NOT NULL,         #顾客电话号码
+  name              VARCHAR(40),                  #顾客姓名
+  tel               BIGINT(11)      NOT NULL ,         #顾客电话号码
   PRIMARY KEY (id)
 );
 
@@ -307,12 +308,12 @@ CREATE TABLE bill(
   customer_id INT           NOT NULL ,                #顾客id
   ticket_id   INT           NOT NULL ,                #票id
   emp_id      INT           NOT NULL ,                #售票员id
-  play_id      INT           NOT NULL ,               #剧目类型id
+  play_id      INT           NOT NULL ,               #剧目id
   price        NUMERIC(10,2) NOT NULL ,               #票价
   sale_time   CHAR(14)       NULL ,   #售票时间2016年6月13号18点23分4秒 保存为：20160613182304
   PRIMARY KEY (id)
 );
 INSERT INTO bill VALUES (1,1,2,1,1,8,"20160615090000");
 INSERT INTO bill VALUES (2,2,7,2,4,21,"20160612090000");
-
+INSERT  INTO bill(id) VALUES
 /*********************************************************************************************************/

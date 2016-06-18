@@ -69,39 +69,32 @@ require_once "../conf/conf.php"
 
         <div class="crumb-wrap">
             <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span
-                    class="crumb-step">&gt;</span><a class="crumb-name" href="employee_manager.php">人事管理</a><span
-                    class="crumb-step">&gt;</span><span>添加售票员</span></div>
+                    class="crumb-step">&gt;</span><a class="crumb-name" href="studio_manager.php">影厅管理</a><span
+                    class="crumb-step">&gt;</span><span>添加影厅</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="add_employee.php" method="post" id="myform" name="myform">
+                <form action="add_studio.php" method="post" id="myform" name="myform">
                     <table class="insert-tab" width="100%" id="fid" cellpadding="0" cellspacing="0">
                         <tbody>
                         <tr>
-                            <th><i class="require-red">*</i>工号：</th>
+                            <th><i class="require-red">*</i>演出厅名：</th>
                             <td>
-                                <input class="common-text required" id="title" name="emp_no" size="20" value=""
+                                <input class="common-text required" id="title" name="studio_name" size="20" value=""
                                        type="text">
                             </td>
                         </tr>
                         <tr>
-                            <th>姓名：</th>
+                            <th><i class="require-red">*</i>行数：</th>
                             <td>
-                                <input class="common-text required" id="title" name="name" size="20" value=""
+                                <input class="common-text required" id="title" name="row_num" size="20" value=""
                                        type="text">
                             </td>
                         </tr>
                         <tr>
-                            <th><i class="require-red">*</i>登陆密码：</th>
+                            <th><i class="require-red">*</i>列数：</th>
                             <td>
-                                <input class="common-text required" id="time" name="passwd" size="20" value=""
-                                       type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><i class="require-red">*</i>手机号码：</th>
-                            <td>
-                                <input class="common-text required" id="price" name="tel" size="20" value=""
+                                <input class="common-text required" id="time" name="col_num" size="20" value=""
                                        type="text">
                             </td>
                         </tr>
@@ -113,7 +106,8 @@ require_once "../conf/conf.php"
                         <td>
                             <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit"
                                    style="margin-left: 29%">
-                            <input class="btn btn6" onclick="self.location='employee_manager.php'" value="返回" type="button">
+                            <input class="btn btn6" onclick="self.location='studio_manager.php'" value="返回"
+                                   type="button">
                         </td>
                     </tr>
                 </form>
@@ -122,34 +116,34 @@ require_once "../conf/conf.php"
         <div class="result-wrap">
             <div class="result-content" id="fid">
                 <?php
-                if (isset($_POST['emp_no'])) {
+                if (isset($_POST['studio_name'])) {
 
-                    $emp_no = $_POST['emp_no'];
-                    $name = $_POST['name'];
-                    $passwd = $_POST['passwd'];
-                    $tel = $_POST['tel'];
+                    $studio_name = $_POST['studio_name'];
+                    $row_num = $_POST['row_num'];
+                    $col_num = $_POST['col_num'];
+
 
                     $sign = 1;  //信息正确性标志
 
                     /*
                      * 对输入信息进行验证
                      */
-                    if (strlen($emp_no) != 8 and substr($emp_no, 0, 1) == 3) {
-                        echo "<p>工号输入不正确！</p><br/>";
+
+                    if (strlen($studio_name) > 40 || strlen($studio_name) <=0 ) {
+                        echo "<p>演出厅名过长或为0</p><br/>";
                         $sign = 0;
                     }
-                    if (strlen($name) > 40) {
-                        echo "<p>姓名过长！</p><br/>";
+
+                    if ($row_num <= 0) {
+                        echo "<p>行数输入错误！</p><br/>";
                         $sign = 0;
                     }
-                    if (strlen($passwd) <= 0 or strlen($passwd) > 20) {
-                        echo "<p>密码为空或过长！</p><br/>";
+
+                    if ($col_num <= 0) {
+                        echo "<p>列数输入错误！</p><br/>";
                         $sign = 0;
                     }
-                    if (strlen($tel) != 11) {
-                        echo "<p>手机号码输入错误！</p><br/>";
-                        $sign = 0;
-                    }
+
                     if ($sign) {
 
                         /*
@@ -172,7 +166,7 @@ require_once "../conf/conf.php"
                         $result1 = $connect->query($query);
                         $row1 = $result1->fetch_array();
 
-                        $query = "select count(emp_no) from employee where emp_no =\"" . $emp_no . "\";";
+                        $query = "insert into studio(theater_id,name,row,col) values (".$row1['theater_id'].",\"".$studio_name."\",".$row_num.",".$col_num.")";
 
                         $result2 = $connect->query($query);
                         $row2 = $result2->fetch_array();
@@ -199,7 +193,7 @@ require_once "../conf/conf.php"
                                 echo "</tr>";
                                 echo "</table>";
                             }
-                        }else{
+                        } else {
                             echo "<p>工号已存在！</p><br/>";
                         }
                     }

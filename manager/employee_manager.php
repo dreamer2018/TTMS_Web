@@ -71,21 +71,22 @@ require_once "../conf/conf.php"
                     class="crumb-step">&gt;</span><span class="crumb-name">人事管理</span></div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post" action="employee_manager.php">
-                <div class="result-title">
-                    <div class="result-list">
-                        <a href="add_employee.php"><i class="icon-font"></i>添加</a>
-                    </div>
+
+            <div class="result-title">
+                <div class="result-list">
+                    <a href="add_employee.php"><i class="icon-font"></i>添加</a>
                 </div>
-                <div class="result-content" id="fid">
-                    <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <th>ID</th>
-                            <th>工号</th>
-                            <th>剧院ID</th>
-                            <th>姓名</th>
-                            <th>手机号码</th>
-                        </tr>
+            </div>
+            <div class="result-content" id="fid">
+                <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th>ID</th>
+                        <th>工号</th>
+                        <th>剧院ID</th>
+                        <th>姓名</th>
+                        <th>手机号码</th>
+                        <th>操作</th>
+
                         <?php
 
                         /*
@@ -98,29 +99,44 @@ require_once "../conf/conf.php"
                         if (!$connect) {
                             die("Connect DataBase Error!<br/>");
                         }
-
                         /*
                         * 选择数据库
                         */
-                        $count=0;
+                        $count = 0;
                         $select = $connect->select_db($DB_NAME);
-                        $query = "select id,emp_no,theater_id,name,tel from employee ;";
+                        if(isset($_POST['emp_id'])){
+                            $query = "delete from employee where id = ".$_POST['emp_id'].";";
+                            $connect -> query($query);
+                        }
+                        $query = "select theater_id from manager where emp_no =" . $_SESSION['username'] . ";";
                         $result = $connect->query($query);
-                        while($row = $result->fetch_array()){
+                        $row = $result->fetch_array();
+
+                        $query = "select id,emp_no,theater_id,name,tel from employee where theater_id =".$row['theater_id'].";";
+
+                        $result2 = $connect->query($query);
+                        while ($row2 = $result2->fetch_array()) {
+
                             echo "<tr>";
-                            echo "<td>".$row['id']."</td>";
-                            echo "<td>".$row['emp_no']."</td>";
-                            echo "<td>".$row['theater_id']."</td>";
-                            echo "<td>".$row['name']."</td>";
-                            echo "<td>".$row['tel']."</td>";
+                            echo "<td>" . $row2['id'] . "</td>";
+                            echo "<td>" . $row2['emp_no'] . "</td>";
+                            echo "<td>" . $row2['theater_id'] . "</td>";
+                            echo "<td>" . $row2['name'] . "</td>";
+                            echo "<td>" . $row2['tel'] . "</td>";
+                            echo "<td>";
+                            echo "<form name=\"myform\" method=\"post\" action=\"employee_manager.php\">";
+                            echo "<input type = 'hidden' value ='" . $row2['id'] . "'  name = 'emp_id'>";
+                            echo "<input  type='submit'  class=\"btn btn-primary btn2\" value='删除' >";
+                            echo "</form>";
+                            echo "</td>";
                             echo "<tr>";
                             $count++;
                         }
                         ?>
-                    </table>
-                    <div class="list-page" style="margin-left: 85%"> 共<?php echo $count ?>条</div>
-                </div>
-            </form>
+                </table>
+                <div class="list-page" style="margin-left: 85%"> 共<?php echo $count ?>条</div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -86,7 +86,6 @@ require_once "../conf/conf.php"
                         <th>姓名</th>
                         <th>手机号码</th>
                         <th>操作</th>
-
                         <?php
 
                         /*
@@ -105,7 +104,11 @@ require_once "../conf/conf.php"
                         $count = 0;
                         $select = $connect->select_db($DB_NAME);
                         if (isset($_POST['studio_id'])) {
+                            $query = "delete from schedule where play_id = " . $_POST['play_id'] . ";";
+                            $connect->query($query);
                             $query = "delete from studio where id = " . $_POST['studio_id'] . ";";
+                            $connect->query($query);
+                            $query = "delete from seat where studio_id =".$_POST['studio_id'].";";
                             $connect->query($query);
                         }
 

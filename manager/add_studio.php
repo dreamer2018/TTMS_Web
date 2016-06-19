@@ -129,7 +129,7 @@ require_once "../conf/conf.php"
                      * 对输入信息进行验证
                      */
 
-                    if (strlen($studio_name) > 40 || strlen($studio_name) <=0 ) {
+                    if (strlen($studio_name) > 40 || strlen($studio_name) <= 0) {
                         echo "<p>演出厅名过长或为0</p><br/>";
                         $sign = 0;
                     }
@@ -166,35 +166,31 @@ require_once "../conf/conf.php"
                         $result1 = $connect->query($query);
                         $row1 = $result1->fetch_array();
 
-                        $query = "insert into studio(theater_id,name,row,col) values (".$row1['theater_id'].",\"".$studio_name."\",".$row_num.",".$col_num.")";
+                        $query = "insert into studio(theater_id,name,row,col) values (" . $row1['theater_id'] . ",\"" . $studio_name . "\"," . $row_num . "," . $col_num . ")";
 
                         $result2 = $connect->query($query);
-                        $row2 = $result2->fetch_array();
-
-                        if ($row2['count(emp_no)'] == 0) {
-
-                            $query = "insert into employee (emp_no,theater_id,name,passwd,tel) VALUES (\"" . $emp_no . "\"," . $row1['theater_id'] . ",\"" . $name . "\",\"" . $passwd . "\"," . $tel . ");";
-                            $result3 = $connect->query($query);
-                            if ($result3) {
-                                echo "<table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
-                                echo "<tr>";
-                                echo "<th>工号</th>";
-                                echo "<th>影院号</th>";
-                                echo "<th>姓名</th>";
-                                echo "<th>密码</th>";
-                                echo "<th>电话号</th>";
-                                echo "</tr>";
-                                echo "<tr>";
-                                echo "<td>" . $emp_no . "</td>";
-                                echo "<td>" . $row['theater_id'] . "</td>";
-                                echo "<td>" . $name . "</td>";
-                                echo "<td>" . $passwd . "</td>";
-                                echo "<td>" . $tel . "</td>";
-                                echo "</tr>";
-                                echo "</table>";
+                        if ($result2) {
+                            for($i=1;$i<=$row_num;$i++){
+                                for($j=1;$j<=$col_num;$j++){
+                                    $status=1;
+                                    $query = "insert into seat(studio_id,row,col,status) values(".$row1['theater_id'].",".$i.",".$j.",".$status.");";
+                                    $connect->query($query);
+                                }
                             }
-                        } else {
-                            echo "<p>工号已存在！</p><br/>";
+                            echo "<table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
+                            echo "<tr>";
+                            echo "<th>影院ID</th>";
+                            echo "<th>影厅名</th>";
+                            echo "<th>行数</th>";
+                            echo "<th>列数</th>";
+                            echo "</tr>";
+                            echo "<tr>";
+                            echo "<td>" . $row1['theater_id'] . "</td>";
+                            echo "<td>" . $studio_name . "</td>";
+                            echo "<td>" . $row_num . "</td>";
+                            echo "<td>" . $col_num . "</td>";
+                            echo "</tr>";
+                            echo "</table>";
                         }
                     }
                 }

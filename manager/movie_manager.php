@@ -1,3 +1,6 @@
+<?php
+require_once "../conf/conf.php"
+?>
 <!doctype html>
 <html>
 <head>
@@ -60,107 +63,96 @@
         </div>
     </div>
     <!-- 菜单栏结束-->
-    
+
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">影厅管理</span></div>
-        </div>
-        <div class="search-wrap">
-            <div class="search-content">
-                <form action="#" method="post">
-                    <table class="search-tab">
-                        <tr>
-                            <th width="120">选择分类:</th>
-                            <td>
-                                <select name="search-sort" >
-                                    <option value="">全部</option>
-                                    <option value="19">正在上映</option><option value="20">即将上映</option>
-                                </select>
-                            </td>
-                            <th width="70">关键字:</th>
-                            <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
-                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span
+                    class="crumb-step">&gt;</span><span class="crumb-name">影片管理</span></div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
-                <div class="result-title">
-                    <div class="result-list">
-                        <a href="insert.html"><i class="icon-font"></i>添加</a>
-                        <a id="batchDel" href="javascript:void(0)" ><i class="icon-font"></i>批量删除</a>
-                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
-                    </div>
+
+            <div class="result-title">
+                <div class="result-list">
+                    <a href="movie_insert.php"><i class="icon-font"></i>添加</a>
                 </div>
-                <div class="result-content" id="fid">
-                    <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>排序</th>
-                            <th>ID</th>
-                            <th>影片名称</th>
-                            <th>影片类型</th>
-                            <th>放映厅</th>
-                            <th>状态</th>
-                            <th>时间</th>
-                            <th>票价</th>
-                            <th>操作</th>
-                        </tr>
-                        <tr>
-                            <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="59" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>59</td>
-                            <td title="美国队长3"><a target="_blank" href="#" title="美国队长3">美国队长3</a> …
-                            </td>
-                            <td>IMAX</td>
-                            <td>2号厅</td>
-                            <td>正在上映</td>
-                            <td>5.11 21:11:01-5.11 23:11:01</td>
-                            <td></td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#" onclick="deleteRow(this)">删除</a>
-                            </td>
-                        </tr>
-                        <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>
-                                <input name="ids[]" value="59" type="hidden">
-                                <input class="common-input sort-input" name="ord[]" value="0" type="text">
-                            </td>
-                            <td>59</td>
-                            <td title="美国队长3"><a target="_blank" href="#" title="美国队长3">美国队长3</a> …
-                            </td>
-                            <td>IMAX</td>
-                            <td>2号厅</td>
-                            <td>正在上映</td>
-                            <td>5.11 21:11:01-5.11 23:11:01</td>
-                            <td></td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#" onclick="deleteRow(this)">删除</a>
-                            </td>
-                        </tr>
-                      
-                    </table>
-                    <div class="list-page"> 1 条 1/1 页</div>
-                </div>
-            </form>
+            </div>
+            <div class="result-content" id="fid">
+                <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th>ID</th>
+                        <th>电影名</th>
+                        <th>类型</th>
+                        <th>语言</th>
+                        <th>等级</th>
+                        <th>评分</th>
+                        <th>时长</th>
+                        <th>票价</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                        <?php
+                        /*
+                        * 连接数据库
+                        */
+                        $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                        /*
+                        * 如果连接失败，则直接结束
+                        */
+                        if (!$connect) {
+                            die("Connect DataBase Error!<br/>");
+                        }
+                        /*
+                        * 选择数据库
+                        */
+                        $count = 0;
+                        $select = $connect->select_db($DB_NAME);
+
+                        if (isset($_POST['play_id'])) {
+                            $query = "delete from schedule where play_id = " . $_POST['play_id'] . ";";
+                            $connect->query($query);
+                            $query = "delete from ticket where play_id =" . $_POST['play_id'] . ";";
+                            $connect->query($query);
+                        }
+
+                        $query = "select id,name,type_id,lang_id,level_id,score,length,price,status from play;";
+                        $result = $connect->query($query);
+                        while ($row = $result->fetch_array()) {
+                            $query = "select type from type where id = ".$row['type_id'].";";
+                            $result2 = $connect->query($query);
+                            $row2 = $result2->fetch_array();
+                            $query = "select type from lang where id = ".$row['lang_id'].";";
+                            $result3 = $connect->query($query);
+                            $row3 = $result3->fetch_array();
+                            $query = "select type from level where id = ".$row['level_id'].";";
+                            $result4 = $connect->query($query);
+                            $row4 = $result4->fetch_array();
+
+                            echo "<tr>";
+                            echo "<td>" . $row['id'] . "</td>";
+                            echo "<td>" . $row['name'] . "</td>";
+                            echo "<td>" . $row2['type'] . "</td>";
+                            echo "<td>" . $row3['type'] . "</td>";
+                            echo "<td>" . $row4['type'] . "</td>";
+                            echo "<td>" . $row['score'] . "</td>";
+                            echo "<td>" . $row['length'] . "</td>";
+                            echo "<td>" . $row['price'] . "</td>";
+                            echo "<td>" . $row['status'] . "</td>";
+                            echo "<td>";
+                            echo "<form name=\"myform\" method=\"post\" action=\"movie_manager.php\">";
+                            echo "<input type = 'hidden' value ='" . $row['id'] . "'  name = 'play_id'>";
+                            echo "<input  type='submit'  class=\"btn btn-primary btn2\" value='删除' >";
+                            echo "</form>";
+                            echo "</td>";
+                            echo "<tr>";
+                            $count++;
+                        }
+                        ?>
+                </table>
+                <div class="list-page" style="margin-left: 85%"> 共<?php echo $count ?>条</div>
+            </div>
+
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post()
-            {
-                forPost.action="DestinationPage.aspx";
-                forPost.submit();
-            }
-    </script>
 </div>
 </body>
 </html>

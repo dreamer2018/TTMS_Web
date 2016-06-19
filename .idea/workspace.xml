@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49a7c092-a8cb-4594-9f41-964e8460d47a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manager/add_studio.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manager/studio_manager.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/return_ticket.php" afterPath="$PROJECT_DIR$/employee/return_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/add_employee.php" afterPath="$PROJECT_DIR$/manager/add_employee.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/employee_manager.php" afterPath="$PROJECT_DIR$/manager/employee_manager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/add_studio.php" afterPath="$PROJECT_DIR$/manager/add_studio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/movie_insert.php" afterPath="$PROJECT_DIR$/manager/movie_insert.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/movie_manager.php" afterPath="$PROJECT_DIR$/manager/movie_manager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/studio_manager.php" afterPath="$PROJECT_DIR$/manager/studio_manager.php" />
     </list>
     <ignored path="TTMS_Web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,16 +62,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="change_passwd.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/employee/change_passwd.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1273">
-              <caret line="67" column="16" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/employee/index.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -82,22 +72,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="return_ticket.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="return_ticket.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/employee/return_ticket.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="195" column="91" selection-start-line="195" selection-start-column="61" selection-end-line="195" selection-end-column="91" />
+            <state relative-caret-position="245">
+              <caret line="211" column="17" selection-start-line="211" selection-start-column="17" selection-end-line="211" selection-end-column="17" />
               <folding>
-                <marker date="1466227589471" expanded="true" signature="3782:3801" ph="select id fr... bill" />
-                <marker date="1466227589471" expanded="true" signature="3930:3949" ph="select id fr... bill" />
-                <marker date="1466227589471" expanded="true" signature="6403:6468" ph="select id,cu... bill" />
-                <marker date="1466227589471" expanded="true" signature="6542:6619" ph="select id,cu... bill" />
-                <marker date="1466227589471" expanded="true" signature="6827:6863" ph="select tel f... customer" />
-                <marker date="1466227589471" expanded="true" signature="7203:7235" ph="select name play" />
-                <marker date="1466227589471" expanded="true" signature="8538:8554" ph="..." />
-                <marker date="1466227589471" expanded="true" signature="9124:9162" ph="select ticke... bill" />
-                <marker date="1466227589471" expanded="true" signature="9309:9348" ph="update ticke... " />
-                <marker date="1466227589471" expanded="true" signature="9444:9471" ph="delete from " />
+                <marker date="1466346265286" expanded="true" signature="3782:3801" ph="select id fr... bill" />
+                <marker date="1466346265286" expanded="true" signature="3930:3949" ph="select id fr... bill" />
+                <marker date="1466346265286" expanded="true" signature="6403:6468" ph="select id,cu... bill" />
+                <marker date="1466346265286" expanded="true" signature="6542:6619" ph="select id,cu... bill" />
+                <marker date="1466346265286" expanded="true" signature="6827:6863" ph="select tel f... customer" />
+                <marker date="1466346265286" expanded="true" signature="7203:7235" ph="select name play" />
+                <marker date="1466346265286" expanded="true" signature="8538:8554" ph="..." />
+                <marker date="1466346265286" expanded="true" signature="9124:9162" ph="select ticke... bill" />
+                <marker date="1466346265286" expanded="true" signature="9309:9348" ph="update ticke... " />
+                <marker date="1466346265286" expanded="true" signature="9444:9471" ph="delete from " />
               </folding>
             </state>
           </provider>
@@ -123,53 +113,63 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="finance_manager.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager/finance_manager.php">
+      <file leaf-file-name="add_studio.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manager/add_studio.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4617">
-              <caret line="243" column="28" selection-start-line="243" selection-start-column="28" selection-end-line="243" selection-end-column="28" />
+            <state relative-caret-position="245">
+              <caret line="121" column="34" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="34" />
               <folding>
-                <marker date="1466174748581" expanded="true" signature="4226:4259" ph="select disti... bill" />
-                <marker date="1466174748581" expanded="true" signature="4457:4501" ph="select price... bill" />
-                <marker date="1466174748581" expanded="true" signature="4855:4888" ph="select name play" />
-                <marker date="1466174748581" expanded="true" signature="7109:7133" ph="select id,na... play" />
-                <marker date="1466174748581" expanded="true" signature="8855:8890" ph="select disti... bill" />
-                <marker date="1466174748581" expanded="true" signature="11267:11320" ph="select id,ti... bill" />
-                <marker date="1466174748581" expanded="true" signature="11443:11513" ph="select id,ti... bill" />
-                <marker date="1466174748581" expanded="true" signature="11652:11744" ph="select id,ti... bill" />
-                <marker date="1466174748581" expanded="true" signature="11827:11952" ph="select id,ti... bill" />
-                <marker date="1466174748581" expanded="true" signature="12161:12194" ph="select name play" />
+                <marker date="1466349281720" expanded="true" signature="6564:6643" ph="select theat... manager" />
+                <marker date="1466349281720" expanded="true" signature="6799:6851" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="6799:6879" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="6799:6903" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="6799:6904" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="6799:6920" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="6799:6921" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="6799:6922" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="6799:6938" ph="insert into studio... " />
+                <marker date="1466349281720" expanded="true" signature="7253:7303" ph="insert into seat... " />
+                <marker date="1466349281720" expanded="true" signature="7253:7327" ph="insert into seat... " />
+                <marker date="1466349281720" expanded="true" signature="7253:7334" ph="insert into seat... " />
+                <marker date="1466349281720" expanded="true" signature="7253:7341" ph="insert into seat... " />
+                <marker date="1466349281720" expanded="true" signature="7253:7353" ph="insert into seat... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="design.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager/design.html">
+      <file leaf-file-name="movie_manager.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manager/movie_manager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1786">
-              <caret line="94" column="60" selection-start-line="0" selection-start-column="0" selection-end-line="165" selection-end-column="7" />
-              <folding />
+            <state relative-caret-position="361">
+              <caret line="76" column="68" selection-start-line="76" selection-start-column="68" selection-end-line="76" selection-end-column="68" />
+              <folding>
+                <marker date="1466351488320" expanded="true" signature="4393:4430" ph="delete from " />
+                <marker date="1466351488320" expanded="true" signature="4550:4584" ph="delete from " />
+                <marker date="1466351488320" expanded="true" signature="4727:4802" ph="select theat... manager" />
+                <marker date="1466351488320" expanded="true" signature="4967:4971" ph="select * fro... " />
+                <marker date="1466351488320" expanded="true" signature="4967:4999" ph="select type type" />
+                <marker date="1466351488320" expanded="true" signature="4967:5000" ph="select type type" />
+                <marker date="1466351488320" expanded="true" signature="4967:5021" ph="select type type" />
+                <marker date="1466351488320" expanded="true" signature="5186:5219" ph="select type type" />
+                <marker date="1466351488320" expanded="true" signature="5405:5439" ph="select type type" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_studio.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager/add_studio.php">
+      <file leaf-file-name="movie_insert.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manager/movie_insert.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="182" column="51" selection-start-line="182" selection-start-column="51" selection-end-line="182" selection-end-column="51" />
+            <state relative-caret-position="1822">
+              <caret line="306" column="26" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
               <folding>
-                <marker date="1466233601592" expanded="true" signature="6564:6643" ph="select theat... manager" />
-                <marker date="1466233601592" expanded="true" signature="6799:6851" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="6799:6875" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="6799:6895" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="6799:6896" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="6799:6908" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="6799:6909" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="6799:6910" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="6799:6922" ph="insert into studio... " />
-                <marker date="1466233601592" expanded="true" signature="7142:7306" ph="insert into employee... " />
+                <marker date="1466351556349" expanded="true" signature="4555:4579" ph="select id,ty... type" />
+                <marker date="1466351556349" expanded="true" signature="6128:6153" ph="select id,ty... level" />
+                <marker date="1466351556349" expanded="true" signature="7701:7725" ph="select id,ty... lang" />
+                <marker date="1466351556349" expanded="true" signature="12337:12416" ph="select theat... manager" />
+                <marker date="1466351556349" expanded="true" signature="12572:12711" ph="insert into studio... " />
+                <marker date="1466351556349" expanded="true" signature="13026:13126" ph="insert into seat... " />
               </folding>
             </state>
           </provider>
@@ -178,17 +178,53 @@
       <file leaf-file-name="studio_manager.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manager/studio_manager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2014">
-              <caret line="106" column="54" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
+            <state relative-caret-position="435">
+              <caret line="122" column="68" selection-start-line="122" selection-start-column="68" selection-end-line="122" selection-end-column="68" />
               <folding>
-                <marker date="1466231788773" expanded="true" signature="4254:4284" ph="delete from " />
-                <marker date="1466231788773" expanded="true" signature="4429:4474" ph="select theat... manager" />
-                <marker date="1466231788773" expanded="true" signature="4429:4505" ph="select theat... manager" />
-                <marker date="1466231788773" expanded="true" signature="4656:4709" ph="select id,na... studio" />
-                <marker date="1466231788773" expanded="true" signature="4656:4737" ph="select id,na... studio" />
-                <marker date="1466231788773" expanded="true" signature="4973:5023" ph="..." />
-                <marker date="1466231788773" expanded="true" signature="5341:5497" ph="..." />
-                <marker date="1466231788773" expanded="true" signature="5446:5497" ph="..." />
+                <marker date="1466351397174" expanded="true" signature="4253:4290" ph="delete from " />
+                <marker date="1466351397174" expanded="true" signature="4410:4440" ph="delete from " />
+                <marker date="1466351397174" expanded="true" signature="4562:4596" ph="delete from " />
+                <marker date="1466351397174" expanded="true" signature="4562:4621" ph="delete from " />
+                <marker date="1466351397174" expanded="true" signature="4737:4782" ph="select theat... manager" />
+                <marker date="1466351397174" expanded="true" signature="4737:4813" ph="select theat... manager" />
+                <marker date="1466351397174" expanded="true" signature="4964:5017" ph="select id,na... studio" />
+                <marker date="1466351397174" expanded="true" signature="4964:5045" ph="select id,na... studio" />
+                <marker date="1466351397174" expanded="true" signature="5281:5331" ph="..." />
+                <marker date="1466351397174" expanded="true" signature="5652:5805" ph="..." />
+                <marker date="1466351397174" expanded="true" signature="5754:5805" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="select_action.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manager/select_action.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1466157762561" expanded="true" signature="3992:4016" ph="select id,ty... type" />
+                <marker date="1466157762561" expanded="true" signature="5573:5597" ph="select id,ty... lang" />
+                <marker date="1466157762561" expanded="true" signature="7096:7121" ph="select id,ty... level" />
+                <marker date="1466157762561" expanded="true" signature="11854:12032" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="12249:12443" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="12595:12808" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="12958:13154" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="13453:13648" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="13799:14010" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="14159:14354" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="14687:14898" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="15061:15288" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="15449:15660" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="15973:16203" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="16366:16612" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="16773:16999" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="17293:17505" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="17668:17896" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="18057:18269" ph="select id,na... play" />
+                <marker date="1466157762561" expanded="true" signature="19095:19128" ph="select type type" />
+                <marker date="1466157762561" expanded="true" signature="19669:19702" ph="select type lang" />
+                <marker date="1466157762561" expanded="true" signature="20279:20313" ph="select type level" />
               </folding>
             </state>
           </provider>
@@ -209,8 +245,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/post_myself.php" />
-        <option value="$PROJECT_DIR$/manager/movie_insert.php" />
         <option value="$PROJECT_DIR$/login_verify.php" />
         <option value="$PROJECT_DIR$/manager/shedule_insert.php" />
         <option value="$PROJECT_DIR$/test/preg_test.php" />
@@ -255,11 +289,13 @@
         <option value="$PROJECT_DIR$/conf/conf.php" />
         <option value="$PROJECT_DIR$/manager/finance_manager.php" />
         <option value="$PROJECT_DIR$/manager/index.php" />
-        <option value="$PROJECT_DIR$/employee/return_ticket.php" />
         <option value="$PROJECT_DIR$/manager/employee_manager.php" />
-        <option value="$PROJECT_DIR$/manager/studio_manager.php" />
         <option value="$PROJECT_DIR$/manager/add_employee.php" />
+        <option value="$PROJECT_DIR$/employee/return_ticket.php" />
         <option value="$PROJECT_DIR$/manager/add_studio.php" />
+        <option value="$PROJECT_DIR$/manager/studio_manager.php" />
+        <option value="$PROJECT_DIR$/manager/movie_manager.php" />
+        <option value="$PROJECT_DIR$/manager/movie_insert.php" />
       </list>
     </option>
   </component>
@@ -310,6 +346,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -342,42 +380,8 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="employee" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="employee" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Alpha" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -486,19 +490,21 @@
       <workItem from="1466036438592" duration="23962000" />
       <workItem from="1466117847971" duration="37257000" />
       <workItem from="1466223750993" duration="8864000" />
-      <workItem from="1466234141823" duration="874000" />
+      <workItem from="1466234141823" duration="1696000" />
+      <workItem from="1466345824176" duration="5750000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113170000" />
+    <option name="totallyTimeSpent" value="119742000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1922" height="1019" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1684492" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17058824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -508,7 +514,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -537,21 +542,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/employee/jquery.seat-charts.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="8" column="6792" selection-start-line="8" selection-start-column="6792" selection-end-line="8" selection-end-column="6917" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/employee/test.html" />
-    <entry file="file://$PROJECT_DIR$/employee/booking.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/employee/design.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -903,57 +893,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager/studio_manager.php">
+    <entry file="file://$PROJECT_DIR$/manager/select_action.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2014">
-          <caret line="106" column="54" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1466231788773" expanded="true" signature="4254:4284" ph="delete from " />
-            <marker date="1466231788773" expanded="true" signature="4429:4474" ph="select theat... manager" />
-            <marker date="1466231788773" expanded="true" signature="4429:4505" ph="select theat... manager" />
-            <marker date="1466231788773" expanded="true" signature="4656:4709" ph="select id,na... studio" />
-            <marker date="1466231788773" expanded="true" signature="4656:4737" ph="select id,na... studio" />
-            <marker date="1466231788773" expanded="true" signature="4973:5023" ph="..." />
-            <marker date="1466231788773" expanded="true" signature="5341:5497" ph="..." />
-            <marker date="1466231788773" expanded="true" signature="5446:5497" ph="..." />
+            <marker date="1466157762561" expanded="true" signature="3992:4016" ph="select id,ty... type" />
+            <marker date="1466157762561" expanded="true" signature="5573:5597" ph="select id,ty... lang" />
+            <marker date="1466157762561" expanded="true" signature="7096:7121" ph="select id,ty... level" />
+            <marker date="1466157762561" expanded="true" signature="11854:12032" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="12249:12443" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="12595:12808" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="12958:13154" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="13453:13648" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="13799:14010" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="14159:14354" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="14687:14898" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="15061:15288" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="15449:15660" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="15973:16203" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="16366:16612" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="16773:16999" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="17293:17505" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="17668:17896" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="18057:18269" ph="select id,na... play" />
+            <marker date="1466157762561" expanded="true" signature="19095:19128" ph="select type type" />
+            <marker date="1466157762561" expanded="true" signature="19669:19702" ph="select type lang" />
+            <marker date="1466157762561" expanded="true" signature="20279:20313" ph="select type level" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manager/add_studio.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="182" column="51" selection-start-line="182" selection-start-column="51" selection-end-line="182" selection-end-column="51" />
+        <state relative-caret-position="245">
+          <caret line="121" column="34" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="34" />
           <folding>
-            <marker date="1466233601592" expanded="true" signature="6564:6643" ph="select theat... manager" />
-            <marker date="1466233601592" expanded="true" signature="6799:6851" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="6799:6875" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="6799:6895" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="6799:6896" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="6799:6908" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="6799:6909" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="6799:6910" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="6799:6922" ph="insert into studio... " />
-            <marker date="1466233601592" expanded="true" signature="7142:7306" ph="insert into employee... " />
+            <marker date="1466349281720" expanded="true" signature="6564:6643" ph="select theat... manager" />
+            <marker date="1466349281720" expanded="true" signature="6799:6851" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="6799:6879" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="6799:6903" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="6799:6904" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="6799:6920" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="6799:6921" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="6799:6922" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="6799:6938" ph="insert into studio... " />
+            <marker date="1466349281720" expanded="true" signature="7253:7303" ph="insert into seat... " />
+            <marker date="1466349281720" expanded="true" signature="7253:7327" ph="insert into seat... " />
+            <marker date="1466349281720" expanded="true" signature="7253:7334" ph="insert into seat... " />
+            <marker date="1466349281720" expanded="true" signature="7253:7341" ph="insert into seat... " />
+            <marker date="1466349281720" expanded="true" signature="7253:7353" ph="insert into seat... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/studio_manager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="122" column="68" selection-start-line="122" selection-start-column="68" selection-end-line="122" selection-end-column="68" />
+          <folding>
+            <marker date="1466351397174" expanded="true" signature="4253:4290" ph="delete from " />
+            <marker date="1466351397174" expanded="true" signature="4410:4440" ph="delete from " />
+            <marker date="1466351397174" expanded="true" signature="4562:4596" ph="delete from " />
+            <marker date="1466351397174" expanded="true" signature="4562:4621" ph="delete from " />
+            <marker date="1466351397174" expanded="true" signature="4737:4782" ph="select theat... manager" />
+            <marker date="1466351397174" expanded="true" signature="4737:4813" ph="select theat... manager" />
+            <marker date="1466351397174" expanded="true" signature="4964:5017" ph="select id,na... studio" />
+            <marker date="1466351397174" expanded="true" signature="4964:5045" ph="select id,na... studio" />
+            <marker date="1466351397174" expanded="true" signature="5281:5331" ph="..." />
+            <marker date="1466351397174" expanded="true" signature="5652:5805" ph="..." />
+            <marker date="1466351397174" expanded="true" signature="5754:5805" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/employee/return_ticket.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="195" column="91" selection-start-line="195" selection-start-column="61" selection-end-line="195" selection-end-column="91" />
+        <state relative-caret-position="245">
+          <caret line="211" column="17" selection-start-line="211" selection-start-column="17" selection-end-line="211" selection-end-column="17" />
           <folding>
-            <marker date="1466227589471" expanded="true" signature="3782:3801" ph="select id fr... bill" />
-            <marker date="1466227589471" expanded="true" signature="3930:3949" ph="select id fr... bill" />
-            <marker date="1466227589471" expanded="true" signature="6403:6468" ph="select id,cu... bill" />
-            <marker date="1466227589471" expanded="true" signature="6542:6619" ph="select id,cu... bill" />
-            <marker date="1466227589471" expanded="true" signature="6827:6863" ph="select tel f... customer" />
-            <marker date="1466227589471" expanded="true" signature="7203:7235" ph="select name play" />
-            <marker date="1466227589471" expanded="true" signature="8538:8554" ph="..." />
-            <marker date="1466227589471" expanded="true" signature="9124:9162" ph="select ticke... bill" />
-            <marker date="1466227589471" expanded="true" signature="9309:9348" ph="update ticke... " />
-            <marker date="1466227589471" expanded="true" signature="9444:9471" ph="delete from " />
+            <marker date="1466346265286" expanded="true" signature="3782:3801" ph="select id fr... bill" />
+            <marker date="1466346265286" expanded="true" signature="3930:3949" ph="select id fr... bill" />
+            <marker date="1466346265286" expanded="true" signature="6403:6468" ph="select id,cu... bill" />
+            <marker date="1466346265286" expanded="true" signature="6542:6619" ph="select id,cu... bill" />
+            <marker date="1466346265286" expanded="true" signature="6827:6863" ph="select tel f... customer" />
+            <marker date="1466346265286" expanded="true" signature="7203:7235" ph="select name play" />
+            <marker date="1466346265286" expanded="true" signature="8538:8554" ph="..." />
+            <marker date="1466346265286" expanded="true" signature="9124:9162" ph="select ticke... bill" />
+            <marker date="1466346265286" expanded="true" signature="9309:9348" ph="update ticke... " />
+            <marker date="1466346265286" expanded="true" signature="9444:9471" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/movie_manager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="76" column="68" selection-start-line="76" selection-start-column="68" selection-end-line="76" selection-end-column="68" />
+          <folding>
+            <marker date="1466351488320" expanded="true" signature="4393:4430" ph="delete from " />
+            <marker date="1466351488320" expanded="true" signature="4550:4584" ph="delete from " />
+            <marker date="1466351488320" expanded="true" signature="4727:4802" ph="select theat... manager" />
+            <marker date="1466351488320" expanded="true" signature="4967:4971" ph="select * fro... " />
+            <marker date="1466351488320" expanded="true" signature="4967:4999" ph="select type type" />
+            <marker date="1466351488320" expanded="true" signature="4967:5000" ph="select type type" />
+            <marker date="1466351488320" expanded="true" signature="4967:5021" ph="select type type" />
+            <marker date="1466351488320" expanded="true" signature="5186:5219" ph="select type type" />
+            <marker date="1466351488320" expanded="true" signature="5405:5439" ph="select type type" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/movie_insert.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1822">
+          <caret line="306" column="26" selection-start-line="306" selection-start-column="26" selection-end-line="306" selection-end-column="26" />
+          <folding>
+            <marker date="1466351556349" expanded="true" signature="4555:4579" ph="select id,ty... type" />
+            <marker date="1466351556349" expanded="true" signature="6128:6153" ph="select id,ty... level" />
+            <marker date="1466351556349" expanded="true" signature="7701:7725" ph="select id,ty... lang" />
+            <marker date="1466351556349" expanded="true" signature="12337:12416" ph="select theat... manager" />
+            <marker date="1466351556349" expanded="true" signature="12572:12711" ph="insert into studio... " />
+            <marker date="1466351556349" expanded="true" signature="13026:13126" ph="insert into seat... " />
           </folding>
         </state>
       </provider>

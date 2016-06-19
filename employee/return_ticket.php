@@ -231,13 +231,6 @@ require_once "../conf/conf.php";
             ?>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

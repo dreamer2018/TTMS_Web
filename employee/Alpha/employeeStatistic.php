@@ -104,34 +104,40 @@
                     * 选择数据库
                     */
                     $select = $connect->select_db($DB_NAME);
-                    $query = "select distinct play_id from bill;";
-                    $result = $connect->query($query);
-                    $c = 0;
-                    while ($row = $result->fetch_array()) {
+                    $query = "select id from employee where emp_no =\"".$emp_no."\";";
+                    $result2 = $connect->query($query);
+                    $row2 = $result2->fetch_array();
+                    if(!is_null($row2['id'])){
+                        $query = "select distinct play_id from bill where emp_id =".$row2['id'].";";
+                        $result = $connect->query($query);
+                        $c = 0;
+                        while ($row = $result->fetch_array()) {
 
-                        $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . ";";
-                        $result2 = $connect->query($query);
-                        $row2 = $result2->fetch_array();
-                        $count = $row2['count(id)'];
-                        $price = $row2['price'];
+                            $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . ";";
+                            $result2 = $connect->query($query);
+                            $row2 = $result2->fetch_array();
+                            $count = $row2['count(id)'];
+                            $price = $row2['price'];
 
-                        $sum = $count * $price;
-                        $query = "select name from play where id = " . $row['play_id'] . ";";
+                            $sum = $count * $price;
+                            $query = "select name from play where id = " . $row['play_id'] . ";";
 
 
-                        $result3 = $connect->query($query);
-                        $row3 = $result3->fetch_array();
-                        $movie_name = $row3['name'];
-                        $c++;
-                        echo "<tr>";
-                        echo "<td>" . $c . "</td>";
-                        echo "<td>" . $movie_name . "</td>";
-                        echo "<td>" . $count . "</td>";
-                        echo "<td>" . $price . "</td>";
-                        echo "<td>" . $sum . "</td>";
-                        echo "</tr>";
+                            $result3 = $connect->query($query);
+                            $row3 = $result3->fetch_array();
+                            $movie_name = $row3['name'];
+                            $c++;
+                            echo "<tr>";
+                            echo "<td>" . $c . "</td>";
+                            echo "<td>" . $movie_name . "</td>";
+                            echo "<td>" . $count . "</td>";
+                            echo "<td>" . $price . "</td>";
+                            echo "<td>" . $sum . "</td>";
+                            echo "</tr>";
 
+                        }
                     }
+                    $connect->close();
                     ?>
 
                 </table>
@@ -242,9 +248,12 @@
                             die("Connect DataBase Error!<br/>");
                         }
                         $select = $connect->select_db($DB_NAME);
-
+                        $query = "select id from employee where emp_no =\"".$emp_no."\";";
+                        $result3 = $connect->query($query);
+                        $row3 = $result3->fetch_array();
+                        if(!is_null($row3['id'])){
                         if ($play_id == 0 && $sale_time == 0) {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill;";
+                            $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =".$row3['id'].";";
                             $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {
 
@@ -262,7 +271,7 @@
                             }
                         } elseif ($play_id != 0 && $sale_time == 0) {
 
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . ";";
+                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and emp_id = ".$row3['id'].";";
                             $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {
 
@@ -279,7 +288,7 @@
                                 }
                             }
                         } elseif ($play_id == 0 && $sale_time != 0) {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where sale_time = \"" . $sale_time . "\";";
+                            $query = "select id,ticket_id,play_id,sale_time,price from bill where sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
                             $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {
 
@@ -296,7 +305,7 @@
                                 }
                             }
                         } else {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\";";
+                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
                             $result = $connect->query($query);
 
                             while ($row = $result->fetch_array()) {
@@ -314,6 +323,7 @@
                                 }
                             }
                         }
+                    }
                     }
                     ?>
                 </table>

@@ -108,10 +108,12 @@ require_once "../conf/conf.php"
                         $select = $connect->select_db($DB_NAME);
 
                         if (isset($_POST['play_id'])) {
-                            $query = "delete from schedule where play_id = " . $_POST['play_id'] . ";";
-                            $connect->query($query);
-                            $query = "delete from ticket where play_id =" . $_POST['play_id'] . ";";
-                            $connect->query($query);
+                            $query = "delete from ticket where play_id = ".$_POST['play_id'].";";
+                            $connect -> query($query);
+                            $query = "delete from schedule where play_id = ".$_POST['play_id'].";";
+                            $connect -> query($query);
+                            $query = "delete from play where id = ".$_POST['play_id'].";";
+                            $connect -> query($query);
                         }
 
                         $query = "select id,name,type_id,lang_id,level_id,score,length,price,status from play;";

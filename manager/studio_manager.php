@@ -67,6 +67,7 @@ require_once "../conf/conf.php"
     </div>
     <!-- 菜单栏结束-->
 
+    
     <div class="main-wrap">
 
         <div class="crumb-wrap">
@@ -83,11 +84,10 @@ require_once "../conf/conf.php"
             <div class="result-content" id="fid">
                 <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>ID</th>
-                        <th>工号</th>
-                        <th>剧院ID</th>
-                        <th>姓名</th>
-                        <th>手机号码</th>
+                        <th>YANCHUTINGID</th>
+                        <th>NAME</th>
+                        <th>HANG</th>
+                        <th>LIE</th>
                         <th>操作</th>
                         <?php
 
@@ -115,22 +115,18 @@ require_once "../conf/conf.php"
                             $connect->query($query);
                         }
 
-                        $query = "select theater_id from manager where emp_no =" . $_SESSION['username'] . ";";
+                        $query = "select theater_id from manager where emp_no =\"" . $_SESSION['username'] . "\";";
                         $result = $connect->query($query);
                         $row = $result->fetch_array();
-
                         $query = "select id,name,row,col from studio where theater_id =" . $row['theater_id'] . ";";
                         $result2 = $connect->query($query);
                         while ($row2 = $result2->fetch_array()) {
-
-                            $seat_num = $row2['row'] * $row2['col'];
 
                             echo "<tr>";
                             echo "<td>" . $row2['id'] . "</td>";
                             echo "<td>" . $row2['name'] . "</td>";
                             echo "<td>" . $row2['row'] . "</td>";
                             echo "<td>" . $row2['col'] . "</td>";
-                            echo "<td>" . $seat_num . "</td>";
                             echo "<td>";
                             echo "<form name=\"myform\" method=\"post\" action=\"studio_manager.php\">";
                             echo "<input type = 'hidden' value ='" . $row2['id'] . "'  name = 'studio_id'>";

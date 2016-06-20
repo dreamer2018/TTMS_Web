@@ -131,7 +131,7 @@ CREATE TABLE seat(
   studio_id      INT          NOT NULL ,              #演出厅id
   row            SMALLINT     NOT NULL ,              #座位所在行
   col            SMALLINT     NOT NULL ,              #座位所在列
-  status         TINYINT      DEFAULT 1,              #座位状态 -1：不存在 0：损坏 1：可用
+  status         TINYINT      DEFAULT 1,              #座位状态  0：损坏 1：可用
   PRIMARY KEY (id)
 );
 

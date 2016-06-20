@@ -84,13 +84,12 @@ require_once "../conf/conf.php"
             <div class="result-content" id="fid">
                 <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>YANCHUTINGID</th>
-                        <th>NAME</th>
-                        <th>HANG</th>
-                        <th>LIE</th>
+                        <th>演出厅ID</th>
+                        <th>演出厅名</th>
+                        <th>行数</th>
+                        <th>列数</th>
                         <th>操作</th>
                         <?php
-
                         /*
                         * 连接数据库
                         */

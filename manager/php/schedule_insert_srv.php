@@ -1,8 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>
@@ -89,8 +86,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                  */
 
                 //时间为14位数字
-                if (!preg_match('/[1-9]\d{14}/', $str, $matches)) {
-                    echo "<p>日期错误！</p>";
+                if (strlen($time) != 14) {
+                    echo "<p>日期错误！</p><br/>";
                     $sign = 0;
                 }
                 if ($discount > 1 || $discount <= 0) {
@@ -102,7 +99,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     $sign = 0;
                 }
                 if ($sign) {
-                    require_once "../../conf/DB_login.php";
                     /*
                      * 连接数据库
                      */
@@ -117,15 +113,18 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     /*
                      * 选择数据库
                      */
+                    $status = 1;
                     $select = $connect->select_db($DB_NAME);
-                    $query = "insert into schedule ( studio_id,play_id,time,discount,price ) values(".$studio_id.",".$play_id.",".$time.",".$discount.",".$price.") ;";
+                    $query = "insert into schedule ( studio_id,play_id,time,discount,price,status ) values(" . $studio_id . "," . $play_id . ",\"" . $time . "\"," . $discount . "," . $price . ",".$status.") ;";
+                    //echo $query;
                     $result = $connect->query($query);
-		    		if($result){
+
+                    if ($result) {
                         echo "Success";
-                    }else{
+                    } else {
                         echo "failure";
                     }
-                }else{
+                } else {
                     echo "Information Error!";
                 }
                 ?>

@@ -76,7 +76,7 @@ require_once "../conf/conf.php";
         <div class="result-wrap">
             <div class="result-title">
                 <div class="result-list">
-                    <a href="movie_insert.php"><i class="icon-font"></i>添加</a>
+                    <a href="add_seat.php"><i class="icon-font"></i>添加</a>
                 </div>
             </div>
         </div>
@@ -106,13 +106,14 @@ require_once "../conf/conf.php";
                                      */
 
                                     $select = $connect->select_db($DB_NAME);
-
-                                    $query = "select id from studio;";
-                                    echo $query;
+                                    $query  = "select theater_id from manager where emp_no =\"".$_SESSION['username']."\";";
                                     $result = $connect->query($query);
-                                    while ($row = $result->fetch_array()) {
+                                    $row = $result->fetch_array();
+                                    $query = "select id from studio where theater_id = ".$row['theater_id'].";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
 
-                                        echo "<option value=" . $row["id"] . ">" . $row["id"] . "</option>";
+                                        echo "<option value=" . $row2["id"] . ">" . $row2["id"] . "</option>";
                                     }
                                     $connect->close();
                                     ?>

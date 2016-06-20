@@ -68,7 +68,7 @@ require_once "../conf/conf.php"
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.php">首页</a><span
                     class="crumb-step">&gt;</span><a class="crumb-name" href="studio_manager.php">影厅管理</a><span
                     class="crumb-step">&gt;</span><span>添加影厅</span></div>
         </div>

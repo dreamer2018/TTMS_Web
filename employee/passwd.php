@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>光影人生-影院票务管理系统</title>
-    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-    <script type="text/javascript" src="../js/houtai.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="js/houtai.js"></script>
 </head>
 <body>
 

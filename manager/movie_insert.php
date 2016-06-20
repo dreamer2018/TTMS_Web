@@ -1,8 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
-    die("<h1>非法访问</h1>");
-}
+require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>
@@ -71,14 +68,13 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span
-                    class="crumb-step">&gt;</span><a class="crumb-name" href="design.html">影片管理</a><span
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.php">首页</a><span
+                    class="crumb-step">&gt;</span><a class="crumb-name" href="movie_manager.php">影片管理</a><span
                     class="crumb-step">&gt;</span><span>添加影片</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="design.html" method="post" id="myform" name="myform" enctype="multipart/form-data"
-                      method="get">
+                <form action="movie_insert.php" method="post" id="myform" name="myform">
                     <table class="insert-tab" width="100%" id="fid" cellpadding="0" cellspacing="0">
                         <tbody>
                         <tr>
@@ -86,8 +82,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                             <td>
                                 <select name="type" id="type" class="required">
                                     <?php
-
-                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -118,7 +112,6 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                                 <select name="level" id="catid" class="required">
                                     <?php
 
-                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -146,10 +139,9 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                         <tr>
                             <th width="120"><i class="require-red">*</i>语言：</th>
                             <td>
-                                <select name="langue" id="lang" class="required">
+                                <select name="lang" id="lang" class="required">
                                     <?php
 
-                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -177,7 +169,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                         <tr>
                             <th><i class="require-red">*</i>影片名称：</th>
                             <td>
-                                <input class="common-text required" id="title" name="title" size="20" value=""
+                                <input class="common-text required" id="title" name="name" size="20" value=""
                                        type="text">
                             </td>
                         </tr>
@@ -185,35 +177,35 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                         <tr>
                             <th><i class="require-red">*</i>剧目图片url：</th>
                             <td>
-                                <input class="common-text required-red" id="Introduction" name="introduction" size="20"
+                                <input class="common-text required-red" id="Introduction" name="image_url" size="30"
                                        value="" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red">*</i>简介：</th>
                             <td>
-                                <input class="common-text required-red" id="Introduction" name="introduction" size="20"
+                                <input class="common-text required-red" name="introd" size="50"
                                        value="" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red">*</i>评分：</th>
                             <td>
-                                <input class="common-text required-red" id="Score" name="score" size="20" value=""
+                                <input class="common-text required-red" id="Score" name="score" size="10" value=""
                                        type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red">*</i>时间：</th>
                             <td>
-                                <input class="common-text required-red" id="time" name="title" size="20" value=""
+                                <input class="common-text required-red" id="time" name="length" size="20" value=""
                                        type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red">*</i>价格：</th>
                             <td>
-                                <input class="common-text required-red" id="price" name="title" size="20" value=""
+                                <input class="common-text required-red" id="price" name="price" size="10" value=""
                                        type="text">
                             </td>
                         </tr>
@@ -221,7 +213,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                         </tbody>
                     </table>
                     <br/>
-                    <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit" style="margin-left:6%;">
+                    <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit"
+                           style="margin-left:6%;">
                     <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button" style="margin-left:3%">
                     <br/>
                 </form>
@@ -230,11 +223,17 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         <div class="result-wrap">
             <div class="result-content" id="fid">
                 <?php
-                if (isset($_POST['studio_name'])) {
+                if (isset($_POST['type'])) {
 
-                    $studio_name = $_POST['studio_name'];
-                    $row_num = $_POST['row_num'];
-                    $col_num = $_POST['col_num'];
+                    $type = $_POST['type'];
+                    $level = $_POST['level'];
+                    $lang = $_POST['lang'];
+                    $name = $_POST['name'];
+                    $image_url = $_POST['image_url'];
+                    $introd = $_POST['introd'];
+                    $score = $_POST['score'];
+                    $length = $_POST['length'];
+                    $price = $_POST['price'];
 
 
                     $sign = 1;  //信息正确性标志
@@ -242,19 +241,28 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                     /*
                      * 对输入信息进行验证
                      */
-
-                    if (strlen($studio_name) > 40 || strlen($studio_name) <= 0) {
-                        echo "<p>演出厅名过长或为0</p><br/>";
+                    if ($score <= 0 or $score > 10) {
+                        echo "<p>评分只能在0到10之间！</p><br/>";
                         $sign = 0;
                     }
-
-                    if ($row_num <= 0) {
-                        echo "<p>行数输入错误！</p><br/>";
+                    if (strlen($name) < 0 or strlen($name) > 40) {
+                        echo "<p>剧名过长或为空！</p><br/>";
                         $sign = 0;
                     }
-
-                    if ($col_num <= 0) {
-                        echo "<p>列数输入错误！</p><br/>";
+                    if (strlen($image_url) < 0 or strlen($image_url) > 100) {
+                        echo "<p>剧目图片url过长或为空！</p><br/>";
+                        $sign = 0;
+                    }
+                    if ($length <= 0) {
+                        echo "<p>剧目长度输入不合法！</p><br/>";
+                        $sign = 0;
+                    }
+                    if (strlen($introd) < 0 or strlen($introd) > 1000) {
+                        echo "<p>剧目简介过长或为空！</p><br/>";
+                        $sign = 0;
+                    }
+                    if ($price < 0) {
+                        echo "<p>票价输入不合法！</p><br/>";
                         $sign = 0;
                     }
 
@@ -274,35 +282,46 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
                         /*
                         * 选择数据库
                         */
-
                         $select = $connect->select_db($DB_NAME);
-                        $query = "select theater_id from manager where emp_no = \"" . $_SESSION['username'] . "\";";
-                        $result1 = $connect->query($query);
-                        $row1 = $result1->fetch_array();
 
-                        $query = "insert into studio(theater_id,name,row,col) values (" . $row1['theater_id'] . ",\"" . $studio_name . "\"," . $row_num . "," . $col_num . ")";
 
-                        $result2 = $connect->query($query);
-                        if ($result2) {
-                            for($i=1;$i<=$row_num;$i++){
-                                for($j=1;$j<=$col_num;$j++){
-                                    $status=1;
-                                    $query = "insert into seat(studio_id,row,col,status) values(".$row1['theater_id'].",".$i.",".$j.",".$status.");";
-                                    $connect->query($query);
-                                }
-                            }
+                        $status = 0;
+                        $query = "insert into play ( name,type_id,lang_id,level_id,score,Introduction,image_url,length,price,status ) values (\"" . $name . "\"," . $type . "," . $lang . "," . $level . "," . $score . ",\"" . $introd . "\",\"" . $image_url . "\"," . $length . "," . $price . "," . $status . ");";
+                        $result = $connect->query($query);
+                        if ($result) {
+
+                            $query = "select type from type where id =" . $type . ";";
+                            $result2 = $connect->query($query);
+                            $row2 = $result2->fetch_array();
+                            $query = "select type from lang where id =" . $type . ";";
+                            $result3 = $connect->query($query);
+                            $row3 = $result3->fetch_array();
+                            $query = "select type from level where id =" . $type . ";";
+                            $result4 = $connect->query($query);
+                            $row4 = $result4->fetch_array();
+
                             echo "<table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
                             echo "<tr>";
-                            echo "<th>影院ID</th>";
-                            echo "<th>影厅名</th>";
-                            echo "<th>行数</th>";
-                            echo "<th>列数</th>";
+                            echo "<th>影片类型</th>";
+                            echo "<th>等级</th>";
+                            echo "<th>语言</th>";
+                            echo "<th>影片名称</th>";
+                            echo "<th>图片url</th>";
+                            echo "<th>简介</th>";
+                            echo "<th>评分</th>";
+                            echo "<th>时长</th>";
+                            echo "<th>价格</th>";
                             echo "</tr>";
                             echo "<tr>";
-                            echo "<td>" . $row1['theater_id'] . "</td>";
-                            echo "<td>" . $studio_name . "</td>";
-                            echo "<td>" . $row_num . "</td>";
-                            echo "<td>" . $col_num . "</td>";
+                            echo "<td>" . $row2['type'] . "</td>";
+                            echo "<td>" . $row3['type'] . "</td>";
+                            echo "<td>" . $row4['type'] . "</td>";
+                            echo "<td>" . $name . "</td>";
+                            echo "<td>" . $image_url . "</td>";
+                            echo "<td>" . $introd . "</td>";
+                            echo "<td>" . $score . "</td>";
+                            echo "<td>" . $length . "</td>";
+                            echo "<td>" . $price . "</td>";
                             echo "</tr>";
                             echo "</table>";
                         }

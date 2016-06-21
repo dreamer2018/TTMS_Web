@@ -1,5 +1,5 @@
 <?php
-require_once "../conf/conf.php"
+require_once "conf/conf.php"
 ?>
 <!doctype html>
 <html>

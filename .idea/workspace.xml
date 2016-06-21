@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49a7c092-a8cb-4594-9f41-964e8460d47a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generalmanager/Alpha/add_employee.php" afterPath="$PROJECT_DIR$/generalmanager/Alpha/add_employee.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generalmanager/Alpha/movieStatistics.php" afterPath="$PROJECT_DIR$/generalmanager/Alpha/movieStatistics.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generalmanager/add_employee.php" afterPath="$PROJECT_DIR$/generalmanager/add_employee.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/Alpha/add_employee.php" afterPath="$PROJECT_DIR$/manager/Alpha/add_employee.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generalmanager/movieStatistics.php" afterPath="$PROJECT_DIR$/generalmanager/movieStatistics.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/add_employee.php" afterPath="$PROJECT_DIR$/manager/add_employee.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/add_seat.php" afterPath="$PROJECT_DIR$/manager/add_seat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/add_studio.php" afterPath="$PROJECT_DIR$/manager/add_studio.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/change_passwd.php" afterPath="$PROJECT_DIR$/manager/change_passwd.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/employee_manager.php" afterPath="$PROJECT_DIR$/manager/employee_manager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/index.php" afterPath="$PROJECT_DIR$/manager/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/managerStatistic.php" afterPath="$PROJECT_DIR$/manager/managerStatistic.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/movie_insert.php" afterPath="$PROJECT_DIR$/manager/movie_insert.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/movie_manager.php" afterPath="$PROJECT_DIR$/manager/movie_manager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/passwd.php" afterPath="$PROJECT_DIR$/manager/passwd.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/studio_manager.php" afterPath="$PROJECT_DIR$/manager/studio_manager.php" />
     </list>
     <ignored path="TTMS_Web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +40,8 @@
       <file leaf-file-name="add_employee.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generalmanager/Alpha/add_employee.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="204" column="8" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="8" />
+            <state relative-caret-position="344">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -67,12 +77,13 @@
       <file leaf-file-name="add_employee.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generalmanager/add_employee.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="131" column="71" selection-start-line="131" selection-start-column="71" selection-end-line="131" selection-end-column="71" />
+            <state relative-caret-position="646">
+              <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
               <folding>
-                <marker date="1466516597674" expanded="true" signature="6498:6577" ph="select theat... manager" />
-                <marker date="1466516597674" expanded="true" signature="6733:6801" ph="select count... employee" />
-                <marker date="1466516597674" expanded="true" signature="7022:7186" ph="insert into employee... " />
+                <marker date="1466516854451" expanded="true" signature="8441:8576" ph="..." />
+                <marker date="1466516854451" expanded="true" signature="8441:8602" ph="..." />
+                <marker date="1466516854451" expanded="true" signature="8441:8753" ph="..." />
+                <marker date="1466516854451" expanded="true" signature="8441:8771" ph="..." />
               </folding>
             </state>
           </provider>
@@ -223,38 +234,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Alpha" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TTMS_Web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="generalmanager" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -391,12 +370,12 @@
       <workItem from="1466345824176" duration="5750000" />
       <workItem from="1466379125584" duration="27709000" />
       <workItem from="1466469731813" duration="11623000" />
-      <workItem from="1466493617354" duration="10574000" />
+      <workItem from="1466493617354" duration="10840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169648000" />
+    <option name="totallyTimeSpent" value="169914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1018" extended-state="0" />
@@ -539,13 +518,13 @@
         <state relative-caret-position="549">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
-            <marker date="1466479173680" expanded="true" signature="4082:4119" ph="delete from " />
-            <marker date="1466479173680" expanded="true" signature="4239:4269" ph="delete from " />
-            <marker date="1466479173680" expanded="true" signature="4391:4425" ph="delete from " />
-            <marker date="1466479173680" expanded="true" signature="4566:4644" ph="select theat... manager" />
-            <marker date="1466479173680" expanded="true" signature="4796:4849" ph="select id,na... studio" />
-            <marker date="1466479173680" expanded="true" signature="5351:5504" ph="..." />
-            <marker date="1466479173680" expanded="true" signature="5453:5504" ph="..." />
+            <marker date="1466482087171" expanded="true" signature="4081:4118" ph="delete from " />
+            <marker date="1466482087171" expanded="true" signature="4238:4268" ph="delete from " />
+            <marker date="1466482087171" expanded="true" signature="4390:4424" ph="delete from " />
+            <marker date="1466482087171" expanded="true" signature="4565:4643" ph="select theat... manager" />
+            <marker date="1466482087171" expanded="true" signature="4795:4848" ph="select id,na... studio" />
+            <marker date="1466482087171" expanded="true" signature="5350:5503" ph="..." />
+            <marker date="1466482087171" expanded="true" signature="5452:5503" ph="..." />
           </folding>
         </state>
       </provider>
@@ -905,16 +884,16 @@
         <state relative-caret-position="-57">
           <caret line="261" column="124" selection-start-line="261" selection-start-column="124" selection-end-line="261" selection-end-column="124" />
           <folding>
-            <marker date="1466509872995" expanded="true" signature="4016:4080" ph="select theat... manager" />
-            <marker date="1466509872995" expanded="true" signature="4377:4436" ph="select id,em... employee" />
-            <marker date="1466509872995" expanded="true" signature="4804:4843" ph="select price... bill" />
-            <marker date="1466509872995" expanded="true" signature="7308:7372" ph="select theat... manager" />
-            <marker date="1466509872995" expanded="true" signature="7588:7630" ph="select id fr... employee" />
-            <marker date="1466509872995" expanded="true" signature="9297:9332" ph="select disti... bill" />
-            <marker date="1466509872995" expanded="true" signature="11259:11327" ph="select id,ti... bill" />
-            <marker date="1466509872995" expanded="true" signature="11519:11552" ph="select name play" />
-            <marker date="1466509872995" expanded="true" signature="12337:12445" ph="select id,ti... bill" />
-            <marker date="1466509872995" expanded="true" signature="12638:12671" ph="select name play" />
+            <marker date="1466482550587" expanded="true" signature="4016:4080" ph="select theat... manager" />
+            <marker date="1466482550587" expanded="true" signature="4377:4436" ph="select id,em... employee" />
+            <marker date="1466482550587" expanded="true" signature="4804:4843" ph="select price... bill" />
+            <marker date="1466482550587" expanded="true" signature="7308:7372" ph="select theat... manager" />
+            <marker date="1466482550587" expanded="true" signature="7588:7630" ph="select id fr... employee" />
+            <marker date="1466482550587" expanded="true" signature="9297:9332" ph="select disti... bill" />
+            <marker date="1466482550587" expanded="true" signature="11259:11327" ph="select id,ti... bill" />
+            <marker date="1466482550587" expanded="true" signature="11519:11552" ph="select name play" />
+            <marker date="1466482550587" expanded="true" signature="12337:12445" ph="select id,ti... bill" />
+            <marker date="1466482550587" expanded="true" signature="12638:12671" ph="select name play" />
           </folding>
         </state>
       </provider>
@@ -925,19 +904,19 @@
           <caret line="281" column="45" selection-start-line="281" selection-start-column="45" selection-end-line="281" selection-end-column="45" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1466511512695" expanded="true" signature="3708:3754" ph="select id,em... employee" />
-            <marker date="1466511512695" expanded="true" signature="4064:4097" ph="select price... bill" />
-            <marker date="1466511512695" expanded="true" signature="4064:4147" ph="select price... bill" />
-            <marker date="1466511512695" expanded="true" signature="4064:4166" ph="select price... bill" />
-            <marker date="1466511512695" expanded="true" signature="4105:4147" ph="select id fr... employee" />
-            <marker date="1466511512695" expanded="true" signature="6544:6566" ph="select id fr... theater" />
-            <marker date="1466511512695" expanded="true" signature="8269:8304" ph="select disti... bill" />
-            <marker date="1466511512695" expanded="true" signature="10259:10283" ph="select id,na... play" />
-            <marker date="1466511512695" expanded="true" signature="10505:10642" ph="select price... bill" />
-            <marker date="1466511512695" expanded="true" signature="10578:10622" ph="select id fr... employee" />
-            <marker date="1466511512695" expanded="true" signature="11594:11663" ph="select id,ti... bill" />
-            <marker date="1466511512695" expanded="true" signature="11594:11801" ph="select id,ti... bill" />
-            <marker date="1466511512695" expanded="true" signature="11737:11781" ph="select id fr... employee" />
+            <marker date="1466512560693" expanded="true" signature="3708:3754" ph="select id,em... employee" />
+            <marker date="1466512560693" expanded="true" signature="4064:4097" ph="select price... bill" />
+            <marker date="1466512560693" expanded="true" signature="4064:4147" ph="select price... bill" />
+            <marker date="1466512560693" expanded="true" signature="4064:4166" ph="select price... bill" />
+            <marker date="1466512560693" expanded="true" signature="4105:4147" ph="select id fr... employee" />
+            <marker date="1466512560693" expanded="true" signature="6544:6566" ph="select id fr... theater" />
+            <marker date="1466512560693" expanded="true" signature="8269:8304" ph="select disti... bill" />
+            <marker date="1466512560693" expanded="true" signature="10259:10283" ph="select id,na... play" />
+            <marker date="1466512560693" expanded="true" signature="10505:10642" ph="select price... bill" />
+            <marker date="1466512560693" expanded="true" signature="10578:10622" ph="select id fr... employee" />
+            <marker date="1466512560693" expanded="true" signature="11594:11663" ph="select id,ti... bill" />
+            <marker date="1466512560693" expanded="true" signature="11594:11801" ph="select id,ti... bill" />
+            <marker date="1466512560693" expanded="true" signature="11737:11781" ph="select id fr... employee" />
           </folding>
         </state>
       </provider>
@@ -948,15 +927,15 @@
           <caret line="129" column="50" selection-start-line="129" selection-start-column="38" selection-end-line="129" selection-end-column="50" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1466508183987" expanded="true" signature="3781:3805" ph="select id,na... play" />
-            <marker date="1466508183987" expanded="true" signature="3959:4000" ph="select id,pr... bill" />
-            <marker date="1466508183987" expanded="true" signature="3959:4018" ph="select id,pr... bill" />
-            <marker date="1466508183987" expanded="true" signature="6329:6353" ph="select id,na... play" />
-            <marker date="1466508183987" expanded="true" signature="8058:8093" ph="select disti... bill" />
-            <marker date="1466508183987" expanded="true" signature="10137:10207" ph="select id,ti... bill" />
-            <marker date="1466508183987" expanded="true" signature="10137:10223" ph="select id,ti... bill" />
-            <marker date="1466508183987" expanded="true" signature="10998:11123" ph="select id,ti... bill" />
-            <marker date="1466508183987" expanded="true" signature="10998:11124" ph="select id,ti... bill" />
+            <marker date="1466513116850" expanded="true" signature="3684:3708" ph="select id,na... play" />
+            <marker date="1466513116850" expanded="true" signature="3862:3903" ph="select id,pr... bill" />
+            <marker date="1466513116850" expanded="true" signature="3862:3921" ph="select id,pr... bill" />
+            <marker date="1466513116850" expanded="true" signature="6232:6256" ph="select id,na... play" />
+            <marker date="1466513116850" expanded="true" signature="7961:7996" ph="select disti... bill" />
+            <marker date="1466513116850" expanded="true" signature="10040:10110" ph="select id,ti... bill" />
+            <marker date="1466513116850" expanded="true" signature="10040:10126" ph="select id,ti... bill" />
+            <marker date="1466513116850" expanded="true" signature="10901:11026" ph="select id,ti... bill" />
+            <marker date="1466513116850" expanded="true" signature="10901:11027" ph="select id,ti... bill" />
           </folding>
         </state>
       </provider>
@@ -967,9 +946,9 @@
           <caret line="109" column="52" selection-start-line="109" selection-start-column="52" selection-end-line="109" selection-end-column="52" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1466512270305" expanded="true" signature="3815:3846" ph="delete from " />
-            <marker date="1466512270305" expanded="true" signature="3987:4032" ph="select id,em... manager" />
-            <marker date="1466512270305" expanded="true" signature="3987:4033" ph="select id,em... employee" />
+            <marker date="1466512560693" expanded="true" signature="3815:3846" ph="delete from " />
+            <marker date="1466512560693" expanded="true" signature="3987:4032" ph="select id,em... manager" />
+            <marker date="1466512560693" expanded="true" signature="3987:4033" ph="select id,em... employee" />
           </folding>
         </state>
       </provider>
@@ -979,7 +958,7 @@
         <state relative-caret-position="720">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding>
-            <marker date="1466479109259" expanded="true" signature="6299:6374" ph="select passw... ${$DB_TABLE_NAME}" />
+            <marker date="1466507427957" expanded="true" signature="6295:6370" ph="select passw... ${$DB_TABLE_NAME}" />
           </folding>
         </state>
       </provider>
@@ -999,7 +978,7 @@
         <state relative-caret-position="567">
           <caret line="129" column="17" selection-start-line="129" selection-start-column="17" selection-end-line="129" selection-end-column="17" />
           <folding>
-            <marker date="1466512450366" expanded="true" signature="5980:6055" ph="select passw... ${$DB_TABLE_NAME}" />
+            <marker date="1466512560693" expanded="true" signature="5980:6055" ph="select passw... ${$DB_TABLE_NAME}" />
           </folding>
         </state>
       </provider>
@@ -1049,20 +1028,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generalmanager/add_employee.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="131" column="71" selection-start-line="131" selection-start-column="71" selection-end-line="131" selection-end-column="71" />
+        <state relative-caret-position="646">
+          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
           <folding>
-            <marker date="1466516597674" expanded="true" signature="6498:6577" ph="select theat... manager" />
-            <marker date="1466516597674" expanded="true" signature="6733:6801" ph="select count... employee" />
-            <marker date="1466516597674" expanded="true" signature="7022:7186" ph="insert into employee... " />
+            <marker date="1466516854451" expanded="true" signature="8441:8576" ph="..." />
+            <marker date="1466516854451" expanded="true" signature="8441:8602" ph="..." />
+            <marker date="1466516854451" expanded="true" signature="8441:8753" ph="..." />
+            <marker date="1466516854451" expanded="true" signature="8441:8771" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generalmanager/Alpha/add_employee.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="204" column="8" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="8" />
+        <state relative-caret-position="344">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />

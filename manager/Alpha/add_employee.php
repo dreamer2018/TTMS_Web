@@ -133,7 +133,7 @@
                     /*
                      * 对输入信息进行验证
                      */
-                    if (strlen($emp_no) != 8 and substr($emp_no, 0, 1) == 3) {
+                    if (strlen($emp_no) != 8 or substr($emp_no, 0, 1) != 3) {
                         echo "<p>工号输入不正确！</p><br/>";
                         $sign = 0;
                     }

@@ -16,7 +16,6 @@
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
-            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
             <ul class="navbar-list clearfix">
                 <li style="font-size:20px; font-weight:bold;">光影人生</li>
                 <li style="font-size: 16px;font-style: italic">-影院票务管理系统</li>

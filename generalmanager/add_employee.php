@@ -16,7 +16,6 @@ require_once "../conf/conf.php";
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
-            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
             <ul class="navbar-list clearfix">
                 <li style="font-size:20px; font-weight:bold;">光影人生</li>
                 <li style="font-size: 16px;font-style: italic">-影院票务管理系统</li>
@@ -66,7 +65,7 @@ require_once "../conf/conf.php";
         <div class="crumb-wrap">
             <div class="crumb-list"><i class="icon-font"></i><a href="index.php">首页</a><span
                     class="crumb-step">&gt;</span><a class="crumb-name" href="employee_manager.php">人事管理</a><span
-                    class="crumb-step">&gt;</span><span>添加售票员</span></div>
+                    class="crumb-step">&gt;</span><span>添加剧院经理</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
@@ -130,7 +129,7 @@ require_once "../conf/conf.php";
                     /*
                      * 对输入信息进行验证
                      */
-                    if (strlen($emp_no) != 8 and substr($emp_no, 0, 1) == 3) {
+                    if (strlen($emp_no) != 8 or substr($emp_no, 0, 1) != 2) {
                         echo "<p>工号输入不正确！</p><br/>";
                         $sign = 0;
                     }

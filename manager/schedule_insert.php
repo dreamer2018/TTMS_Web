@@ -71,8 +71,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span
-                    class="crumb-step">&gt;</span><a class="crumb-name" href="design.html">演出计划管理</a><span
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.php">首页</a><span
+                    class="crumb-step">&gt;</span><a class="crumb-name" href="schedule_manager.php">演出计划管理</a><span
                     class="crumb-step">&gt;</span><span>添加演出计划</span></div>
         </div>
         <div class="result-wrap">
@@ -178,95 +178,100 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION["identity"])) {
         <div class="result-wrap">
             <div class="result-content" id="fid">
                 <?php
-                $studio_id = $_POST['studio_id'];
-                $play_id = $_POST['play_id'];
-                $time = $_POST['time'];
-                $discount = $_POST['discount'];
+                if (isset($_POST['studio_id'])) {
 
-                $sign = 1; //信息正确性标志
 
-                /*
-                 * 对信息作判断
-                 */
+                    $studio_id = $_POST['studio_id'];
+                    $play_id = $_POST['play_id'];
+                    $time = $_POST['time'];
+                    $discount = $_POST['discount'];
 
-                //时间为14位数字
-                if (strlen($time) != 14) {
-                    echo "<p>日期错误！</p><br/>";
-                    $sign = 0;
-                }
-                if ($discount > 1 || $discount <= 0) {
-                    echo "<p>折扣不合法！</p>";
-                    $sign = 0;
-                }
-                if ($sign) {
+                    $sign = 1; //信息正确性标志
+
                     /*
-                     * 连接数据库
+                     * 对信息作判断
                      */
-                    $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
-                    /*
-                     * 如果连接失败，则直接结束
-                    */
-                    if (!$connect) {
-                        die("Connect DataBase Error!<br/>");
+
+                    //时间为14位数字
+                    if (strlen($time) != 14) {
+                        echo "<p>日期错误！</p><br/>";
+                        $sign = 0;
                     }
-
-                    /*
-                     * 选择数据库
-                     */
-                    $status = 1;
-                    $select = $connect->select_db($DB_NAME);
-                    $query = "select price from  play where id =".$play_id.";";
-                    $result2 = $connect->query($query);
-                    $row2 = $result2->fetch_array();
-                    $price = $row2['price']*$discount;
-
-                    $query = "insert into schedule ( studio_id,play_id,time,discount,price,status ) values(" . $studio_id . "," . $play_id . ",\"" . $time . "\"," . $discount . "," . $price . "," . $status . ") ;";
-                    $result = $connect->query($query);
-                    if ($result) {
-
-                        $query = "select row,col from studio where id =".$studio_id.";";
-                        $result3 = $connect->query($query);
-                        $row3 = $result3->fetch_array();
-
-                        $query = "select id from schedule where studio_id = ".$studio_id." and play_id =".$play_id." and time =\"".$time."\";";
-                        $result4 = $connect->query($query);
-                        $row4 = $result4->fetch_array();
-                        $schedule_id = $row4['id'];
-
-                        for($i=1;$i<=$row3['row'];$i++ ){
-                            for($j=1;$j<=$row3['col'];$j++){
-                                $query = "select id,count(id) from seat where studio_id = ".$studio_id." and row= ".$i." and col = ".$j." and status = 1 ;";
-                                $result4 = $connect->query($query);
-                                $row4 = $result4->fetch_array();
-                                $status =1;
-                                if($row4['count(id)'] > 0){
-                                    $query = "insert into ticket(seat_id,schedule_id,play_id,price,status) values(".$row4['id'].",".$schedule_id.",".$play_id.",".$price.",".$status.");";
-                                    $connect->query($query);
-                                }
-                            }
+                    if ($discount > 1 || $discount <= 0) {
+                        echo "<p>折扣不合法！</p>";
+                        $sign = 0;
+                    }
+                    if ($sign) {
+                        /*
+                         * 连接数据库
+                         */
+                        $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                        /*
+                         * 如果连接失败，则直接结束
+                        */
+                        if (!$connect) {
+                            die("Connect DataBase Error!<br/>");
                         }
 
-                        echo "<table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
-                        echo "<tr>";
-                        echo "<th>演出厅ID</th>";
-                        echo "<th>剧目ID</th>";
-                        echo "<th>放映时间</th>";
-                        echo "<th>折扣</th>";
-                        echo "<th>票价</th>";
-                        echo "<th>状态</th>";
-                        echo "</tr>";
-                        echo "<tr>";
-                        echo "<td>".$studio_id."</td>";
-                        echo "<td>".$play_id."</td>";
-                        echo "<td>".$time."</td>";
-                        echo "<td>".$discount."</td>";
-                        echo "<td>".$price."</td>";
-                        echo "<td>".$status."</td>";
-                        echo "</tr>";
-                        echo "</table>";
+                        /*
+                         * 选择数据库
+                         */
+                        $status = 1;
+                        $select = $connect->select_db($DB_NAME);
+                        $query = "select price from  play where id =" . $play_id . ";";
+                        $result2 = $connect->query($query);
+                        $row2 = $result2->fetch_array();
+                        $price = $row2['price'] * $discount;
+
+                        $query = "insert into schedule ( studio_id,play_id,time,discount,price,status ) values(" . $studio_id . "," . $play_id . ",\"" . $time . "\"," . $discount . "," . $price . "," . $status . ") ;";
+                        $result = $connect->query($query);
+                        if ($result) {
+
+                            $query = "select row,col from studio where id =" . $studio_id . ";";
+                            $result3 = $connect->query($query);
+                            $row3 = $result3->fetch_array();
+
+                            $query = "select id from schedule where studio_id = " . $studio_id . " and play_id =" . $play_id . " and time =\"" . $time . "\";";
+                            $result4 = $connect->query($query);
+                            $schedule_id="";
+                            while ($row4 = $result4->fetch_array()){
+                                $schedule_id = $row4['id'];
+                            }
+                            for($i=1;$i<=$row3['row'];$i++ ){
+                                for($j=1;$j<=$row3['col'];$j++){
+                                    $query = "select id,count(id) from seat where studio_id = ".$studio_id." and row= ".$i." and col = ".$j." and status = 1 ;";
+                                    $result5 = $connect->query($query);
+                                    $row5 = $result5->fetch_array();
+                                    $status =1;
+                                    if($row5['count(id)'] > 0){
+                                        $query = "insert into ticket(seat_id,schedule_id,play_id,price,status) values(".$row5['id'].",".$schedule_id.",".$play_id.",".$price.",".$status.");";
+                                        $connect->query($query);
+                                    }
+                                }
+                            }
+
+                            echo "<table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
+                            echo "<tr>";
+                            echo "<th>演出厅ID</th>";
+                            echo "<th>剧目ID</th>";
+                            echo "<th>放映时间</th>";
+                            echo "<th>折扣</th>";
+                            echo "<th>票价</th>";
+                            echo "<th>状态</th>";
+                            echo "</tr>";
+                            echo "<tr>";
+                            echo "<td>" . $studio_id . "</td>";
+                            echo "<td>" . $play_id . "</td>";
+                            echo "<td>" . $time . "</td>";
+                            echo "<td>" . $discount . "</td>";
+                            echo "<td>" . $price . "</td>";
+                            echo "<td>" . $status . "</td>";
+                            echo "</tr>";
+                            echo "</table>";
+                        }
+                    } else {
+                        echo "<p>输入的信息有误！</p><br/>";
                     }
-                } else {
-                    echo "<p>输入的信息有误！</p><br/>";
                 }
                 ?>
             </div>

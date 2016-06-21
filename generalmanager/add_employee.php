@@ -72,32 +72,51 @@ require_once "../conf/conf.php";
                 <form action="add_employee.php" method="post" id="myform" name="myform">
                     <table class="insert-tab" width="100%" id="fid" cellpadding="0" cellspacing="0">
                         <tbody>
+                        <th width="120">影院ID:</th>
+                        <td>
+                            <select name="theater_id">
+                                <?php
+                                /*
+                                * 连接数据库
+                                */
+                                $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                                /*
+                                * 如果连接失败，则直接结束
+                                */
+                                if (!$connect) {
+                                    die("Connect DataBase Error!<br/>");
+                                }
+                                /*
+                                * 选择数据库
+                                */
+                                $select = $connect->select_db($DB_NAME);
+
+                                $query = "select id from theater;";
+
+                                $result = $connect->query($query);
+                                while ($row = $result->fetch_array()) {
+                                    echo "<option value=" . $row["id"] . ">" . $row["id"] . "</option>";
+                                }
+                                $connect->close();
+                                ?>
+                            </select>
+                        </td>
                         <tr>
                             <th><i class="require-red">*</i>工号：</th>
                             <td>
-                                <input class="common-text required" id="title" name="emp_no" size="20" value=""
-                                       type="text">
+                                <input class="common-text required" id="title" name="emp_no" size="20"  type="text">
                             </td>
                         </tr>
                         <tr>
                             <th>姓名：</th>
                             <td>
-                                <input class="common-text required" id="title" name="name" size="20" value=""
-                                       type="text">
+                                <input class="common-text required" id="title" name="name" size="20" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red">*</i>登陆密码：</th>
                             <td>
-                                <input class="common-text required" id="time" name="passwd" size="20" value=""
-                                       type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><i class="require-red">*</i>手机号码：</th>
-                            <td>
-                                <input class="common-text required" id="price" name="tel" size="20" value=""
-                                       type="text">
+                                <input class="common-text required" id="time" name="passwd" size="20" type="text">
                             </td>
                         </tr>
                         </tbody>
@@ -107,7 +126,7 @@ require_once "../conf/conf.php";
                         <th></th>
                         <td>
                             <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit"
-                                   style="margin-left: 29%">
+                                   style="margin-left: 5%">
                             <input class="btn btn6" onclick="self.location='employee_manager.php'" value="返回" type="button">
                         </td>
                     </tr>
@@ -117,13 +136,12 @@ require_once "../conf/conf.php";
         <div class="result-wrap">
             <div class="result-content" id="fid">
                 <?php
-                if (isset($_POST['emp_no'])) {
+                if (isset($_POST['theater_id'])) {
 
+                    $theater_id = $_POST['theater_id'];
                     $emp_no = $_POST['emp_no'];
                     $name = $_POST['name'];
                     $passwd = $_POST['passwd'];
-                    $tel = $_POST['tel'];
-
                     $sign = 1;  //信息正确性标志
 
                     /*
@@ -141,10 +159,7 @@ require_once "../conf/conf.php";
                         echo "<p>密码为空或过长！</p><br/>";
                         $sign = 0;
                     }
-                    if (strlen($tel) != 11) {
-                        echo "<p>手机号码输入错误！</p><br/>";
-                        $sign = 0;
-                    }
+
                     if ($sign) {
 
                         /*
@@ -161,36 +176,29 @@ require_once "../conf/conf.php";
                         /*
                         * 选择数据库
                         */
-
                         $select = $connect->select_db($DB_NAME);
-                        $query = "select theater_id from manager where emp_no = \"" . $_SESSION['username'] . "\";";
-                        $result1 = $connect->query($query);
-                        $row1 = $result1->fetch_array();
 
-                        $query = "select count(emp_no) from employee where emp_no =\"" . $emp_no . "\";";
+                        $query = "select count(id) from manager where emp_no =\"" . $emp_no . "\";";
+                        $result = $connect->query($query);
+                        $row = $result->fetch_array();
 
-                        $result2 = $connect->query($query);
-                        $row2 = $result2->fetch_array();
+                        if ($row['count(id)'] == 0) {
 
-                        if ($row2['count(emp_no)'] == 0) {
-
-                            $query = "insert into employee (emp_no,theater_id,name,passwd,tel) VALUES (\"" . $emp_no . "\"," . $row1['theater_id'] . ",\"" . $name . "\",\"" . $passwd . "\"," . $tel . ");";
-                            $result3 = $connect->query($query);
-                            if ($result3) {
+                            $query = "insert into manager (emp_no,theater_id,name,passwd) VALUES (\"" . $emp_no . "\"," . $theater_id . ",\"" . $name . "\",\"" . $passwd . "\");";
+                            $result2 = $connect->query($query);
+                            if ($result2) {
                                 echo "<table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
                                 echo "<tr>";
+                                echo "<th>影院ID</th>";
                                 echo "<th>工号</th>";
-                                echo "<th>影院号</th>";
                                 echo "<th>姓名</th>";
                                 echo "<th>密码</th>";
-                                echo "<th>电话号</th>";
                                 echo "</tr>";
                                 echo "<tr>";
+                                echo "<td>" . $theater_id . "</td>";
                                 echo "<td>" . $emp_no . "</td>";
-                                echo "<td>" . $row['theater_id'] . "</td>";
                                 echo "<td>" . $name . "</td>";
                                 echo "<td>" . $passwd . "</td>";
-                                echo "<td>" . $tel . "</td>";
                                 echo "</tr>";
                                 echo "</table>";
                             }

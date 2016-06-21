@@ -1,5 +1,5 @@
 <?php
-require_once "../conf/conf.php"
+    require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>
@@ -68,7 +68,7 @@ require_once "../conf/conf.php"
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.php">首页</a><span
                     class="crumb-step">&gt;</span><span class="crumb-name">影片管理</span></div>
         </div>
         <div class="result-wrap">

@@ -1,5 +1,5 @@
 <?php
-require_once "../conf/conf.php"
+    require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>
@@ -62,8 +62,6 @@ require_once "../conf/conf.php"
         </div>
     </div>
     <!-- 菜单栏结束-->
-
-
     
     <div class="main-wrap">
 
@@ -192,6 +190,7 @@ require_once "../conf/conf.php"
                             echo "</tr>";
                             echo "</table>";
                         }
+                        $connect->close();
                     }
                 }
                 ?>

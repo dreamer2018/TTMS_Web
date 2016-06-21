@@ -1,5 +1,5 @@
 ﻿<?php
-require_once "../conf/conf.php";
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -114,6 +114,7 @@ require_once "../conf/conf.php";
                         /*
                          * 选出此剧院所有售票员
                          */
+                        echo $row2['id'];
                         $query = "select id,emp_no,name,tel from employee where theater_id = " . $row2['theater_id'] . ";";
                         $result = $connect->query($query);
                         $c = 0;
@@ -184,6 +185,7 @@ require_once "../conf/conf.php";
                                             while ($row = $result->fetch_array()) {
                                                 echo "<option value=" . $row["id"] . ">" . $row["id"] . "</option>";
                                             }
+                                            $connect->close();
                                             ?>
                                         </select>
                                     </td>
@@ -214,6 +216,7 @@ require_once "../conf/conf.php";
                                             while ($row = $result->fetch_array()) {
                                                 echo "<option value=" . $row["sale_time"] . ">" . $row["sale_time"] . "</option>";
                                             }
+                                            $connect->close();
                                             ?>
                                         </select>
 
@@ -260,6 +263,8 @@ require_once "../conf/conf.php";
                         if ($sale_time == 0) {
 
                             $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =" . $emp_id . ";";
+                            echo $query;
+
                             $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {
                                 $query = "select name from play where id = " . $row['play_id'] . ";";
@@ -296,6 +301,7 @@ require_once "../conf/conf.php";
                             }
 
                         }
+                        $connect->close();
                     }
                     ?>
                 </table>

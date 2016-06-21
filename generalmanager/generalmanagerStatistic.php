@@ -13,10 +13,11 @@ require_once "../conf/conf.php";
 <body>
 
 
-<!-- 网页头部 -->
+<!--网页头部-->
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
+            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
             <ul class="navbar-list clearfix">
                 <li style="font-size:20px; font-weight:bold;">光影人生</li>
                 <li style="font-size: 16px;font-style: italic">-影院票务管理系统</li>
@@ -30,11 +31,11 @@ require_once "../conf/conf.php";
         </div>
     </div>
 </div>
-<!-- 头部结束-->
+<!-- 头部结束 -->
 
 <div class="container clearfix">
 
-    <!-- 网页菜单栏-->
+    <!-- 网页菜单栏 -->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
             <h1>菜单</h1>
@@ -44,25 +45,22 @@ require_once "../conf/conf.php";
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="studio_manager.php"><i class="icon-font">&#xe044;</i>影厅管理</a></li>
-                        <li><a href="movie_manager.php"><i class="icon-font">&#xe034;</i>影片管理</a></li>
-                        <li><a href="seat_manager.php"><i class="icon-font">&#xe063;</i>座位管理</a></li>
-                        <li><a href="schedule_manager.php"><i class="icon-font">&#xe014;</i>演出计划管理</a></li>
-                        <li><a href="managerStatistic.php"><i class="icon-font">&#xe065;</i>财务管理</a></li>
-                        <li><a href="movieStatistics.php"><i class="icon-font">&#xe042;</i>票房统计</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe044;</i>票房统计</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe034;</i>财务统计</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
                     <ul class="sub-menu">
-                        <li><a href="employee_manager.php"><i class="icon-font">&#xe017;</i>人事管理</a></li>
-                        <li><a href="change_passwd.php"><i class="icon-font">&#xe017;</i>密码重置</a></li>
+                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>人事管理</a></li>
+                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>修改密码</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
-    <!-- 菜单栏结束-->
+    <!-- 菜单栏结束 -->
+
 
     <div class="main-wrap">
 

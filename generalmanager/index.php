@@ -1,6 +1,3 @@
-<?php
-    require_once "../conf/conf.php";
-?>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +5,6 @@
     <title>光影人生-影院票务管理系统</title>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <script type="text/javascript" src="js/houtai.js"></script>
 </head>
 <body>
 
@@ -60,47 +56,17 @@
     </div>
     <!-- 菜单栏结束 -->
 
-
-
     <div class="main-wrap">
 
-        <div class="crumb-wrap">
-            <div class="crumb-list">
-                <i class="icon-font"></i>
-                <a href="index.php">首页</a>
-                <span class="crumb-step">&gt;</span>
-                <span>更改密码</span>
-            </div>
-        </div>
         <div class="result-wrap">
+            <div class="result-title">
+                <h1>欢迎使用光影人生影院售票管理系统</h1>
+            </div>
             <div class="result-content">
-                <form action="passwd.php" method="post" id="myform" name="myform" enctype="multipart/form-data">
-                    <table class="insert-tab" width="100%" id="fid" cellpadding="0" cellspacing="0">
-                        <tbody>
-                        <tr>
-                            <th width="120"><i class="require-red">*</i>原始密码：</th>
-                            <td>
-                                <input class="common-text required" id="old" name="old_passwd" size="20" value="" type="password">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><i class="require-red">*</i>新密码：</th>
-                            <td>
-                                <input class="common-text required" id="new" name="new_passwd" size="20" value="" type="password">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><i class="require-red">*</i>密码确认：</th>
-                            <td>
-                                <input class="common-text required" id="confirm" name="confirm_passwd" size="20" value="" type="password">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br/>
-                    <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit" style="margin-left: 6%;">
-                    <input class="btn btn6" onclick="self.location='index.php'" value="返回" type="button" style="margin-left: 2%;">
-                </form>
+                <div class="short-wrap">
+                    <p>感谢以下开发人员的辛勤努力：</p><br/>
+                    <p><strong>周攀，肖赞，杜宇晖，左佳，刘幸，王豪帅</strong></p>
+                </div>
             </div>
         </div>
     </div>

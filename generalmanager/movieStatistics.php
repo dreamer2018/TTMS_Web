@@ -1,5 +1,5 @@
 <?php
-require_once "../conf/conf.php";
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,15 +44,15 @@ require_once "../conf/conf.php";
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="design.html"><i class="icon-font">&#xe044;</i>票房统计</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe034;</i>财务统计</a></li>
+                        <li><a href="movieStatistics.php"><i class="icon-font">&#xe044;</i>票房统计</a></li>
+                        <li><a href="generalmanagerStatistic.php"><i class="icon-font">&#xe034;</i>财务统计</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
                     <ul class="sub-menu">
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>人事管理</a></li>
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>修改密码</a></li>
+                        <li><a href="employee_manager.php"><i class="icon-font">&#xe017;</i>人事管理</a></li>
+                        <li><a href="change_passwd.php"><i class="icon-font">&#xe017;</i>修改密码</a></li>
                     </ul>
                 </li>
             </ul>
@@ -110,29 +110,25 @@ require_once "../conf/conf.php";
                      * 选出剧院
                      */
 
-                    $query = "select theater_id from manager where emp_no =\"" . $emp_no . "\";";
-                    $result = $connect->query($query);
-                    $row = $result->fetch_array();
-
                     /*
                      * 选出此剧院所有剧目
                      */
                     $c = 0;
                     $query = "select id,name from play ;";
-                    $result2 = $connect->query($query);
-                    while ($row2 = $result2->fetch_array()) {
-                        $query = "select id,price from bill where play_id =" . $row2['id'] . " and emp_id in (select id from employee where theater_id = " . $row['theater_id'] . ");";
-                        $result3 = $connect->query($query);
+                    $result = $connect->query($query);
+                    while ($row = $result->fetch_array()) {
+                        $query = "select id,price from bill where play_id =" . $row['id'] . ";";
+                        $result2 = $connect->query($query);
                         $sum = 0;
                         $count = 0;
-                        while ($row3 = $result3->fetch_array()) {
-                            $sum += $row3['price'];
+                        while ($row2 = $result2->fetch_array()) {
+                            $sum += $row2['price'];
                             $count++;
                         }
                         if ($count) {
                             $c++;
                             echo "<tr class=\"tc\">";
-                            echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                            echo "<td class=\"tc\">" . $row['name'] . "</td>";
                             echo "<td class=\"tc\">" . $count . "</td>";
                             echo "<td class=\"tc\">" . $sum . "</td>";
                             echo "</tr>";
@@ -222,7 +218,7 @@ require_once "../conf/conf.php";
                     <tr>
                         <th class="tc">账单ID</th>
                         <th class="tc">票ID</th>
-                        <th class="tc">电影名称</th>
+                        <th class="tc">电影ID</th>
                         <th class="tc">单价</th>
                         <th class="tc">日期</th>
                     </tr>
@@ -246,12 +242,8 @@ require_once "../conf/conf.php";
                         }
                         $select = $connect->select_db($DB_NAME);
 
-                        $query = "select theater_id from manager where emp_no =\"" . $emp_no . "\";";
-                        $result = $connect->query($query);
-                        $row = $result->fetch_array();
-
                         if ($sale_time == 0) {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and emp_id in (select id from employee where theater_id = " . $row['theater_id'] . ");";
+                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . ";";
                             $result2 = $connect->query($query);
                             while ($row2 = $result2->fetch_array()) {
                                 echo "<tr class=\"tc\">";
@@ -263,7 +255,7 @@ require_once "../conf/conf.php";
                                 echo "</tr>";
                             }
                         } else {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\" and emp_id in (select id from employee where theater_id = " . $row['theater_id'] . ");";
+                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\" ;";
                             $result2 = $connect->query($query);
                             while ($row2 = $result2->fetch_array()) {
                                 echo "<tr>";
@@ -281,13 +273,6 @@ require_once "../conf/conf.php";
             </div>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

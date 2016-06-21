@@ -44,15 +44,15 @@ require_once "../conf/conf.php"
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="design.html"><i class="icon-font">&#xe044;</i>票房统计</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe034;</i>财务统计</a></li>
+                        <li><a href="movieStatistics.php"><i class="icon-font">&#xe044;</i>票房统计</a></li>
+                        <li><a href="generalmanagerStatistic.php"><i class="icon-font">&#xe034;</i>财务统计</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
                     <ul class="sub-menu">
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>人事管理</a></li>
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>修改密码</a></li>
+                        <li><a href="employee_manager.php"><i class="icon-font">&#xe017;</i>人事管理</a></li>
+                        <li><a href="change_passwd.php"><i class="icon-font">&#xe017;</i>修改密码</a></li>
                     </ul>
                 </li>
             </ul>

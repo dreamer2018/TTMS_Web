@@ -35,6 +35,7 @@ require_once "../conf/conf.php";
 
 <div class="container clearfix">
 
+
     <!-- 网页菜单栏 -->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -45,15 +46,15 @@ require_once "../conf/conf.php";
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
-                        <li><a href="design.html"><i class="icon-font">&#xe044;</i>票房统计</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe034;</i>财务统计</a></li>
+                        <li><a href="movieStatistics.php"><i class="icon-font">&#xe044;</i>票房统计</a></li>
+                        <li><a href="generalmanagerStatistic.php"><i class="icon-font">&#xe034;</i>财务统计</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
                     <ul class="sub-menu">
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>人事管理</a></li>
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>修改密码</a></li>
+                        <li><a href="employee_manager.php"><i class="icon-font">&#xe017;</i>人事管理</a></li>
+                        <li><a href="change_passwd.php"><i class="icon-font">&#xe017;</i>修改密码</a></li>
                     </ul>
                 </li>
             </ul>
@@ -79,12 +80,11 @@ require_once "../conf/conf.php";
                 <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                     <tr>
                         <th class="tc">ID</th>
-                        <th class="tc">工号</th>
-                        <th class="tc">姓名</th>
-                        <th class="tc">电话号码</th>
-                        <th class="tc">销售额</th>
+                        <th class="tc">影院名</th>
+                        <th class="tc">影厅数量</th>
+                        <th class="tc">地址</th>
+                        <th class="tc">总销售额</th>
                     </tr>
-
                     <?php
 
                     /*
@@ -105,40 +105,32 @@ require_once "../conf/conf.php";
                     /*
                      * 选出经理属于那个剧院
                      */
-                    $query = "select theater_id from manager where emp_no =\"" . $emp_no . "\";";
-                    $result2 = $connect->query($query);
-                    $row2 = $result2->fetch_array();
-                    if (!is_null($row2['theater_id'])) {
-                        /*
-                         * 选出此剧院所有售票员
-                         */
-                        echo $row2['id'];
-                        $query = "select id,emp_no,name,tel from employee where theater_id = " . $row2['theater_id'] . ";";
-                        $result = $connect->query($query);
-                        $c = 0;
-                        while ($row = $result->fetch_array()) {
 
-                            $sum = 0;
+                    $query = "select id,name,studio_number,addr from theater ;";
+                    $result = $connect->query($query);
+                    $c = 0;
+                    while ($row = $result->fetch_array()) {
+
+                        $sum = 0;
+                        /*
+                         * 找出每个售票员的账单
+                         */
+                        $query = "select price from bill where emp_id in ( select id from employee where theater_id =" . $row['id'] . ");";
+                        $result2 = $connect->query($query);
+                        while ($row2 = $result2->fetch_array()) {
                             /*
-                             * 找出每个售票员的账单
+                             * 将票价类加
                              */
-                            $query = "select price from bill where  emp_id = " . $row['id'] . ";";
-                            $result3 = $connect->query($query);
-                            while ($row3 = $result3->fetch_array()) {
-                                /*
-                                 * 将票价类加
-                                 */
-                                $sum += $row3['price'];
-                            }
-                            $c++;
-                            echo "<tr>";
-                            echo "<td class=\"tc\">" . $row['id'] . "</td>";
-                            echo "<td class=\"tc\">" . $row['emp_no'] . "</td>";
-                            echo "<td class=\"tc\">" . $row['name'] . "</td>";
-                            echo "<td class=\"tc\">" . $row['tel'] . "</td>";
-                            echo "<td class=\"tc\">" . $sum . "</td>";
-                            echo "</tr>";
+                            $sum += $row2['price'];
                         }
+                        $c++;
+                        echo "<tr>";
+                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                        echo "<td class=\"tc\">" . $row['name'] . "</td>";
+                        echo "<td class=\"tc\">" . $row['studio_number'] . "</td>";
+                        echo "<td class=\"tc\">" . $row['addr'] . "</td>";
+                        echo "<td class=\"tc\">" . $sum . "</td>";
+                        echo "</tr>";
                     }
                     $connect->close();
                     ?>
@@ -149,12 +141,12 @@ require_once "../conf/conf.php";
                 <div class="search-wrap">
                     <div class="search-content">
 
-                        <form action="managerStatistic.php" method="post">
+                        <form action="generalmanagerStatistic.php" method="post">
                             <table class="search-tab">
                                 <tr>
-                                    <th width="120">售票员ID:</th>
+                                    <th width="120">影院ID:</th>
                                     <td>
-                                        <select name="emp_id">
+                                        <select name="theater_id">
                                             <?php
 
                                             /*
@@ -172,12 +164,7 @@ require_once "../conf/conf.php";
                                             */
                                             $select = $connect->select_db($DB_NAME);
 
-
-                                            $query = "select theater_id from manager where emp_no =\"" . $emp_no . "\";";
-                                            $result2 = $connect->query($query);
-                                            $row2 = $result2->fetch_array();
-
-                                            $query = "select id from employee where theater_id =" . $row2['theater_id'] . ";";
+                                            $query = "select id from theater;";
 
                                             $result = $connect->query($query);
                                             while ($row = $result->fetch_array()) {
@@ -229,17 +216,16 @@ require_once "../conf/conf.php";
                 </div>
                 <table class="result-tab" width="100%" id="detailed" cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>账单ID</th>
-                        <th>票ID</th>
-                        <th>电影名称</th>
-                        <th>单价</th>
-                        <th>日期</th>
+                        <th class="tc">ID</th>
+                        <th class="tc">电影名称</th>
+                        <th class="tc">票数</th>
+                        <th class="tc">销售额</th>
                     </tr>
 
                     <?php
-                    if (isset($_POST['emp_id'])) {
+                    if (isset($_POST['theater_id'])) {
 
-                        $emp_id = $_POST['emp_id'];
+                        $theater_id = $_POST['theater_id'];
                         $sale_time = $_POST['sale_time'];
 
 
@@ -257,47 +243,44 @@ require_once "../conf/conf.php";
                         }
 
                         $select = $connect->select_db($DB_NAME);
+                        $query = "select id,name from play ;";
+                        $result = $connect->query($query);
 
                         if ($sale_time == 0) {
-
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =" . $emp_id . ";";
-                            echo $query;
-
-                            $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {
-                                $query = "select name from play where id = " . $row['play_id'] . ";";
-
+                                $query = "select price from bill where play_id = " . $row['id'] . " and emp_id in (select id from  employee where theater_id = " . $theater_id . ") ;";
                                 $result2 = $connect->query($query);
-
+                                $sum=0;
+                                $count = 0;
                                 while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "</tr>";
+                                    $sum += $row2['price'];
+                                    $count++;
                                 }
+                                echo "<tr>";
+                                echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                echo "<td class=\"tc\">" . $row['name'] . "</td>";
+                                echo "<td class=\"tc\">" . $count . "</td>";
+                                echo "<td class=\"tc\">" . $sum . "</td>";
+                                echo "</tr>";
                             }
+
                         } else {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where sale_time = \"" . $sale_time . "\" and emp_id = " . $emp_id . ";";
-                            $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {
-
-                                $query = "select name from play where id = " . $row['play_id'] . ";";
-
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $row['id'] . " and sale_time = \"" . $sale_time . "\" and emp_id in (select id from  employee where theater_id = " . $theater_id . ");";
                                 $result2 = $connect->query($query);
+                                $sum=0;
+                                $count = 0;
                                 while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "</tr>";
+                                    $sum += $row2['price'];
+                                    $count++;
                                 }
+                                echo "<tr >";
+                                echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                echo "<td class=\"tc\">" . $row['name'] . "</td>";
+                                echo "<td class=\"tc\">" . $count . "</td>";
+                                echo "<td class=\"tc\">" . $sum . "</td>";
+                                echo "</tr>";
                             }
-
                         }
                         $connect->close();
                     }

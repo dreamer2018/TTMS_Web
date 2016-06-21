@@ -77,12 +77,11 @@ require_once "../conf/conf.php";
             <div class="result-content" id="fid">
                 <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>ID</th>
-                        <th>工号</th>
-                        <th>剧院ID</th>
-                        <th>姓名</th>
-                        <th>手机号码</th>
-                        <th>操作</th>
+                        <th class="tc">ID</th>
+                        <th class="tc">影院ID</th>
+                        <th class="tc">工号</th>
+                        <th class="tc">姓名</th>
+                        <th class="tc">操作</th>
 
                         <?php
 
@@ -101,28 +100,23 @@ require_once "../conf/conf.php";
                         */
                         $count = 0;
                         $select = $connect->select_db($DB_NAME);
-                        if(isset($_POST['emp_id'])){
-                            $query = "delete from employee where id = ".$_POST['emp_id'].";";
+                        if(isset($_POST['mana_id'])){
+                            $query = "delete from manager where id = ".$_POST['mana_id'].";";
                             $connect -> query($query);
                         }
-                        $query = "select theater_id from manager where emp_no =" . $_SESSION['username'] . ";";
+
+                        $query = "select id,emp_no,name,theater_id from manager ;";
                         $result = $connect->query($query);
-                        $row = $result->fetch_array();
-
-                        $query = "select id,emp_no,theater_id,name,tel from employee where theater_id =".$row['theater_id'].";";
-
-                        $result2 = $connect->query($query);
-                        while ($row2 = $result2->fetch_array()) {
+                        while ($row = $result->fetch_array()) {
 
                             echo "<tr>";
-                            echo "<td>" . $row2['id'] . "</td>";
-                            echo "<td>" . $row2['emp_no'] . "</td>";
-                            echo "<td>" . $row2['theater_id'] . "</td>";
-                            echo "<td>" . $row2['name'] . "</td>";
-                            echo "<td>" . $row2['tel'] . "</td>";
-                            echo "<td>";
+                            echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                            echo "<td class=\"tc\">" . $row['theater_id'] . "</td>";
+                            echo "<td class=\"tc\">" . $row['emp_no'] . "</td>";
+                            echo "<td class=\"tc\">" . $row['name'] . "</td>";
+                            echo "<td class=\"tc\">";
                             echo "<form name=\"myform\" method=\"post\" action=\"employee_manager.php\">";
-                            echo "<input type = 'hidden' value ='" . $row2['id'] . "'  name = 'emp_id'>";
+                            echo "<input type = 'hidden' value ='" . $row['id'] . "'  name = 'mana_id'>";
                             echo "<input  type='submit'  class=\"btn btn-primary btn2\" value='删除' >";
                             echo "</form>";
                             echo "</td>";

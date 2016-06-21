@@ -69,7 +69,7 @@
         <div class="crumb-wrap">
             <div class="crumb-list">
                 <i class="icon-font"></i>
-                <a href="index.php">首页</a>
+                <a href="../index.html">首页</a>
                 <span class="crumb-step">&gt;</span>
                 <span>更改密码</span>
             </div>

@@ -1,5 +1,5 @@
 <?php
-require_once "../conf/conf.php";
+    require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>
@@ -132,6 +132,7 @@ require_once "../conf/conf.php";
                                     while ($row = $result->fetch_array()) {
                                         echo "<option value=" . $row["id"] . ">" . $row["type"] . "</option>";
                                     }
+                                    $connect->close();
                                     ?>
                                 </select>
                             </td>
@@ -162,6 +163,7 @@ require_once "../conf/conf.php";
                                     while ($row = $result->fetch_array()) {
                                         echo "<option value=" . $row["id"] . ">" . $row["type"] . "</option>";
                                     }
+                                    $connect->close();
                                     ?>
                                 </select>
                             </td>
@@ -215,7 +217,7 @@ require_once "../conf/conf.php";
                     <br/>
                     <input id="subid" class="btn btn-primary btn6 mr10" value="提交" type="submit"
                            style="margin-left:6%;">
-                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button" style="margin-left:3%">
+                    <input class="btn btn6" onclick="self.location='studio_manager.php'" value="返回" type="button" style="margin-left:3%">
                     <br/>
                 </form>
             </div>
@@ -325,13 +327,13 @@ require_once "../conf/conf.php";
                             echo "</tr>";
                             echo "</table>";
                         }
+                        $connect->close();
                     }
                 }
                 ?>
             </div>
         </div>
     </div>
-    <!--/main-->
 </div>
 </body>
 </html>

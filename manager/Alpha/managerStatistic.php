@@ -1,5 +1,5 @@
 ﻿<?php
-require_once "../conf/conf.php";
+    require_once "../conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -185,6 +185,7 @@ require_once "../conf/conf.php";
                                             while ($row = $result->fetch_array()) {
                                                 echo "<option value=" . $row["id"] . ">" . $row["id"] . "</option>";
                                             }
+                                            $connect->close();
                                             ?>
                                         </select>
                                     </td>
@@ -215,6 +216,7 @@ require_once "../conf/conf.php";
                                             while ($row = $result->fetch_array()) {
                                                 echo "<option value=" . $row["sale_time"] . ">" . $row["sale_time"] . "</option>";
                                             }
+                                            $connect->close();
                                             ?>
                                         </select>
 
@@ -299,6 +301,7 @@ require_once "../conf/conf.php";
                             }
 
                         }
+                        $connect->close();
                     }
                     ?>
                 </table>

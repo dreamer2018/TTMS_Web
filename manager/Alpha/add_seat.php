@@ -1,5 +1,5 @@
 <?php
-require_once "../conf/conf.php";
+    require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>
@@ -225,13 +225,13 @@ require_once "../conf/conf.php";
                                 }
                             }
                         }
+                        $connect->close();
                     }
                 }
                 ?>
             </div>
         </div>
     </div>
-    <!--/main-->
 </div>
 </body>
 </html>

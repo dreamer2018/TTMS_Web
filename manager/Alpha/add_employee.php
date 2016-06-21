@@ -1,5 +1,5 @@
 <?php
-require_once "../conf/conf.php"
+    require_once "../conf/conf.php";
 ?>
 <!doctype html>
 <html>
@@ -67,7 +67,7 @@ require_once "../conf/conf.php"
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.php">首页</a><span
                     class="crumb-step">&gt;</span><a class="crumb-name" href="employee_manager.php">人事管理</a><span
                     class="crumb-step">&gt;</span><span>添加售票员</span></div>
         </div>
@@ -201,13 +201,13 @@ require_once "../conf/conf.php"
                         }else{
                             echo "<p>工号已存在！</p><br/>";
                         }
+                        $connect->close();
                     }
                 }
                 ?>
             </div>
         </div>
     </div>
-    <!--/main-->
 </div>
 </body>
 </html>

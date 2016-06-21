@@ -22,7 +22,7 @@
                                             $select = $connect->select_db($DB_NAME);
 
                                             $emp_no=$_SESSION["username"];
-                                            $query="select theater_id from manager where emp_no = \"".$emp_no."\";"
+                                            $query="select theater_id from manager where emp_no = \"".$emp_no."\";";
                                             $result = $connect ->query($query);
                                             while ($row = $result->fetch_array()) {
                                                 $theater_id=$row["theater_id"];
@@ -32,7 +32,7 @@
                                             $query="select (id,name) from studio where theater_id =".$theater_id.";";
                                             $result = $connect ->query($query);
                                             while ($row = $result->fetch_array()) {
-                                                echo "<option value=".$row["id"].">".$row["name"]."</option>"
+                                                echo "<option value=".$row["id"].">".$row["name"]."</option>";
                                             }
                                         ?>
                                     </select>

@@ -24,8 +24,7 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                <li><a href="#"><i class="icon-font">&#xe014;</i></a></li>
-                <li><a href="#"><i class="icon-font">&#xe059;</i></a></li>
+                <li><a href="logout.php"><i class="icon-font">&#xe059;</i></a></li>
             </ul>
         </div>
     </div>

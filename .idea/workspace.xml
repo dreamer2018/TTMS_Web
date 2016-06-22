@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49a7c092-a8cb-4594-9f41-964e8460d47a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/Alpha/book_ticket.php" afterPath="$PROJECT_DIR$/employee/Alpha/book_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/Alpha/return_ticket.php" afterPath="$PROJECT_DIR$/employee/Alpha/return_ticket.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/book_ticket.php" afterPath="$PROJECT_DIR$/employee/book_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/Alpha/add_employee.php" afterPath="$PROJECT_DIR$/manager/Alpha/add_employee.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/Alpha/schedule_insert.php" afterPath="$PROJECT_DIR$/manager/Alpha/schedule_insert.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/Alpha/schedule_manager.php" afterPath="$PROJECT_DIR$/manager/Alpha/schedule_manager.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/conf/session.php" afterPath="$PROJECT_DIR$/manager/conf/session.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/movie_theater_v0.1.sql" afterPath="$PROJECT_DIR$/movie_theater_v0.1.sql" />
     </list>
     <ignored path="TTMS_Web.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,8 +91,8 @@
       <file leaf-file-name="book_ticket.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/employee/book_ticket.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state relative-caret-position="480">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <marker date="1466602864035" expanded="true" signature="3794:3818" ph="select id,na... play" />
@@ -476,15 +467,15 @@
       <workItem from="1466379125584" duration="27709000" />
       <workItem from="1466469731813" duration="11623000" />
       <workItem from="1466493617354" duration="17027000" />
-      <workItem from="1466556788273" duration="24647000" />
+      <workItem from="1466556788273" duration="24831000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200748000" />
+    <option name="totallyTimeSpent" value="200932000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="28" width="1920" height="1018" extended-state="0" />
+    <frame x="0" y="28" width="1920" height="1018" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18201284" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1149,8 +1140,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/employee/book_ticket.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="480">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#2;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1466602864035" expanded="true" signature="3794:3818" ph="select id,na... play" />

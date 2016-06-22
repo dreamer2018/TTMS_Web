@@ -158,6 +158,7 @@ require_once "conf/conf.php";
                             <th class="tc">票价</th>
                         </tr>
                         <?php
+                        $count = 0;
                         if (isset($_POST['movie_name'])) {
                             $movie_name = $_POST['movie_name'];
                             $date = $_POST['date'];
@@ -191,7 +192,7 @@ require_once "conf/conf.php";
                                 $query = "select id,studio_id,play_id,sale_time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\" and studio_id in ( select id from studio where theater_id = " . $r['theater_id'] . " ) ;";
                             }
                             $result = $connect->query($query);
-                            $count = 0;
+
                             while ($row = $result->fetch_array()) {
 
                                 $query = "select name from play where id = " . $row['id'] . ";";

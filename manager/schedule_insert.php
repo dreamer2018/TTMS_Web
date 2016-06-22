@@ -81,7 +81,6 @@
                             <td>
                                 <select name="studio_id" id="studio_id" class="required">
                                     <?php
-                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -113,6 +112,7 @@
                                     while ($row = $result->fetch_array()) {
                                         echo "<option value=" . $row["id"] . ">" . $row["name"] . "</option>";
                                     }
+                                    $connect->close();
                                     ?>
                                 </select>
                             </td>
@@ -122,7 +122,6 @@
                             <td>
                                 <select name="play_id" id="play_id" class="required">
                                     <?php
-                                    require_once "../DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -138,11 +137,12 @@
                                      * 选择数据库
                                      */
                                     $select = $connect->select_db($DB_NAME);
-                                    $query = "select id,name from play ;";
+                                    $query = "select id,name from play;";
                                     $result = $connect->query($query);
                                     while ($row = $result->fetch_array()) {
                                         echo "<option value=" . $row["id"] . ">" . $row["name"] . "</option>";
                                     }
+                                    $connect->close();
                                     ?>
                                 </select>
                             </td>
@@ -174,8 +174,6 @@
             <div class="result-content" id="fid">
                 <?php
                 if (isset($_POST['studio_id'])) {
-
-
                     $studio_id = $_POST['studio_id'];
                     $play_id = $_POST['play_id'];
                     $time = $_POST['time'];
@@ -237,7 +235,7 @@
                                     $query = "select id,count(id) from seat where studio_id = ".$studio_id." and row= ".$i." and col = ".$j." and status = 1 ;";
                                     $result5 = $connect->query($query);
                                     $row5 = $result5->fetch_array();
-                                    $status =0; //0：待售 1：锁定 2：卖出
+                                    $status =1;
                                     if($row5['count(id)'] > 0){
                                         $query = "insert into ticket(seat_id,schedule_id,play_id,price,status) values(".$row5['id'].",".$schedule_id.",".$play_id.",".$price.",".$status.");";
                                         $connect->query($query);

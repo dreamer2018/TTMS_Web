@@ -164,30 +164,32 @@
                         $row1 = $result1->fetch_array();
 
                         $query = "insert into studio(theater_id,name,row,col) values (" . $row1['theater_id'] . ",\"" . $studio_name . "\"," . $row_num . "," . $col_num . ")";
-
                         $result2 = $connect->query($query);
                         if ($result2) {
+                            $newID = mysqli_insert_id($connect);
                             for($i=1;$i<=$row_num;$i++){
                                 for($j=1;$j<=$col_num;$j++){
                                     $status=1;
-                                    $query = "insert into seat(studio_id,row,col,status) values(".$row1['theater_id'].",".$i.",".$j.",".$status.");";
+                                    $query = "insert into seat(studio_id,row,col,status) values(".$newID.",".$i.",".$j.",".$status.");";
                                     $connect->query($query);
                                 }
                             }
                             echo "<table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
                             echo "<tr>";
-                            echo "<th>影院ID</th>";
-                            echo "<th>影厅名</th>";
-                            echo "<th>行数</th>";
-                            echo "<th>列数</th>";
+                            echo "<th class=\"tc\">影院ID</th>";
+                            echo "<th class=\"tc\">影厅名</th>";
+                            echo "<th class=\"tc\">行数</th>";
+                            echo "<th class=\"tc\">列数</th>";
                             echo "</tr>";
                             echo "<tr>";
-                            echo "<td>" . $row1['theater_id'] . "</td>";
-                            echo "<td>" . $studio_name . "</td>";
-                            echo "<td>" . $row_num . "</td>";
-                            echo "<td>" . $col_num . "</td>";
+                            echo "<td class=\"tc\">" . $row1['theater_id'] . "</td>";
+                            echo "<td class=\"tc\">" . $studio_name . "</td>";
+                            echo "<td class=\"tc\">" . $row_num . "</td>";
+                            echo "<td class=\"tc\">" . $col_num . "</td>";
                             echo "</tr>";
                             echo "</table>";
+                        }else{
+                            echo "<p>插入失败！</p><br/>";
                         }
                         $connect->close();
                     }

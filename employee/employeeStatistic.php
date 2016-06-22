@@ -80,10 +80,10 @@
                 <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                     <tr>
                         <th class="tc">ID</th>
-                        <th>电影名称</th>
-                        <th>票数</th>
-                        <th>单价</th>
-                        <th>总价</th>
+                        <th class="tc">电影名称</th>
+                        <th class="tc">票数</th>
+                        <th class="tc">单价</th>
+                        <th class="tc">总价</th>
                     </tr>
 
                     <?php
@@ -103,16 +103,25 @@
                     * 选择数据库
                     */
                     $select = $connect->select_db($DB_NAME);
+                    /*
+                     * 查找出当前售票员的id
+                     */
                     $query = "select id from employee where emp_no =\"".$emp_no."\";";
                     $result2 = $connect->query($query);
                     $row2 = $result2->fetch_array();
                     if(!is_null($row2['id'])){
+                        /*
+                         * 找出此售票员卖过什么电影的票
+                         */
                         $query = "select distinct play_id from bill where emp_id =".$row2['id'].";";
                         $result = $connect->query($query);
                         $c = 0;
                         while ($row = $result->fetch_array()) {
 
-                            $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . ";";
+                            /*
+                             * 统计每个电影的票数与总销售额
+                             */
+                            $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . " and emp_id = ".$row2['id'].";";
                             $result2 = $connect->query($query);
                             $row2 = $result2->fetch_array();
                             $count = $row2['count(id)'];
@@ -127,11 +136,11 @@
                             $movie_name = $row3['name'];
                             $c++;
                             echo "<tr>";
-                            echo "<td>" . $c . "</td>";
-                            echo "<td>" . $movie_name . "</td>";
-                            echo "<td>" . $count . "</td>";
-                            echo "<td>" . $price . "</td>";
-                            echo "<td>" . $sum . "</td>";
+                            echo "<td class=\"tc\">" . $c . "</td>";
+                            echo "<td class=\"tc\">" . $movie_name . "</td>";
+                            echo "<td class=\"tc\">" . $count . "</td>";
+                            echo "<td class=\"tc\">" . $price . "</td>";
+                            echo "<td class=\"tc\">" . $sum . "</td>";
                             echo "</tr>";
 
                         }
@@ -219,11 +228,11 @@
                 </div>
                 <table class="result-tab" width="100%" id="detailed" cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>账单ID</th>
-                        <th>票ID</th>
-                        <th>电影名称</th>
-                        <th>单价</th>
-                        <th>日期</th>
+                        <th class="tc">账单ID</th>
+                        <th class="tc">票ID</th>
+                        <th class="tc">电影名称</th>
+                        <th class="tc">单价</th>
+                        <th class="tc">日期</th>
                     </tr>
 
                     <?php
@@ -260,11 +269,11 @@
                                 $result2 = $connect->query($query);
                                 while ($row2 = $result2->fetch_array()) {
                                     echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -278,11 +287,12 @@
                                 $result2 = $connect->query($query);
                                 while ($row2 = $result2->fetch_array()) {
                                     echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+
                                     echo "</tr>";
                                 }
                             }
@@ -295,11 +305,11 @@
                                 $result2 = $connect->query($query);
                                 while ($row2 = $result2->fetch_array()) {
                                     echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -313,11 +323,11 @@
                                 $result2 = $connect->query($query);
                                 while ($row2 = $result2->fetch_array()) {
                                     echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -329,13 +339,6 @@
             </div>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

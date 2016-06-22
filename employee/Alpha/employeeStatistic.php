@@ -1,5 +1,5 @@
 ﻿<?php
-    require_once "conf/conf.php";
+require_once "conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,14 +80,14 @@
                 <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                     <tr>
                         <th class="tc">ID</th>
-                        <th>电影名称</th>
-                        <th>票数</th>
-                        <th>单价</th>
-                        <th>总价</th>
+                        <th class="tc">电影名称</th>
+                        <th class="tc">票数</th>
+                        <th class="tc">单价</th>
+                        <th class="tc">总价</th>
                     </tr>
 
                     <?php
-                   
+
                     /*
                     * 连接数据库
                     */
@@ -103,16 +103,25 @@
                     * 选择数据库
                     */
                     $select = $connect->select_db($DB_NAME);
+                    /*
+                     * 查找出当前售票员的id
+                     */
                     $query = "select id from employee where emp_no =\"".$emp_no."\";";
                     $result2 = $connect->query($query);
                     $row2 = $result2->fetch_array();
                     if(!is_null($row2['id'])){
+                        /*
+                         * 找出此售票员卖过什么电影的票
+                         */
                         $query = "select distinct play_id from bill where emp_id =".$row2['id'].";";
                         $result = $connect->query($query);
                         $c = 0;
                         while ($row = $result->fetch_array()) {
 
-                            $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . ";";
+                            /*
+                             * 统计每个电影的票数与总销售额
+                             */
+                            $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . " and emp_id = ".$row2['id'].";";
                             $result2 = $connect->query($query);
                             $row2 = $result2->fetch_array();
                             $count = $row2['count(id)'];
@@ -127,11 +136,11 @@
                             $movie_name = $row3['name'];
                             $c++;
                             echo "<tr>";
-                            echo "<td>" . $c . "</td>";
-                            echo "<td>" . $movie_name . "</td>";
-                            echo "<td>" . $count . "</td>";
-                            echo "<td>" . $price . "</td>";
-                            echo "<td>" . $sum . "</td>";
+                            echo "<td class=\"tc\">" . $c . "</td>";
+                            echo "<td class=\"tc\">" . $movie_name . "</td>";
+                            echo "<td class=\"tc\">" . $count . "</td>";
+                            echo "<td class=\"tc\">" . $price . "</td>";
+                            echo "<td class=\"tc\">" . $sum . "</td>";
                             echo "</tr>";
 
                         }
@@ -153,7 +162,7 @@
                                         <select name="play_id">
                                             <option value="0">全部</option>
                                             <?php
-                                            
+
                                             /*
                                             * 连接数据库
                                             */
@@ -183,7 +192,7 @@
                                         <select name="sale_time">
                                             <option value="0">全部</option>
                                             <?php
-                                          
+
                                             /*
                                             * 连接数据库
                                             */
@@ -219,11 +228,11 @@
                 </div>
                 <table class="result-tab" width="100%" id="detailed" cellpadding="0" cellspacing="0">
                     <tr>
-                        <th>账单ID</th>
-                        <th>票ID</th>
-                        <th>电影名称</th>
-                        <th>单价</th>
-                        <th>日期</th>
+                        <th class="tc">账单ID</th>
+                        <th class="tc">票ID</th>
+                        <th class="tc">电影名称</th>
+                        <th class="tc">单价</th>
+                        <th class="tc">日期</th>
                     </tr>
 
                     <?php
@@ -232,7 +241,7 @@
                         $play_id = $_POST['play_id'];
                         $sale_time = $_POST['sale_time'];
 
-                      
+
 
                         /*
                         * 连接数据库
@@ -251,91 +260,85 @@
                         $result3 = $connect->query($query);
                         $row3 = $result3->fetch_array();
                         if(!is_null($row3['id'])){
-                        if ($play_id == 0 && $sale_time == 0) {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =".$row3['id'].";";
-                            $result = $connect->query($query);
-                            while ($row = $result->fetch_array()) {
+                            if ($play_id == 0 && $sale_time == 0) {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =".$row3['id'].";";
+                                $result = $connect->query($query);
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $row['play_id'] . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "</tr>";
+                                    $query = "select name from play where id = " . $row['play_id'] . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                        echo "</tr>";
+                                    }
                                 }
-                            }
-                        } elseif ($play_id != 0 && $sale_time == 0) {
+                            } elseif ($play_id != 0 && $sale_time == 0) {
 
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and emp_id = ".$row3['id'].";";
-                            $result = $connect->query($query);
-                            while ($row = $result->fetch_array()) {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and emp_id = ".$row3['id'].";";
+                                $result = $connect->query($query);
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $play_id . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "</tr>";
+                                    $query = "select name from play where id = " . $play_id . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+
+                                        echo "</tr>";
+                                    }
                                 }
-                            }
-                        } elseif ($play_id == 0 && $sale_time != 0) {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
-                            $result = $connect->query($query);
-                            while ($row = $result->fetch_array()) {
+                            } elseif ($play_id == 0 && $sale_time != 0) {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
+                                $result = $connect->query($query);
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $row['play_id'] . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "</tr>";
+                                    $query = "select name from play where id = " . $row['play_id'] . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                        echo "</tr>";
+                                    }
                                 }
-                            }
-                        } else {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
-                            $result = $connect->query($query);
+                            } else {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
+                                $result = $connect->query($query);
 
-                            while ($row = $result->fetch_array()) {
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $play_id . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $row['ticket_id'] . "</td>";
-                                    echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "</tr>";
+                                    $query = "select name from play where id = " . $play_id . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                        echo "</tr>";
+                                    }
                                 }
                             }
                         }
-                    }
                     }
                     ?>
                 </table>
             </div>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

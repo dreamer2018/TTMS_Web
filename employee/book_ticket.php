@@ -152,18 +152,16 @@ require_once "conf/conf.php";
                     <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                         <tr>
                             <th class="tc">演出计划ID</th>
-                            <th>演出厅id</th>
-                            <th>剧目</th>
-                            <th>放映时间</th>
-                            <th>折扣</th>
-                            <th>票价</th>
+                            <th class="tc">演出厅id</th>
+                            <th class="tc">剧目</th>
+                            <th class="tc">放映时间</th>
+                            <th class="tc">折扣</th>
+                            <th class="tc">票价</th>
                         </tr>
                         <?php
-
-                        if (isset($_POST["movie_name"])) {
+                        if (isset($_POST['movie_name'])) {
                             $movie_name = $_POST['movie_name'];
                             $date = $_POST['date'];
-
 
                             /*
                              * 连接数据库
@@ -180,17 +178,19 @@ require_once "conf/conf.php";
                              * 选择数据库
                              */
                             $select = $connect->select_db($DB_NAME);
-                            if ($movie_name == 0 && $date == -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 ;";
-                            } elseif ($movie_name == 0 && $date != -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and  time=\"" . $date . "\";";
-                            } elseif ($movie_name != 0 && $date == -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . ";";
-                            } else {
-                                $query = "select id,studio_id,play_id,sale_time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\";";
-                            }
-                            //echo $query;
+                            $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
+                            $res = $connect->query($query);
+                            $r = $res->fetch_array();
 
+                            if ($movie_name == 0 && $date == -1) {
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and studio_id in (select id from studio where theater_id = ".$r['theater_id']." );";
+                            } elseif ($movie_name == 0 && $date != -1) {
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and  time=\"" . $date . "\" and studio_id in (select id from studio where theater_id = ".$r['theater_id'].");";
+                            } elseif ($movie_name != 0 && $date == -1) {
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and  studio_id in (select id from studio where theater_id = ".$r['theater_id'].");";
+                            } else {
+                                $query = "select id,studio_id,play_id,sale_time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\" and studio_id in ( select id from studio where theater_id = ".$r['theater_id']." ) ;";
+                            }
                             $result = $connect->query($query);
                             $count = 0;
                             while ($row = $result->fetch_array()) {
@@ -200,12 +200,12 @@ require_once "conf/conf.php";
                                 $row2 = $result2->fetch_array();
                                 $movie_name = $row2['name'];
                                 echo "<tr>";
-                                echo "<td>" . $row['id'] . "</td >";
-                                echo "<td>" . $row['studio_id'] . "</td >";
-                                echo "<td>" . $movie_name . "</td >";
-                                echo "<td>" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
-                                echo "<td>" . $row['discount'] . "</td >";
-                                echo "<td>" . $row['price'] . "</td >";
+                                echo "<td class=\"tc\">" . $row['id'] . "</td >";
+                                echo "<td class=\"tc\">" . $row['studio_id'] . "</td >";
+                                echo "<td class=\"tc\">" . $movie_name . "</td >";
+                                echo "<td class=\"tc\">" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
+                                echo "<td class=\"tc\">" . $row['discount'] . "</td >";
+                                echo "<td class=\"tc\">" . $row['price'] . "</td >";
                                 echo "</td>";
                                 $count++;
                             }
@@ -247,7 +247,11 @@ require_once "conf/conf.php";
                                      * 选择数据库
                                      */
                                     $select = $connect->select_db($DB_NAME);
-                                    $query = "select id from schedule ;";
+
+                                    $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
+                                    $res = $connect->query($query);
+                                    $r = $res->fetch_array();
+                                    $query = "select id from schedule  where studio_id in (select id from studio where theater_id = ".$r['theater_id'].");";
                                     $result = $connect->query($query);
                                     while ($row = $result->fetch_array()) {
                                         echo "<option value=" . $row["id"] . ">" . $row["id"] . "</option>";
@@ -257,19 +261,19 @@ require_once "conf/conf.php";
                             </td>
                             <th width="120">行:</th>
                             <td>
-                                <input type="text" name="row">
+                                <input type="text" name="row" size="7">
                             </td>
                             <th width="120">列:</th>
                             <td>
-                                <input type="text" name="col">
+                                <input type="text" name="col" size="7">
                             </td>
                             <th width="120">手机号:</th>
                             <td>
-                                <input type="text" name="tel">
+                                <input type="text" name="tel" size="20">
                             </td>
                             <th width="120"></th>
                             <td>
-                                <input class="btn btn-primary btn2" name="sub" value="订购" type="submit">
+                                <input class="btn btn-primary btn2" name="sub" value="订购" type="submit" style="margin-right: 70px;">
                             </td>
                         </tr>
                     </table>

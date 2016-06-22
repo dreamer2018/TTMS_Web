@@ -1,5 +1,5 @@
 <?php
-require_once "conf/conf.php";
+    require_once "conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -259,8 +259,8 @@ require_once "conf/conf.php";
                                 echo "<td class=\"tc\">" . $row2['id'] . "</td>";
                                 echo "<td class=\"tc\">" . $row2['ticket_id'] . "</td>";
                                 echo "<td class=\"tc\">" . $row2['play_id'] . "</td>";
-                                echo "<td class=\"tc\">" . $row2['sale_time'] . "</td>";
                                 echo "<td class=\"tc\">" . $row2['price'] . "</td>";
+                                echo "<td class=\"tc\">" . $row2['sale_time'] . "</td>";
                                 echo "</tr>";
                             }
                         } else {
@@ -271,24 +271,18 @@ require_once "conf/conf.php";
                                 echo "<td class=\"tc\">" . $row2['id'] . "</td>";
                                 echo "<td class=\"tc\">" . $row2['ticket_id'] . "</td>";
                                 echo "<td class=\"tc\">" . $row2['play_id'] . "</td>";
-                                echo "<td class=\"tc\">" . $row2['sale_time'] . "</td>";
                                 echo "<td class=\"tc\">" . $row2['price'] . "</td>";
+                                echo "<td class=\"tc\">" . $row2['sale_time'] . "</td>";
                                 echo "</tr>";
                             }
                         }
+                        $connect->close();
                     }
                     ?>
                 </table>
             </div>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

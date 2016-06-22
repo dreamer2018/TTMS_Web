@@ -9,7 +9,6 @@
  *  通过POST请就接收到前端发来的用户名和密码
  */
 session_start();
-
 $username = $_POST["username"];
 $password = $_POST["password"];
 
@@ -33,13 +32,13 @@ if(mb_strlen($username)) {
 
     if ($username[0] == '1') {
         $identity = 1;
-        $url = "generalmanager/index.html";
+        $url = "generalmanager/index.php";
     } elseif ($username[0] == '2') {
         $identity = 2;
-        $url = "manager/index.html";
+        $url = "manager/index.php";
     } elseif ($username[0] == '3') {
         $identity = 3;
-        $url = "employee/index.html";
+        $url = "employee/index.php";
     } else {
         $identity = 0;
     }

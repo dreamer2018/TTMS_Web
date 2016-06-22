@@ -197,7 +197,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><i class="require-red">*</i>时间：</th>
+                            <th><i class="require-red">*</i>时长：</th>
                             <td>
                                 <input class="common-text required-red" id="time" name="length" size="20" value=""
                                        type="text">
@@ -254,7 +254,7 @@
                         echo "<p>剧目图片url过长或为空！</p><br/>";
                         $sign = 0;
                     }
-                    if ($length <= 0) {
+                    if ($length <= 0 or $length > 32767) {
                         echo "<p>剧目长度输入不合法！</p><br/>";
                         $sign = 0;
                     }
@@ -325,6 +325,8 @@
                             echo "<td>" . $price . "</td>";
                             echo "</tr>";
                             echo "</table>";
+                        }else{
+                            echo "<p>影片添加失败，请重试！</p><br/>";
                         }
                         $connect->close();
                     }

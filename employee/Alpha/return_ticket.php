@@ -94,16 +94,21 @@
                                     /*
                                      * 选择数据库
                                      */
-
                                     $select = $connect->select_db($DB_NAME);
+                                    /*
+                                     * 得到售票员的剧院
+                                     */
+                                    $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
+                                    $result2 = $connect->query($query);
+                                    $row2 = $result2->fetch_array();
 
-                                    $query = "select id from bill;";
-                                    echo $query;
+                                    $query = "select id from bill where emp_id in ( select id from employee where theater_id =".$row2['theater_id'].");";
                                     $result = $connect->query($query);
                                     while ($row = $result->fetch_array()) {
 
                                         echo "<option value=" . $row["id"] . ">" . $row["id"] . "</option>";
                                     }
+                                    $connect->close();
                                     ?>
                                 </select>
                             </td>
@@ -159,15 +164,20 @@
                             /*
                              * 选择数据库
                              */
+                            $select = $connect->select_db($DB_NAME);
+
 
                             $sign = 0; //验证手机号码
                             $count = 0;
 
-                            $select = $connect->select_db($DB_NAME);
+                            $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
+                            $result4 = $connect->query($query);
+                            $row4 = $result4->fetch_array();
+
                             if ($bill_id == 0) {
-                                $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill";
+                                $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where emp_id in ( select id from employee where theater_id = ".$row4['theater_id'].")";
                             } else {
-                                $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where id = " . $bill_id . ";";
+                                $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where id = " . $bill_id . " and emp_id in ( select id from employee where theater_id = ".$row4['theater_id'].");";
                             }
                             $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {

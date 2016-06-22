@@ -226,14 +226,14 @@ CREATE TABLE play(
   PRIMARY KEY (id)
  );
 
-INSERT INTO play VALUES (1,"天空之间",1,1,1,8.0,"英国情报追捕一名女性","/home/",100,10,1);
-INSERT INTO play VALUES (2,"午夜逃亡",1,1,2,6.0,"余真因怀孕和前男友反目而出走来到此地","/home/",30,30,1);
-INSERT INTO play VALUES (3,"梦想合伙人",1,2,1,3.0,"无依无靠之时遂心生妙计","/home/",50,50,1);
-INSERT INTO play VALUES (4,"劫机惊破",1,2,2,9.0,"邀查理和阿炳来到家中共度晚餐","/home/",70,70,1);
-INSERT INTO play VALUES (5,"Good Tack",2,1,1,4.0,"人误以为与她促成好事导致怀孕","/home/",90,90,1);
-INSERT INTO play VALUES (6,"伦敦沦陷",2,1,2,6.0,"难辨谁为亲生父亲，于是共同照顾余真","/home/",120,110,1);
-INSERT INTO play VALUES (7,"犯罪家族",2,2,1,3.0,"事成后，二人偶然得知余真前男友想拿孩子做实验","/home/",140,130,1);
-INSERT INTO play VALUES (8,"老炮儿",2,2,2,1.0,"于是查理和阿炳两人念及旧情","/home/",160,150,1);
+INSERT INTO play VALUES (1,"天空之间",1,1,1,8.0,"英国情报追捕一名女性","/home/",100,10,0);
+INSERT INTO play VALUES (2,"午夜逃亡",1,1,2,6.0,"余真因怀孕和前男友反目而出走来到此地","/home/",30,30,0);
+INSERT INTO play VALUES (3,"梦想合伙人",1,2,1,3.0,"无依无靠之时遂心生妙计","/home/",50,50,0);
+INSERT INTO play VALUES (4,"劫机惊破",1,2,2,9.0,"邀查理和阿炳来到家中共度晚餐","/home/",70,70,0);
+INSERT INTO play VALUES (5,"Good Tack",2,1,1,4.0,"人误以为与她促成好事导致怀孕","/home/",90,90,0);
+INSERT INTO play VALUES (6,"伦敦沦陷",2,1,2,6.0,"难辨谁为亲生父亲，于是共同照顾余真","/home/",120,110,0);
+INSERT INTO play VALUES (7,"犯罪家族",2,2,1,3.0,"事成后，二人偶然得知余真前男友想拿孩子做实验","/home/",140,130,0);
+INSERT INTO play VALUES (8,"老炮儿",2,2,2,1.0,"于是查理和阿炳两人念及旧情","/home/",160,150,0);
 
 
 /*********************************************************************************************************/
@@ -291,10 +291,10 @@ INSERT INTO ticket VALUES (2,2,1,1,8,2,NULL );
 INSERT INTO ticket VALUES (3,3,1,1,8,0,NULL );
 INSERT INTO ticket VALUES (4,4,1,1,8,0,NULL );
 
-INSERT INTO ticket VALUES (5,1,2,4,21,0,NULL );
-INSERT INTO ticket VALUES (6,2,2,4,21,0,NULL );
-INSERT INTO ticket VALUES (7,3,2,4,21,2,NULL );
-INSERT INTO ticket VALUES (8,4,2,4,21,0,NULL );
+INSERT INTO ticket VALUES (5,1,4,2,21,0,NULL );
+INSERT INTO ticket VALUES (6,2,4,2,21,0,NULL );
+INSERT INTO ticket VALUES (7,3,4,2,21,2,NULL );
+INSERT INTO ticket VALUES (8,4,4,2,21,0,NULL );
 
 /*********************************************************************************************************/
 

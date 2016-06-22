@@ -219,17 +219,19 @@
                         $query = "insert into schedule ( studio_id,play_id,time,discount,price,status ) values(" . $studio_id . "," . $play_id . ",\"" . $time . "\"," . $discount . "," . $price . "," . $status . ") ;";
                         $result = $connect->query($query);
                         if ($result) {
+                            $schedule_id = mysqli_insert_id($connect);
+
+                            $query = "select status from play where id = ".$play_id.";";
+                            $result4 = $connect->query($query);
+                            $row4 = $result4->fetch_array();
+                            $status = $row4['status'] + 1;
+                            
+                            $query = "update play set status =".$status." where id = ".$play_id.";";
+                            $connect->query($query);
 
                             $query = "select row,col from studio where id =" . $studio_id . ";";
                             $result3 = $connect->query($query);
                             $row3 = $result3->fetch_array();
-
-                            $query = "select id from schedule where studio_id = " . $studio_id . " and play_id =" . $play_id . " and time =\"" . $time . "\";";
-                            $result4 = $connect->query($query);
-                            $schedule_id="";
-                            while ($row4 = $result4->fetch_array()){
-                                $schedule_id = $row4['id'];
-                            }
                             for($i=1;$i<=$row3['row'];$i++ ){
                                 for($j=1;$j<=$row3['col'];$j++){
                                     $query = "select id,count(id) from seat where studio_id = ".$studio_id." and row= ".$i." and col = ".$j." and status = 1 ;";

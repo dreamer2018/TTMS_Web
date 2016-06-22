@@ -190,7 +190,7 @@
                                 echo "</tr>";
                                 echo "<tr>";
                                 echo "<td>" . $emp_no . "</td>";
-                                echo "<td>" . $row['theater_id'] . "</td>";
+                                echo "<td>" . $row1['theater_id'] . "</td>";
                                 echo "<td>" . $name . "</td>";
                                 echo "<td>" . $passwd . "</td>";
                                 echo "<td>" . $tel . "</td>";

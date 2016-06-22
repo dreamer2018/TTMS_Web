@@ -34,7 +34,6 @@ require_once "conf/conf.php";
 <div class="container clearfix">
 
 
-
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -159,7 +158,6 @@ require_once "conf/conf.php";
                             <th class="tc">票价</th>
                         </tr>
                         <?php
-                        $count = 0;
                         if (isset($_POST['movie_name'])) {
                             $movie_name = $_POST['movie_name'];
                             $date = $_POST['date'];
@@ -179,21 +177,21 @@ require_once "conf/conf.php";
                              * 选择数据库
                              */
                             $select = $connect->select_db($DB_NAME);
-                            $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
+                            $query = "select theater_id from employee where emp_no = \"" . $_SESSION['username'] . "\";";
                             $res = $connect->query($query);
                             $r = $res->fetch_array();
 
                             if ($movie_name == 0 && $date == -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and studio_id in (select id from studio where theater_id = ".$r['theater_id']." );";
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and studio_id in (select id from studio where theater_id = " . $r['theater_id'] . " );";
                             } elseif ($movie_name == 0 && $date != -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and  time=\"" . $date . "\" and studio_id in (select id from studio where theater_id = ".$r['theater_id'].");";
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and  time=\"" . $date . "\" and studio_id in (select id from studio where theater_id = " . $r['theater_id'] . ");";
                             } elseif ($movie_name != 0 && $date == -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and  studio_id in (select id from studio where theater_id = ".$r['theater_id'].");";
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and  studio_id in (select id from studio where theater_id = " . $r['theater_id'] . ");";
                             } else {
-                                $query = "select id,studio_id,play_id,sale_time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\" and studio_id in ( select id from studio where theater_id = ".$r['theater_id']." ) ;";
+                                $query = "select id,studio_id,play_id,sale_time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\" and studio_id in ( select id from studio where theater_id = " . $r['theater_id'] . " ) ;";
                             }
                             $result = $connect->query($query);
-
+                            $count = 0;
                             while ($row = $result->fetch_array()) {
 
                                 $query = "select name from play where id = " . $row['id'] . ";";
@@ -249,10 +247,10 @@ require_once "conf/conf.php";
                                      */
                                     $select = $connect->select_db($DB_NAME);
 
-                                    $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
+                                    $query = "select theater_id from employee where emp_no = \"" . $_SESSION['username'] . "\";";
                                     $res = $connect->query($query);
                                     $r = $res->fetch_array();
-                                    $query = "select id from schedule  where studio_id in (select id from studio where theater_id = ".$r['theater_id'].");";
+                                    $query = "select id from schedule  where studio_id in (select id from studio where theater_id = " . $r['theater_id'] . ");";
                                     $result = $connect->query($query);
                                     while ($row = $result->fetch_array()) {
                                         echo "<option value=" . $row["id"] . ">" . $row["id"] . "</option>";
@@ -274,7 +272,8 @@ require_once "conf/conf.php";
                             </td>
                             <th width="120"></th>
                             <td>
-                                <input class="btn btn-primary btn2" name="sub" value="订购" type="submit" style="margin-right: 70px;">
+                                <input class="btn btn-primary btn2" name="sub" value="订购" type="submit"
+                                       style="margin-right: 70px;">
                             </td>
                         </tr>
                     </table>
@@ -295,7 +294,6 @@ require_once "conf/conf.php";
                     $tel = $_POST['tel'];
 
                     if (strlen($seat_col) && strlen($seat_row)) {
-
 
 
                         /*
@@ -325,12 +323,11 @@ require_once "conf/conf.php";
                             $dicount = $row3['discount'];
                             $price = $row3['price'];
                         }
-                        $final_price = $dicount * $price;
                         /*
                          * 先通过schedule_id获取到一系列seat_id
                          */
                         $sign = 1; //座位存在标志
-                        $query = "select id,seat_id,play_id,status from ticket where schedule_id =" . $schedule_id . ";";
+                        $query = "select id,seat_id,play_id,status from ticket where schedule_id = " . $schedule_id . ";";
 
                         $result = $connect->query($query);
 
@@ -346,24 +343,29 @@ require_once "conf/conf.php";
 
                                 $seat_status = $row2['status'];
                                 if ($row2['row'] == $seat_row && $row2['col'] == $seat_col) {
-                                    $sign=0;
+                                    $sign = 0;
                                     if ($row2['status'] == 1) {
                                         if ($row['status']) {
                                             echo "此座位已被订购！";
                                         } else {
-
-                                            $query = "insert into customer(tel)  VALUES (".$tel.");";
-                                            $connect->query($query);
-                                            $query = "select id from customer where tel =".$tel.";";
+                                            $query = "select count(id),id from customer where tel =".$tel.";";
                                             $result4 = $connect->query($query);
-                                            $customer_id=0;
-                                            while ($row4 = $result4->fetch_array()) {
+                                            $row4 = $result4->fetch_array();
+                                            if(!$row4['count(id)']){
+                                                $query = "insert into customer(tel)  VALUES (" . $tel . ");";
+                                                $connect->query($query);
+                                                $customer_id = mysqli_insert_id($connect);
+                                            }else{
                                                 $customer_id = $row4['id'];
                                             }
+                                            $query = "select id from employee where emp_no = \"".$_SESSION['username']."\";";
+                                            $res=$connect->query($query);
+                                            $r=$res->fetch_array();
+                                            $emp_id = $r['id'];
                                             $time = date("YmdHis");
-                                            $query = "insert into bill(customer_id,ticket_id,emp_id,play_id,price,sale_time) VALUE (".$customer_id.",".$row['id'].",".$_SESSION['username'].",".$row['play_id'].",".$final_price.",\"".$time."\");";
+                                            $query = "insert into bill(customer_id,ticket_id,emp_id,play_id,price,sale_time) VALUE (" . $customer_id . "," . $row['id'] . "," . $emp_id . "," . $row['play_id'] . "," . $price . ",\"" . $time . "\");";
                                             $connect->query($query);
-                                            $query="update ticket set status = 2 where id = ".$row['id'].";";
+                                            $query = "update ticket set status = 2 where id = " . $row['id'] . ";";
                                             $connect->query($query);
 
 

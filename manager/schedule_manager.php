@@ -105,11 +105,28 @@ require_once "conf/conf.php"
 
                     $count = 0;
                     $select = $connect->select_db($DB_NAME);
+
+
                     if (isset($_POST['schedule_id'])) {
+
+                        $query = "select play_id from schedule where id = ".$_POST['schedule_id'].";";
+                        $result5 = $connect->query($query);
+                        $row5 = $result5->fetch_array();
+
+                        $query = "select status from play where id = ".$row5['play_id'].";";
+                        $result4 = $connect->query($query);
+                        $row4 = $result4->fetch_array();
+                        $status = $row4['status'] -1;
+
+
+                        $query = "update play set status =".$status." where id = ".$row5['play_id'].";";
+                        $connect->query($query);
+
                         $query = "delete from ticket where schedule_id = " . $_POST['schedule_id'] . ";";
                         $connect->query($query);
                         $query = "delete from schedule where id = " . $_POST['schedule_id'] . ";";
                         $connect->query($query);
+                        
                     }
                     $query = "select theater_id from manager where emp_no =\"" . $_SESSION['username'] . "\";";
                     $result = $connect->query($query);

@@ -1,5 +1,5 @@
 ﻿<?php
-    require_once "conf/conf.php";
+require_once "conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -87,7 +87,7 @@
                     </tr>
 
                     <?php
-                   
+
                     /*
                     * 连接数据库
                     */
@@ -162,7 +162,7 @@
                                         <select name="play_id">
                                             <option value="0">全部</option>
                                             <?php
-                                            
+
                                             /*
                                             * 连接数据库
                                             */
@@ -192,7 +192,7 @@
                                         <select name="sale_time">
                                             <option value="0">全部</option>
                                             <?php
-                                          
+
                                             /*
                                             * 连接数据库
                                             */
@@ -241,7 +241,7 @@
                         $play_id = $_POST['play_id'];
                         $sale_time = $_POST['sale_time'];
 
-                      
+
 
                         /*
                         * 连接数据库
@@ -260,79 +260,79 @@
                         $result3 = $connect->query($query);
                         $row3 = $result3->fetch_array();
                         if(!is_null($row3['id'])){
-                        if ($play_id == 0 && $sale_time == 0) {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =".$row3['id'].";";
-                            $result = $connect->query($query);
-                            while ($row = $result->fetch_array()) {
+                            if ($play_id == 0 && $sale_time == 0) {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =".$row3['id'].";";
+                                $result = $connect->query($query);
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $row['play_id'] . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
-                                    echo "</tr>";
+                                    $query = "select name from play where id = " . $row['play_id'] . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                        echo "</tr>";
+                                    }
                                 }
-                            }
-                        } elseif ($play_id != 0 && $sale_time == 0) {
+                            } elseif ($play_id != 0 && $sale_time == 0) {
 
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and emp_id = ".$row3['id'].";";
-                            $result = $connect->query($query);
-                            while ($row = $result->fetch_array()) {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and emp_id = ".$row3['id'].";";
+                                $result = $connect->query($query);
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $play_id . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                    $query = "select name from play where id = " . $play_id . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
 
-                                    echo "</tr>";
+                                        echo "</tr>";
+                                    }
                                 }
-                            }
-                        } elseif ($play_id == 0 && $sale_time != 0) {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
-                            $result = $connect->query($query);
-                            while ($row = $result->fetch_array()) {
+                            } elseif ($play_id == 0 && $sale_time != 0) {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
+                                $result = $connect->query($query);
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $row['play_id'] . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
-                                    echo "</tr>";
+                                    $query = "select name from play where id = " . $row['play_id'] . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                        echo "</tr>";
+                                    }
                                 }
-                            }
-                        } else {
-                            $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
-                            $result = $connect->query($query);
+                            } else {
+                                $query = "select id,ticket_id,play_id,sale_time,price from bill where play_id = " . $play_id . " and sale_time = \"" . $sale_time . "\" and emp_id = ".$row3['id'].";";
+                                $result = $connect->query($query);
 
-                            while ($row = $result->fetch_array()) {
+                                while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $play_id . ";";
-                                $result2 = $connect->query($query);
-                                while ($row2 = $result2->fetch_array()) {
-                                    echo "<tr>";
-                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row2['name'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
-                                    echo "</tr>";
+                                    $query = "select name from play where id = " . $play_id . ";";
+                                    $result2 = $connect->query($query);
+                                    while ($row2 = $result2->fetch_array()) {
+                                        echo "<tr>";
+                                        echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['ticket_id'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row2['name'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                        echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                        echo "</tr>";
+                                    }
                                 }
                             }
                         }
-                    }
                     }
                     ?>
                 </table>

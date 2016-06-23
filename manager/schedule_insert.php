@@ -237,7 +237,7 @@
                                     $query = "select id,count(id) from seat where studio_id = ".$studio_id." and row= ".$i." and col = ".$j." and status = 1 ;";
                                     $result5 = $connect->query($query);
                                     $row5 = $result5->fetch_array();
-                                    $status =1;
+                                    $status =0;
                                     if($row5['count(id)'] > 0){
                                         $query = "insert into ticket(seat_id,schedule_id,play_id,price,status) values(".$row5['id'].",".$schedule_id.",".$play_id.",".$price.",".$status.");";
                                         $connect->query($query);

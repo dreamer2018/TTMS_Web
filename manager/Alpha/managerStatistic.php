@@ -262,7 +262,6 @@
                         if ($sale_time == 0) {
 
                             $query = "select id,ticket_id,play_id,sale_time,price from bill where emp_id =" . $emp_id . ";";
-                            echo $query;
 
                             $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {

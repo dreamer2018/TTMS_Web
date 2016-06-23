@@ -80,7 +80,7 @@
                         <tr>
                             <th width="120">影片名称:</th>
                             <td>
-                                <select name="movie_name">
+                                <select name="movie_id">
                                     <option value="0">全部</option>
                                     <?php
                                     require_once "../conf/DB_login.php";
@@ -102,7 +102,7 @@
                                     $query = "select id,name from play;";
                                     $result = $connect->query($query);
                                     while ($row = $result->fetch_array()) {
-                                        echo "<option value=" . $row["id"] . ">" . $row["name"] . "</option>";
+                                        echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
                                     }
                                     ?>
                                 </select>

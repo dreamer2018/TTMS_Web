@@ -107,13 +107,14 @@ require_once "conf/conf.php";
                      * 查找出当前售票员的id
                      */
                     $query = "select id from employee where emp_no =\"".$emp_no."\";";
-                    $result2 = $connect->query($query);
-                    $row2 = $result2->fetch_array();
-                    if(!is_null($row2['id'])){
+                    $result4 = $connect->query($query);
+                    $row4 = $result4->fetch_array();
+                    $emp_id = $row4['id'];
+                    if(!is_null($emp_id)){
                         /*
                          * 找出此售票员卖过什么电影的票
                          */
-                        $query = "select distinct play_id from bill where emp_id =".$row2['id'].";";
+                        $query = "select distinct play_id from bill where emp_id =".$emp_id.";";
                         $result = $connect->query($query);
                         $c = 0;
                         while ($row = $result->fetch_array()) {
@@ -121,7 +122,7 @@ require_once "conf/conf.php";
                             /*
                              * 统计每个电影的票数与总销售额
                              */
-                            $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . " and emp_id = ".$row2['id'].";";
+                            $query = "select price,count(id) from bill where play_id = " . $row['play_id'] . " and emp_id = ".$emp_id.";";
                             $result2 = $connect->query($query);
                             $row2 = $result2->fetch_array();
                             $count = $row2['count(id)'];
@@ -129,8 +130,6 @@ require_once "conf/conf.php";
 
                             $sum = $count * $price;
                             $query = "select name from play where id = " . $row['play_id'] . ";";
-
-
                             $result3 = $connect->query($query);
                             $row3 = $result3->fetch_array();
                             $movie_name = $row3['name'];

@@ -327,6 +327,7 @@ require_once "conf/conf.php";
                         /*
                          * 先通过schedule_id获取到一系列seat_id
                          */
+
                         $sign = 1; //座位存在标志
                         $query = "select id,seat_id,play_id,status from ticket where schedule_id = " . $schedule_id . ";";
 
@@ -335,11 +336,12 @@ require_once "conf/conf.php";
                         while ($row = $result->fetch_array()) {
 
                             $seat_id = $row['seat_id'];
-                            $ticket_id = $row['ticket_id'];
+                            $ticket_id = $row['id'];
 
                             $query = "select id,row,col,status,studio_id from seat where id = " . $seat_id . ";";
 
                             $result2 = $connect->query($query);
+
                             while ($row2 = $result2->fetch_array()) {
 
                                 $seat_status = $row2['status'];
@@ -349,6 +351,7 @@ require_once "conf/conf.php";
                                         if ($row['status']) {
                                             echo "此座位已被订购！";
                                         } else {
+
                                             $query = "select count(id),id from customer where tel =".$tel.";";
                                             $result4 = $connect->query($query);
                                             $row4 = $result4->fetch_array();
@@ -381,13 +384,14 @@ require_once "conf/conf.php";
                                             echo "<th>折后价<br />";
                                             echo "<th>时间</th>";
                                             echo "</tr>";
+                                            $orig_price = $price / $dicount;
                                             echo "<tr>";
                                             echo "<td>" . $row['id'] . "</td >";
                                             echo "<td>" . $row2['studio_id'] . "</td >";
                                             echo "<td>" . $row['play_id'] . "</td >";
-                                            echo "<td>" . $price . "</td >";
+                                            echo "<td>" . $orig_price . "</td >";
                                             echo "<td>" . $dicount . "</td >";
-                                            echo "<td>" . $final_price . "</td >";
+                                            echo "<td>" . $price . "</td >";
                                             echo "<td>" . substr($time, 0, 4) . "." . substr($time, 4, 2) . "." . substr($time, 6, 2) . "&nbsp;" . substr($time, 8, 2) . ":" . substr($time, 10, 2) . ":" . substr($time, 12, 2) . "</td >";
                                             echo "</tr>";
                                             echo "</table>";

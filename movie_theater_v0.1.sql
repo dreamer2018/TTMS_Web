@@ -291,10 +291,12 @@ INSERT INTO ticket VALUES (2,2,1,1,8,2,NULL );
 INSERT INTO ticket VALUES (3,3,1,1,8,0,NULL );
 INSERT INTO ticket VALUES (4,4,1,1,8,0,NULL );
 
-INSERT INTO ticket VALUES (5,1,4,2,21,0,NULL );
-INSERT INTO ticket VALUES (6,2,4,2,21,0,NULL );
-INSERT INTO ticket VALUES (7,3,4,2,21,2,NULL );
-INSERT INTO ticket VALUES (8,4,4,2,21,0,NULL );
+INSERT INTO ticket VALUES (5,1,2,4,21,0,NULL );
+INSERT INTO ticket VALUES (6,2,2,4,21,0,NULL );
+INSERT INTO ticket VALUES (7,3,2,4,21,2,NULL );
+
+
+INSERT INTO ticket VALUES (8,4,2,4,21,0,NULL );
 
 /*********************************************************************************************************/
 

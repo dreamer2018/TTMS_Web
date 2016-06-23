@@ -83,7 +83,6 @@
                                 <select name="movie_id">
                                     <option value="0">全部</option>
                                     <?php
-                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -112,7 +111,6 @@
                                 <select name="date">
                                     <option value="-1">全部</option>
                                     <?php
-                                    require_once "../conf/DB_login.php";
                                     /*
                                      * 连接数据库
                                      */
@@ -152,19 +150,19 @@
                     <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                         <tr>
                             <th class="tc">ID</th>
-                            <th>演出厅id</th>
-                            <th>剧目</th>
-                            <th>放映时间</th>
-                            <th>折扣</th>
-                            <th>票价</th>
+                            <th class="tc">演出厅id</th>
+                            <th class="tc">剧目</th>
+                            <th class="tc">放映时间</th>
+                            <th class="tc">票价</th>
+                            <th class="tc">折扣</th>
+                            <th class="tc">余票</th>
                         </tr>
                         <?php
-
-                        if (isset($_POST["movie_name"])) {
-                            $movie_name = $_POST['movie_name'];
+                        $count=0;
+                        if (isset($_POST["movie_id"])) {
+                            $movie_name = $_POST['movie_id'];
                             $date = $_POST['date'];
 
-                            require_once "../conf/DB_login.php";
                             /*
                              * 连接数据库
                              */
@@ -180,33 +178,45 @@
                              * 选择数据库
                              */
                             $select = $connect->select_db($DB_NAME);
+
+                            $query = "select theater_id from employee where emp_no = \"" . $_SESSION['username'] . "\";";
+                            $res = $connect->query($query);
+                            $r = $res->fetch_array();
+
+
                             if ($movie_name == 0 && $date == -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 ;";
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and studio_id in (select id from studio where theater_id = " . $r['theater_id'] . " );";
                             } elseif ($movie_name == 0 && $date != -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and  time=\"" . $date . "\";";
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and  time=\"" . $date . "\" and studio_id in (select id from studio where theater_id = " . $r['theater_id'] . " );";
                             } elseif ($movie_name != 0 && $date == -1) {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . ";";
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and studio_id in (select id from studio where theater_id = " . $r['theater_id'] . " );";
                             } else {
-                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\";";
+                                $query = "select id,studio_id,play_id,time,discount,price from schedule where status = 1 and play_id =" . $movie_name . " and time=\"" . $date . "\" and studio_id in (select id from studio where theater_id = " . $r['theater_id'] . " );";
                             }
-                            //echo $query;
 
                             $result = $connect->query($query);
-                            $count=0;
+
                             while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = ".$row['id'].";";
+                                $query = "select count(id) from ticket where status = 0 and schedule_id = ".$row['id'].";";
+                                $result3 = $connect->query($query);
+                                $row3 = $result3->fetch_array();
+
+
+                                $query = "select name from play where id = ".$row['play_id'].";";
                                 $result2 = $connect->query($query);
                                 $row2 = $result2->fetch_array();
                                 $movie_name = $row2['name'];
+                                $or_price = $row['price'] /$row['discount'];
                                 echo "<tr>";
-                                echo "<td>" . $row['id'] . "</td >";
-                                echo "<td>" . $row['studio_id'] . "</td >";
-                                echo "<td>" . $movie_name . "</td >";
-                                echo "<td>" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
-                                echo "<td>" . $row['discount'] . "</td >";
-                                echo "<td>" . $row['price'] . "</td >";
-                                echo "</td>";
+                                echo "<td class=\"tc\">" . $row['id'] . "</td >";
+                                echo "<td class=\"tc\">" . $row['studio_id'] . "</td >";
+                                echo "<td class=\"tc\">" . $movie_name . "</td >";
+                                echo "<td class=\"tc\">" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
+                                echo "<td class=\"tc\">" . $or_price . "</td >";
+                                echo "<td class=\"tc\">" . $row['discount'] . "</td >";
+                                echo "<td class=\"tc\">" . $row3['count(id)'] . "</td >";
+                                echo "</tr>";
                                 $count++;
                             }
                         }
@@ -217,13 +227,6 @@
             </form>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

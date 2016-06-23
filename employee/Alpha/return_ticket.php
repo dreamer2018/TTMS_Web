@@ -62,7 +62,6 @@
     </div>
     <!--菜单栏结束-->
 
-
     <div class="main-wrap">
 
         <div class="crumb-wrap">
@@ -140,13 +139,15 @@
 
                             echo " <table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
                             echo "<tr >";
-                            echo "<th > ID</th >";
-                            echo "<th > 账单ID</th >";
-                            echo "<th > 顾客手机号</th >";
-                            echo "<th > 影片</th >";
-                            echo "<th > 价格</th >";
-                            echo "<th > 售票时间</th >";
-                            echo "<th > 操作</th >";
+                            echo "<th class=\"tc\"> ID</th >";
+                            echo "<th class=\"tc\"> 账单ID</th >";
+                            echo "<th class=\"tc\"> 顾客手机号</th >";
+                            echo "<th class=\"tc\"> 影片</th >";
+                            echo "<th class=\"tc\"> 价格</th >";
+                            echo "<th class=\"tc\"> 演出厅ID</th >";
+                            echo "<th class=\"tc\"> 座位</th >";
+                            echo "<th class=\"tc\"> 售票时间</th >";
+                            echo "<th class=\"tc\"> 操作</th >";
                             echo "</tr >";
 
 
@@ -182,10 +183,9 @@
                             $result = $connect->query($query);
                             while ($row = $result->fetch_array()) {
 
-                                $query = "select tel from customer where id = " . $row['customer_id'] . ";";
+                                $query = "select tel from customer where id = " . $row['customer_id'] . " ;";
                                 $result2 = $connect->query($query);
                                 $row2 = $result2->fetch_array();
-
                                 if ($row2['tel'] == $tel) {
                                     $sign = 1;
                                     $count++;
@@ -193,15 +193,25 @@
                                     $result3 = $connect->query($query);
                                     $row3 = $result3->fetch_array();
 
+                                    $query = "select row,col from seat where id in ( select seat_id from ticket where id in (select ticket_id from bill where id = ".$row['id']."));";
+                                    $result5 = $connect->query($query);
+                                    $row5 = $result5->fetch_array();
+
+                                    $query = "select studio_id from schedule where id in (select schedule_id from ticket where id in (select ticket_id from bill where id = ".$row['id']."));";
+                                    $result6 = $connect->query($query);
+                                    $row6 = $result6->fetch_array();
+
                                     echo "<tr>";
-                                    echo "<td>" . $count . "</td>";
-                                    echo "<td>" . $row['id'] . "</td>";
-                                    echo "<td>" . $tel . "</td>";
-                                    echo "<td>" . $row3['name'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
+                                    echo "<td class=\"tc\">" . $count . "</td>";
+                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                    echo "<td class=\"tc\">" . $tel . "</td>";
+                                    echo "<td class=\"tc\">" . $row3['name'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row6['studio_id'] . "</td>";
+                                    echo "<td class=\"tc\">" .$row5['row']." 行 ".$row5['col'] . " 列</td>";
+                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
                                     echo "<input type=\"hidden\" name = \"re_bill_id\" value=" . $row['id'] . ">";
-                                    echo "<td>";
+                                    echo "<td class=\"tc\">";
                                     echo "<input type=\"submit\" class=\"btn btn-primary btn2\" value=\"退票\">";
                                     echo "</td>";
                                     echo "</tr>";
@@ -240,13 +250,6 @@
             ?>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

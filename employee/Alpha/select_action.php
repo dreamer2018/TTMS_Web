@@ -1,5 +1,5 @@
 <?php
-    require_once "conf/conf.php";
+require_once "conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,6 @@
 <div class="container clearfix">
 
 
-
     <!--网页菜单栏-->
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -62,7 +61,6 @@
         </div>
     </div>
     <!--菜单栏结束-->
-
 
 
     <div class="main-wrap">
@@ -187,9 +185,11 @@
                                     <option value="60">>60</option>
                                 </select>
                             </td>
+                            <!--
                             <th width="70">关键字:</th>
                             <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text">
                             </td>
+                            -->
                             <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
                         </tr>
                     </table>
@@ -201,14 +201,14 @@
                 <div class="result-content" id="fid">
                     <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                         <tr>
-                            <th>ID</th>
-                            <th>影片名称</th>
-                            <th>影片类型</th>
-                            <th>语言</th>
-                            <th>等级</th>
-                            <th>评分</th>
-                            <th>票价</th>
-                            <th>时长</th>
+                            <th class="tc">ID</th>
+                            <th class="tc">影片名称</th>
+                            <th class="tc">影片类型</th>
+                            <th class="tc">语言</th>
+                            <th class="tc">等级</th>
+                            <th class="tc">评分</th>
+                            <th class="tc">票价</th>
+                            <th class="tc">时长</th>
                         </tr>
                         <?php
                         $count = 0;
@@ -227,7 +227,6 @@
                                 echo $price;
                                 echo $keywords;
                             */
-                            require_once "../conf/DB_login.php";
                             /*
                              * 连接数据库
                              */
@@ -324,9 +323,7 @@
                             /*
                              * 获取查询结果
                              */
-
                             $result = $connect->query($query);
-
                             if (!$result) {
                                 die("<p>查询失败</p><br/>");
                             } else {
@@ -373,17 +370,18 @@
                                     }
                                     */
                                     echo "<tr>";
-                                    echo "<td>" . $row["id"] . "</td>";
-                                    echo "<td >" . $row["name"] . "</td>";
-                                    echo "<td>" . $type . "</td>";
-                                    echo "<td>" . $lang . "</td>";
-                                    echo "<td>" . $level . "</td>";
-                                    echo "<td>" . $row['score'] . "</td>";
-                                    echo "<td>" . $row['price'] . "</td>";
-                                    echo "<td>" . $row['length'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row["id"] . "</td>";
+                                    echo "<td class=\"tc\">" . $row["name"] . "</td>";
+                                    echo "<td class=\"tc\">" . $type . "</td>";
+                                    echo "<td class=\"tc\">" . $lang . "</td>";
+                                    echo "<td class=\"tc\">" . $level . "</td>";
+                                    echo "<td class=\"tc\">" . $row['score'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                    echo "<td class=\"tc\">" . $row['length'] . "</td>";
                                     echo "</tr>";
                                     $count++;
                                 }
+                                $connect->close();
                             }
                         }
                         ?>
@@ -393,13 +391,6 @@
             </form>
         </div>
     </div>
-    <!--/main-->
-    <script type="text/javascript">
-        function post() {
-            forPost.action = "DestinationPage.aspx";
-            forPost.submit();
-        }
-    </script>
 </div>
 </body>
 </html>

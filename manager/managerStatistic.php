@@ -113,7 +113,6 @@
                         /*
                          * 选出此剧院所有售票员
                          */
-                        echo $row2['id'];
                         $query = "select id,emp_no,name,tel from employee where theater_id = " . $row2['theater_id'] . ";";
                         $result = $connect->query($query);
                         $c = 0;
@@ -274,8 +273,8 @@
                                     echo "<td>" . $row['id'] . "</td>";
                                     echo "<td>" . $row['ticket_id'] . "</td>";
                                     echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
                                     echo "<td>" . $row['price'] . "</td>";
+                                    echo "<td>" . $row['sale_time'] . "</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -292,8 +291,8 @@
                                     echo "<td>" . $row['id'] . "</td>";
                                     echo "<td>" . $row['ticket_id'] . "</td>";
                                     echo "<td>" . $row2['name'] . "</td>";
-                                    echo "<td>" . $row['sale_time'] . "</td>";
                                     echo "<td>" . $row['price'] . "</td>";
+                                    echo "<td>" . $row['sale_time'] . "</td>";
                                     echo "</tr>";
                                 }
                             }

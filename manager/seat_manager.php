@@ -182,9 +182,9 @@ require_once "conf/conf.php";
                             echo "<td>" . $row['row'] . "</td>";
                             echo "<td>" . $row['col'] . "</td>";
                             if ($row['status'] == 0) {
-                                echo "<td>" . 损坏 . "</td>";
+                                echo "<td>损坏</td>";
                             } else {
-                                echo "<td>" . 可用 . "</td>";
+                                echo "<td>可用</td>";
                             }
                             echo "<td>";
                             echo "<form name=\"delete\" action=\"seat_manager.php\" id=\"myform\" method=\"post\">";

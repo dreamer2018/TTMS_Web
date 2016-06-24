@@ -235,6 +235,7 @@ require_once "conf/conf.php";
                     </tr>
 
                     <?php
+                    $count=0;
                     if (isset($_POST['play_id'])) {
 
                         $play_id = $_POST['play_id'];
@@ -274,6 +275,7 @@ require_once "conf/conf.php";
                                         echo "<td class=\"tc\">" . $row['price'] . "</td>";
                                         echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
                                         echo "</tr>";
+                                        $count++;
                                     }
                                 }
                             } elseif ($play_id != 0 && $sale_time == 0) {
@@ -291,8 +293,8 @@ require_once "conf/conf.php";
                                         echo "<td class=\"tc\">" . $row2['name'] . "</td>";
                                         echo "<td class=\"tc\">" . $row['price'] . "</td>";
                                         echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
-
                                         echo "</tr>";
+                                        $count++;
                                     }
                                 }
                             } elseif ($play_id == 0 && $sale_time != 0) {
@@ -310,6 +312,7 @@ require_once "conf/conf.php";
                                         echo "<td class=\"tc\">" . $row['price'] . "</td>";
                                         echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
                                         echo "</tr>";
+                                        $count++;
                                     }
                                 }
                             } else {
@@ -328,6 +331,7 @@ require_once "conf/conf.php";
                                         echo "<td class=\"tc\">" . $row['price'] . "</td>";
                                         echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
                                         echo "</tr>";
+                                        $count++;
                                     }
                                 }
                             }
@@ -335,6 +339,7 @@ require_once "conf/conf.php";
                     }
                     ?>
                 </table>
+                <div class="list-page" style="margin-left: 85%">共<?php echo $count ?>条</div>
             </div>
         </div>
     </div>

@@ -151,11 +151,12 @@ require_once "conf/conf.php";
                     <table class="result-tab" width="100%" id="tableid" cellpadding="0" cellspacing="0">
                         <tr>
                             <th class="tc">演出计划ID</th>
-                            <th class="tc">演出厅id</th>
+                            <th class="tc">演出厅ID</th>
                             <th class="tc">剧目</th>
                             <th class="tc">放映时间</th>
-                            <th class="tc">折扣</th>
                             <th class="tc">票价</th>
+                            <th class="tc">折扣</th>
+                            <th class="tc">折后价</th>
                         </tr>
                         <?php
                         $count = 0;
@@ -195,15 +196,17 @@ require_once "conf/conf.php";
 
                             while ($row = $result->fetch_array()) {
 
-                                $query = "select name from play where id = " . $row['id'] . ";";
+                                $query = "select name from play where id = " . $row['play_id'] . ";";
                                 $result2 = $connect->query($query);
                                 $row2 = $result2->fetch_array();
                                 $movie_name = $row2['name'];
+                                $orig_price = $row['price'] / $row['discount'];
                                 echo "<tr>";
                                 echo "<td class=\"tc\">" . $row['id'] . "</td >";
                                 echo "<td class=\"tc\">" . $row['studio_id'] . "</td >";
                                 echo "<td class=\"tc\">" . $movie_name . "</td >";
                                 echo "<td class=\"tc\">" . substr($row["time"], 0, 4) . "." . substr($row["time"], 4, 2) . "." . substr($row["time"], 6, 2) . "&nbsp;" . substr($row["time"], 8, 2) . ":" . substr($row["time"], 10, 2) . "</td >";
+                                echo "<td class=\"tc\">" . $orig_price . "</td >";
                                 echo "<td class=\"tc\">" . $row['discount'] . "</td >";
                                 echo "<td class=\"tc\">" . $row['price'] . "</td >";
                                 echo "</td>";
@@ -337,21 +340,18 @@ require_once "conf/conf.php";
 
                             $seat_id = $row['seat_id'];
                             $ticket_id = $row['id'];
-
                             $query = "select id,row,col,status,studio_id from seat where id = " . $seat_id . ";";
 
                             $result2 = $connect->query($query);
-
                             while ($row2 = $result2->fetch_array()) {
-
                                 $seat_status = $row2['status'];
-                                if ($row2['row'] == $seat_row && $row2['col'] == $seat_col) {
+                                if ($row2['row'] == $seat_row and $row2['col'] == $seat_col) {
                                     $sign = 0;
+
                                     if ($row2['status'] == 1) {
                                         if ($row['status']) {
                                             echo "此座位已被订购！";
                                         } else {
-
                                             $query = "select count(id),id from customer where tel =".$tel.";";
                                             $result4 = $connect->query($query);
                                             $row4 = $result4->fetch_array();
@@ -377,22 +377,24 @@ require_once "conf/conf.php";
                                             echo "<table class= \"result-tab \"width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
                                             echo "<tr>";
                                             echo "<th class=\"tc\">票ID</th>";
-                                            echo "<th>影厅ID</th>";
-                                            echo "<th>剧目ID</th>";
-                                            echo "<th>票价</th>";
-                                            echo "<th>折扣</th>";
-                                            echo "<th>折后价<br />";
-                                            echo "<th>时间</th>";
+                                            echo "<th class=\"tc\">影厅ID</th>";
+                                            echo "<th class=\"tc\">剧目ID</th>";
+                                            echo "<th class=\"tc\">票价</th>";
+                                            echo "<th class=\"tc\">位置</th>";
+                                            echo "<th class=\"tc\">折扣</th>";
+                                            echo "<th class=\"tc\">折后价<br />";
+                                            echo "<th class=\"tc\">时间</th>";
                                             echo "</tr>";
                                             $orig_price = $price / $dicount;
                                             echo "<tr>";
-                                            echo "<td>" . $row['id'] . "</td >";
-                                            echo "<td>" . $row2['studio_id'] . "</td >";
-                                            echo "<td>" . $row['play_id'] . "</td >";
-                                            echo "<td>" . $orig_price . "</td >";
-                                            echo "<td>" . $dicount . "</td >";
-                                            echo "<td>" . $price . "</td >";
-                                            echo "<td>" . substr($time, 0, 4) . "." . substr($time, 4, 2) . "." . substr($time, 6, 2) . "&nbsp;" . substr($time, 8, 2) . ":" . substr($time, 10, 2) . ":" . substr($time, 12, 2) . "</td >";
+                                            echo "<td class=\"tc\">" . $row['id'] . "</td >";
+                                            echo "<td class=\"tc\">" . $row2['studio_id'] . "</td >";
+                                            echo "<td class=\"tc\">" . $row['play_id'] . "</td >";
+                                            echo "<td class=\"tc\">" . $seat_row."行".$seat_col."列" . "</td >";
+                                            echo "<td class=\"tc\">" . $orig_price . "</td >";
+                                            echo "<td class=\"tc\">" . $dicount . "</td >";
+                                            echo "<td class=\"tc\">" . $price . "</td >";
+                                            echo "<td class=\"tc\">" . substr($time, 0, 4) . "." . substr($time, 4, 2) . "." . substr($time, 6, 2) . "&nbsp;" . substr($time, 8, 2) . ":" . substr($time, 10, 2) . ":" . substr($time, 12, 2) . "</td >";
                                             echo "</tr>";
                                             echo "</table>";
                                             break;

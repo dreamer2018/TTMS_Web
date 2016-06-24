@@ -210,9 +210,11 @@
                                     echo "<td class=\"tc\">" . $row6['studio_id'] . "</td>";
                                     echo "<td class=\"tc\">" .$row5['row']." 行 ".$row5['col'] . " 列</td>";
                                     echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
-                                    echo "<input type=\"hidden\" name = \"re_bill_id\" value=" . $row['id'] . ">";
                                     echo "<td class=\"tc\">";
+                                    echo "<form name=\"myform\" action=\"return_ticket.php\" id=\"myform\" method=\"post\">";
+                                    echo "<input type=\"hidden\" name = \"re_bill_id\" value=" . $row['id'] . ">";
                                     echo "<input type=\"submit\" class=\"btn btn-primary btn2\" value=\"退票\">";
+                                    echo "</form>";
                                     echo "</td>";
                                     echo "</tr>";
                                 }

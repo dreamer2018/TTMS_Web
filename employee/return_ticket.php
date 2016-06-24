@@ -1,5 +1,5 @@
 <?php
-    require_once "conf/conf.php";
+require_once "conf/conf.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -97,11 +97,11 @@
                                     /*
                                      * 得到售票员的剧院
                                      */
-                                    $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
+                                    $query = "select theater_id from employee where emp_no = \"" . $_SESSION['username'] . "\";";
                                     $result2 = $connect->query($query);
                                     $row2 = $result2->fetch_array();
 
-                                    $query = "select id from bill where emp_id in ( select id from employee where theater_id =".$row2['theater_id'].");";
+                                    $query = "select id from bill where emp_id in ( select id from employee where theater_id =" . $row2['theater_id'] . ");";
                                     $result = $connect->query($query);
                                     while ($row = $result->fetch_array()) {
 
@@ -125,116 +125,114 @@
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" action="return_ticket.php" id="myform" method="post">
-                <div class="result-content" id="fid">
-                    <?php
-                    if (isset($_POST['bill_id'])) {
+            <div class="result-content" id="fid">
+                <?php
+                if (isset($_POST['bill_id'])) {
 
-                        $bill_id = $_POST['bill_id'];
-                        $tel = $_POST['tel'];
-                        if (strlen($tel) != 11) {
-                            echo "手机号错误";
-                        } else {
-
-
-                            echo " <table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
-                            echo "<tr >";
-                            echo "<th class=\"tc\"> ID</th >";
-                            echo "<th class=\"tc\"> 账单ID</th >";
-                            echo "<th class=\"tc\"> 顾客手机号</th >";
-                            echo "<th class=\"tc\"> 影片</th >";
-                            echo "<th class=\"tc\"> 价格</th >";
-                            echo "<th class=\"tc\"> 演出厅ID</th >";
-                            echo "<th class=\"tc\"> 座位</th >";
-                            echo "<th class=\"tc\"> 售票时间</th >";
-                            echo "<th class=\"tc\"> 操作</th >";
-                            echo "</tr >";
+                    $bill_id = $_POST['bill_id'];
+                    $tel = $_POST['tel'];
+                    if (strlen($tel) != 11) {
+                        echo "手机号错误";
+                    } else {
 
 
-                            /*
-                             * 连接数据库
-                             */
-                            $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
-                            /*
-                             * 如果连接失败，则直接结束
-                            */
-                            if (!$connect) {
-                                die("Connect DataBase Error!<br/>");
-                            }
-
-                            /*
-                             * 选择数据库
-                             */
-                            $select = $connect->select_db($DB_NAME);
+                        echo " <table class=\"result-tab\" width=\"100%\" id=\"tableid\" cellpadding=\"0\" cellspacing=\"0\">";
+                        echo "<tr >";
+                        echo "<th class=\"tc\"> ID</th >";
+                        echo "<th class=\"tc\"> 账单ID</th >";
+                        echo "<th class=\"tc\"> 顾客手机号</th >";
+                        echo "<th class=\"tc\"> 影片</th >";
+                        echo "<th class=\"tc\"> 价格</th >";
+                        echo "<th class=\"tc\"> 演出厅ID</th >";
+                        echo "<th class=\"tc\"> 座位</th >";
+                        echo "<th class=\"tc\"> 售票时间</th >";
+                        echo "<th class=\"tc\"> 操作</th >";
+                        echo "</tr >";
 
 
-                            $sign = 0; //验证手机号码
-                            $count = 0;
-
-                            $query = "select theater_id from employee where emp_no = \"".$_SESSION['username']."\";";
-                            $result4 = $connect->query($query);
-                            $row4 = $result4->fetch_array();
-
-                            if ($bill_id == 0) {
-                                $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where emp_id in ( select id from employee where theater_id = ".$row4['theater_id'].")";
-                            } else {
-                                $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where id = " . $bill_id . " and emp_id in ( select id from employee where theater_id = ".$row4['theater_id'].");";
-                            }
-                            $result = $connect->query($query);
-                            while ($row = $result->fetch_array()) {
-
-                                $query = "select tel from customer where id = " . $row['customer_id'] . " ;";
-                                $result2 = $connect->query($query);
-                                $row2 = $result2->fetch_array();
-                                if ($row2['tel'] == $tel) {
-                                    $sign = 1;
-                                    $count++;
-                                    $query = "select name from play where id =" . $row['play_id'] . ";";
-                                    $result3 = $connect->query($query);
-                                    $row3 = $result3->fetch_array();
-
-                                    $query = "select row,col from seat where id in ( select seat_id from ticket where id in (select ticket_id from bill where id = ".$row['id']."));";
-                                    $result5 = $connect->query($query);
-                                    $row5 = $result5->fetch_array();
-
-                                    $query = "select studio_id from schedule where id in (select schedule_id from ticket where id in (select ticket_id from bill where id = ".$row['id']."));";
-                                    $result6 = $connect->query($query);
-                                    $row6 = $result6->fetch_array();
-
-                                    echo "<tr>";
-                                    echo "<td class=\"tc\">" . $count . "</td>";
-                                    echo "<td class=\"tc\">" . $row['id'] . "</td>";
-                                    echo "<td class=\"tc\">" . $tel . "</td>";
-                                    echo "<td class=\"tc\">" . $row3['name'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row['price'] . "</td>";
-                                    echo "<td class=\"tc\">" . $row6['studio_id'] . "</td>";
-                                    echo "<td class=\"tc\">" .$row5['row']." 行 ".$row5['col'] . " 列</td>";
-                                    echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
-                                    echo "<td class=\"tc\">";
-                                    echo "<form name=\"myform\" action=\"return_ticket.php\" id=\"myform\" method=\"post\">";
-                                    echo "<input type=\"hidden\" name = \"re_bill_id\" value=" . $row['id'] . ">";
-                                    echo "<input type=\"submit\" class=\"btn btn-primary btn2\" value=\"退票\">";
-                                    echo "</form>";
-                                    echo "</td>";
-                                    echo "</tr>";
-                                }
-                            }
-                            echo "</table>";
-                            echo "<div class=\"list-page\" style=\"margin-left:85%;\">共".$count."条";
-                            echo "</div>";
+                        /*
+                         * 连接数据库
+                         */
+                        $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
+                        /*
+                         * 如果连接失败，则直接结束
+                        */
+                        if (!$connect) {
+                            die("Connect DataBase Error!<br/>");
                         }
+
+                        /*
+                         * 选择数据库
+                         */
+                        $select = $connect->select_db($DB_NAME);
+
+
+                        $sign = 0; //验证手机号码
+                        $count = 0;
+
+                        $query = "select theater_id from employee where emp_no = \"" . $_SESSION['username'] . "\";";
+                        $result4 = $connect->query($query);
+                        $row4 = $result4->fetch_array();
+
+                        if ($bill_id == 0) {
+                            $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where emp_id in ( select id from employee where theater_id = " . $row4['theater_id'] . ")";
+                        } else {
+                            $query = "select id,customer_id,ticket_id,play_id,price,sale_time from bill where id = " . $bill_id . " and emp_id in ( select id from employee where theater_id = " . $row4['theater_id'] . ");";
+                        }
+                        $result = $connect->query($query);
+                        while ($row = $result->fetch_array()) {
+
+                            $query = "select tel from customer where id = " . $row['customer_id'] . " ;";
+                            $result2 = $connect->query($query);
+                            $row2 = $result2->fetch_array();
+                            if ($row2['tel'] == $tel) {
+                                $sign = 1;
+                                $count++;
+                                $query = "select name from play where id =" . $row['play_id'] . ";";
+                                $result3 = $connect->query($query);
+                                $row3 = $result3->fetch_array();
+
+                                $query = "select row,col from seat where id in ( select seat_id from ticket where id in (select ticket_id from bill where id = " . $row['id'] . "));";
+                                $result5 = $connect->query($query);
+                                $row5 = $result5->fetch_array();
+
+                                $query = "select studio_id from schedule where id in (select schedule_id from ticket where id in (select ticket_id from bill where id = " . $row['id'] . "));";
+                                $result6 = $connect->query($query);
+                                $row6 = $result6->fetch_array();
+
+                                echo "<tr>";
+                                echo "<td class=\"tc\">" . $count . "</td>";
+                                echo "<td class=\"tc\">" . $row['id'] . "</td>";
+                                echo "<td class=\"tc\">" . $tel . "</td>";
+                                echo "<td class=\"tc\">" . $row3['name'] . "</td>";
+                                echo "<td class=\"tc\">" . $row['price'] . "</td>";
+                                echo "<td class=\"tc\">" . $row6['studio_id'] . "</td>";
+                                echo "<td class=\"tc\">" . $row5['row'] . " 行 " . $row5['col'] . " 列</td>";
+                                echo "<td class=\"tc\">" . $row['sale_time'] . "</td>";
+                                echo "<td class=\"tc\">";
+                                echo "<form name=\"myform\" action=\"return_ticket.php\" id=\"myform\" method=\"post\">";
+                                echo "<input type=\"hidden\" name = \"re_bill_id\" value=" . $row['id'] . ">";
+                                echo "<input type=\"submit\" class=\"btn btn-primary btn2\" value=\"退票\">";
+                                echo "</form>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        }
+                        echo "</table>";
+                        echo "<div class=\"list-page\" style=\"margin-left:85%;\">共" . $count . "条";
+                        echo "</div>";
                     }
-                    ?>
-                </div>
-            </form>
+                }
+                ?>
+            </div>
         </div>
 
         <div class="result-wrap">
             <?php
             if (isset($_POST['re_bill_id'])) {
                 $re_bill_id = $_POST['re_bill_id'];
-                
-              
+
+
                 $connect = new mysqli($DB_HOST, $DB_USER, $DB_PASSWD);
                 if (!$connect) {
                     die("Connect DataBase Error!<br/>");

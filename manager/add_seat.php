@@ -205,6 +205,7 @@
                             if ($row2['count(id)'] > 0) {
                                 echo "<p>此座位已存在！</p><br/>";
                             } else {
+
                                 $status = 1;
                                 $query = "insert into seat (studio_id,row,col,status) values (" . $studio_id . "," . $rows . "," . $cols . "," . $status . ");";
                                 $result3 = $connect->query($query);

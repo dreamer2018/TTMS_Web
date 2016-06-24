@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49a7c092-a8cb-4594-9f41-964e8460d47a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/Alpha/return_ticket.php" afterPath="$PROJECT_DIR$/employee/Alpha/return_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employee/return_ticket.php" afterPath="$PROJECT_DIR$/employee/return_ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/Alpha/add_seat.php" afterPath="$PROJECT_DIR$/manager/Alpha/add_seat.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/Alpha/managerStatistic.php" afterPath="$PROJECT_DIR$/manager/Alpha/managerStatistic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/Alpha/seat_manager.php" afterPath="$PROJECT_DIR$/manager/Alpha/seat_manager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/managerStatistic.php" afterPath="$PROJECT_DIR$/manager/managerStatistic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/seat_manager.php" afterPath="$PROJECT_DIR$/manager/seat_manager.php" />
-    </list>
+    <list default="true" id="49a7c092-a8cb-4594-9f41-964e8460d47a" name="Default" comment="" />
     <ignored path="TTMS_Web.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -150,8 +141,8 @@
       <file leaf-file-name="login_verify.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/login_verify.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+            <state relative-caret-position="633">
+              <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
               <folding>
                 <marker date="1466559692330" expanded="true" signature="1932:2009" ph="select passw... ${$DB_TABLE_NAME}" />
               </folding>
@@ -555,15 +546,15 @@
       <workItem from="1466493617354" duration="17027000" />
       <workItem from="1466556788273" duration="28504000" />
       <workItem from="1466641275741" duration="22255000" />
-      <workItem from="1466726757401" duration="5221000" />
+      <workItem from="1466726757401" duration="6533000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232081000" />
+    <option name="totallyTimeSpent" value="233393000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="28" width="1920" height="1018" extended-state="0" />
+    <frame x="0" y="28" width="1920" height="1018" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18629551" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1192,8 +1183,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/login_verify.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+        <state relative-caret-position="633">
+          <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
           <folding>
             <marker date="1466559692330" expanded="true" signature="1932:2009" ph="select passw... ${$DB_TABLE_NAME}" />
           </folding>
